@@ -36,4 +36,6 @@ public:
 	void Bind() const;
 };
 
+GLuint LoadTexture(const char* filepath);
+
 #endif

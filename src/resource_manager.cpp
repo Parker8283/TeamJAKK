@@ -12,13 +12,11 @@
 #include <sstream>
 #include <fstream>
 
-#include <SOIL.h>
-
 // Instantiate static variables
 std::map<std::string, Texture2D>    ResourceManager::Textures;
 std::map<std::string, Shader>       ResourceManager::Shaders;
 
-
+/*
 Shader ResourceManager::LoadShader(const GLchar* vShaderFile, const GLchar* fShaderFile, const GLchar* gShaderFile, std::string name)
 {
 	Shaders[name] = loadShaderFromFile(vShaderFile, fShaderFile, gShaderFile);
@@ -43,7 +41,7 @@ Texture2D ResourceManager::GetTexture(std::string name)
 
 void ResourceManager::Clear()
 {
-	// (Properly) delete all shaders	
+	// (Properly) delete all shaders
 	for (auto iter : Shaders)
 		glDeleteProgram(iter.second.ID);
 	// (Properly) delete all textures
@@ -105,11 +103,13 @@ Texture2D ResourceManager::loadTextureFromFile(const GLchar* file, GLboolean alp
 		texture.Image_Format = GL_RGBA;
 	}
 	// Load image
-	int width, height;
+	int width, height, n;
+
+  //unsigned char* image = stbi_load(file, &width, &height, &n, 4);
 	unsigned char* image = SOIL_load_image(file, &width, &height, 0, texture.Image_Format == GL_RGBA ? SOIL_LOAD_RGBA : SOIL_LOAD_RGB);
 	// Now generate texture
 	texture.Generate(width, height, image);
 	// And finally free image data
-	SOIL_free_image_data(image);
+	free(image);
 	return texture;
-}
+} */

@@ -1,7 +1,7 @@
-#include "GameLoop.h"
 #include "entity.h"
 #include "resource_manager.h"
 
+/*
 Entity::Entity()
 {
 
@@ -30,4 +30,4 @@ void Entity::render()
 {
 	Texture2D myTexture = ResourceManager::GetTexture("face");
 	Renderer->DrawSprite(myTexture, glm::vec2(200, 200), glm::vec2(300, 400), 45.0f, glm::vec3(0.0f, 1.0f, 0.0f));
-}
+}*/
