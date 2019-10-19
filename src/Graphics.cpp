@@ -5,6 +5,7 @@
 #include <stdio.h>
 #include <Texture.h>
 #include <WindowManager.h>
+#include <stb_image.h>
 
 using namespace glm;
 
@@ -25,6 +26,7 @@ static GLuint playerVAO;
 static GLuint playerVBOs[2];
 
 static GLuint playerTexture;
+static GLuint playerTextureBack;
 static GLuint boxProgramID;
 static GLuint boxMVPID;
 static GLuint boxRotID;
@@ -65,7 +67,17 @@ void DrawPlayer(void) {
   glUseProgram(boxProgramID);
 
   glActiveTexture(GL_TEXTURE0);
-  glBindTexture(GL_TEXTURE_2D, playerTexture);
+
+  double xPos, yPos;
+  glfwGetCursorPos(GetWindow(), &xPos, &yPos);
+  // glBindTexture(GL_TEXTURE_2D, NULL);
+   printf("%.2f %.2f\n", yPos, GetPlayerPos().y);
+  if (yPos < GetPlayerPos().y) {
+    glBindTexture(GL_TEXTURE_2D, playerTextureBack);
+  } else {
+    glBindTexture(GL_TEXTURE_2D, playerTexture);
+  }
+
   glUniform1i(boxTexID, 0);
 
   glUniformMatrix2fv(boxRotID, 1, GL_FALSE, &rot[0][0]);
@@ -87,6 +99,9 @@ void SetupGraphics(void) {
   boxRotID     = glGetUniformLocation(boxProgramID, "uvRot");
 
   playerTexture = LoadTexture("common/sprites/GungeonRipoffBase.png");
+  playerTextureBack = LoadTexture("common/sprites/GungeonRipoffBaseBack.png");
+
+  LoadCursor();
 
   //Setup Player program vert/uv buffer streams
   glGenVertexArrays(1, &playerVAO);
@@ -112,4 +127,18 @@ void SetView(mat4 view) {
 
 GLuint GetPlayerVAO(void) {
   return playerVAO;
+}
+
+
+void LoadCursor() {
+  int width, height, n;
+  unsigned char* pixels = stbi_load("common/sprites/Cursor32.png", &width, &height, &n, 4);
+
+  GLFWimage image;
+  image.width = width;
+  image.height = height;
+  image.pixels = pixels;
+
+  GLFWcursor* cursor = glfwCreateCursor(&image, 12, 12);
+  glfwSetCursor(GetWindow(), cursor);
 }

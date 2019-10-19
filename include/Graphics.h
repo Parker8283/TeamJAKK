@@ -6,6 +6,7 @@
 void DrawPlayer(void);
 void SetupGraphics(void);
 void SetView(glm::mat4 view);
+void LoadCursor();
 
 GLuint GetPlayerVAO(void);
 #endif

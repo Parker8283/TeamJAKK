@@ -50,7 +50,7 @@ int CreateWindow(void) {
   }
 
   glfwSetWindowPos(window, 0, 0);
-  glfwSetInputMode(window, GLFW_CURSOR, GLFW_CURSOR_HIDDEN);
+  glfwSetInputMode(window, GLFW_CURSOR, GLFW_CURSOR_NORMAL);
   glfwSetCursorPos(window, xRes / 2, yRes / 2);
 
   glDisable(GL_CULL_FACE);
