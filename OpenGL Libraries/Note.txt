@@ -1,2 +1,0 @@
-Put glad.c in the src directory for whatever project you are making
-
