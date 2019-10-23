@@ -1,0 +1,2 @@
+D:/IntelliJ/CS3141/TeamJAKK/opengllib/Include/glm/out/build/x64-Debug/CMakeFiles/edit_cache.dir
+D:/IntelliJ/CS3141/TeamJAKK/opengllib/Include/glm/out/build/x64-Debug/CMakeFiles/rebuild_cache.dir

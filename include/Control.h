@@ -1,8 +1,5 @@
 #ifndef CONTROL_H
 #define CONTROL_H
-#include <GL/glew.h>
-#include <glm/glm.hpp>
-#include <GLFW/glfw3.h>
 #include <map>
 
 #define MOUSE_OFFSET 1000

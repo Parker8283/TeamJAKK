@@ -1,0 +1,105 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="16.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <ClCompile Include="D:\IntelliJ\CS3141\TeamJAKK\src\Control.cpp">
+      <Filter>Sources</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\IntelliJ\CS3141\TeamJAKK\src\Controller.cpp">
+      <Filter>Sources</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\IntelliJ\CS3141\TeamJAKK\src\DungeonMap.cpp">
+      <Filter>Sources</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\IntelliJ\CS3141\TeamJAKK\src\FileLoader.cpp">
+      <Filter>Sources</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\IntelliJ\CS3141\TeamJAKK\src\GameMath.cpp">
+      <Filter>Sources</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\IntelliJ\CS3141\TeamJAKK\src\GameRunner.cpp">
+      <Filter>Sources</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\IntelliJ\CS3141\TeamJAKK\src\Graphics.cpp">
+      <Filter>Sources</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\IntelliJ\CS3141\TeamJAKK\src\Main.cpp">
+      <Filter>Sources</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\IntelliJ\CS3141\TeamJAKK\src\Shader.cpp">
+      <Filter>Sources</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\IntelliJ\CS3141\TeamJAKK\src\System.cpp">
+      <Filter>Sources</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\IntelliJ\CS3141\TeamJAKK\src\Texture.cpp">
+      <Filter>Sources</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\IntelliJ\CS3141\TeamJAKK\src\WindowManager.cpp">
+      <Filter>Sources</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\IntelliJ\CS3141\TeamJAKK\src\entity.cpp">
+      <Filter>Sources</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\IntelliJ\CS3141\TeamJAKK\src\resource_manager.cpp">
+      <Filter>Sources</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\IntelliJ\CS3141\TeamJAKK\src\sprite_renderer.cpp">
+      <Filter>Sources</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="D:\IntelliJ\CS3141\TeamJAKK\include\Control.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\IntelliJ\CS3141\TeamJAKK\include\Controller.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\IntelliJ\CS3141\TeamJAKK\include\DungeonMap.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\IntelliJ\CS3141\TeamJAKK\include\FileLoader.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\IntelliJ\CS3141\TeamJAKK\include\GameMath.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\IntelliJ\CS3141\TeamJAKK\include\GameRunner.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\IntelliJ\CS3141\TeamJAKK\include\Graphics.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\IntelliJ\CS3141\TeamJAKK\include\Shader.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\IntelliJ\CS3141\TeamJAKK\include\System.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\IntelliJ\CS3141\TeamJAKK\include\Texture.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\IntelliJ\CS3141\TeamJAKK\include\WindowManager.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\IntelliJ\CS3141\TeamJAKK\include\entity.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\IntelliJ\CS3141\TeamJAKK\include\resource_manager.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\IntelliJ\CS3141\TeamJAKK\include\sprite_renderer.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <CustomBuild Include="D:\IntelliJ\CS3141\TeamJAKK\CMakeLists.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="Header Files">
+      <UniqueIdentifier>{C34F3787-2325-3632-B4EF-C8D34B3F3188}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Sources">
+      <UniqueIdentifier>{A2048572-B2F7-3BCE-BD34-0D7E1DA787F9}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+</Project>
