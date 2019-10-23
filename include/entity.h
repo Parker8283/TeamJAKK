@@ -14,18 +14,32 @@ class Entity
 public:
 	glm::vec2 Position;
 
-	Texture2D texture;
-	SpriteRenderer* Renderer;
+	GLuint texture;
+	GLuint VBO;
+	GLuint VAO;
+	GLuint UV;
 
-	GLuint Height;
-	GLuint Width;
+	float UV[12]{
+		0, 0,
+		0, 1,
+		1, 0,
+		0, 1,
+		1, 1,
+		1, 0
+	};
+
+	int Height;
+	int Width;
+	GLfloat rotation;
 
 	Entity();
 	~Entity();
 
 	void Init();
-	void render();
-	
+	void Render();
+	void Update();
+	glm::vec3 GetPos();
+	GLuint GetVBO();
 };
 
 
