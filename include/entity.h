@@ -19,14 +19,7 @@ public:
 	GLuint VAO;
 	GLuint UV;
 
-	float UV[12]{
-		0, 0,
-		0, 1,
-		1, 0,
-		0, 1,
-		1, 1,
-		1, 0
-	};
+	//float UV[12];
 
 	int Height;
 	int Width;

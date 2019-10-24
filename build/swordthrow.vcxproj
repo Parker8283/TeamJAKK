@@ -375,9 +375,13 @@ if %errorlevel% neq 0 goto :VCEnd</Command>
     <ClInclude Include="D:\IntelliJ\CS3141\TeamJAKK\include\System.h" />
     <ClInclude Include="D:\IntelliJ\CS3141\TeamJAKK\include\Texture.h" />
     <ClInclude Include="D:\IntelliJ\CS3141\TeamJAKK\include\WindowManager.h" />
+    <ClInclude Include="D:\IntelliJ\CS3141\TeamJAKK\include\enemy.h" />
     <ClInclude Include="D:\IntelliJ\CS3141\TeamJAKK\include\entity.h" />
+    <ClInclude Include="D:\IntelliJ\CS3141\TeamJAKK\include\player.h" />
+    <ClInclude Include="D:\IntelliJ\CS3141\TeamJAKK\include\projectile.h" />
     <ClInclude Include="D:\IntelliJ\CS3141\TeamJAKK\include\resource_manager.h" />
     <ClInclude Include="D:\IntelliJ\CS3141\TeamJAKK\include\sprite_renderer.h" />
+    <ClInclude Include="D:\IntelliJ\CS3141\TeamJAKK\include\sword.h" />
     <ClCompile Include="D:\IntelliJ\CS3141\TeamJAKK\src\Control.cpp" />
     <ClCompile Include="D:\IntelliJ\CS3141\TeamJAKK\src\Controller.cpp" />
     <ClCompile Include="D:\IntelliJ\CS3141\TeamJAKK\src\DungeonMap.cpp" />

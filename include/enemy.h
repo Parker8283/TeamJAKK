@@ -16,6 +16,7 @@ public:
 	int health;
 	Projectile shot;
 	double damage;
+	GLuint weapon;
 	
 
 	typedef enum State

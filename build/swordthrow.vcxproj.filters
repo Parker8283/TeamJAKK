@@ -81,13 +81,25 @@
     <ClInclude Include="D:\IntelliJ\CS3141\TeamJAKK\include\WindowManager.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="D:\IntelliJ\CS3141\TeamJAKK\include\enemy.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
     <ClInclude Include="D:\IntelliJ\CS3141\TeamJAKK\include\entity.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\IntelliJ\CS3141\TeamJAKK\include\player.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\IntelliJ\CS3141\TeamJAKK\include\projectile.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="D:\IntelliJ\CS3141\TeamJAKK\include\resource_manager.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="D:\IntelliJ\CS3141\TeamJAKK\include\sprite_renderer.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\IntelliJ\CS3141\TeamJAKK\include\sword.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
