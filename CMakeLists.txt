@@ -48,8 +48,12 @@ add_library (STB_IMAGE "thirdparty/stb_image.cpp")
 # GLAD
 add_library (GLAD "thirdparty/glad.c")
 
+set (SFML_DIR "${CMAKE_SOURCE_DIR}/SFML-2.5.1/lib/cmake/SFML")
+find_package (SFML 2.5 COMPONENTS graphics audio REQUIRED)
+
+
 # Put all libraries into a variable
-set (LIBS glfw3 opengl32 STB_IMAGE GLAD ${GLEW_LIBRARY})
+set (LIBS glfw3 opengl32 STB_IMAGE GLAD ${GLEW_LIBRARY} sfml-graphics sfml-audio)
 
 # Define the Include DIRs
 include_directories( 

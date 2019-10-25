@@ -20,6 +20,12 @@ C:/Program Files/CMake/share/cmake-3.15/Modules/Platform/Windows-MSVC.cmake
 C:/Program Files/CMake/share/cmake-3.15/Modules/Platform/Windows.cmake
 C:/Program Files/CMake/share/cmake-3.15/Modules/Platform/WindowsPaths.cmake
 D:/IntelliJ/CS3141/TeamJAKK/CMakeLists.txt
+D:/IntelliJ/CS3141/TeamJAKK/SFML-2.5.1/lib/cmake/SFML/SFMLConfig.cmake
+D:/IntelliJ/CS3141/TeamJAKK/SFML-2.5.1/lib/cmake/SFML/SFMLConfigDependencies.cmake
+D:/IntelliJ/CS3141/TeamJAKK/SFML-2.5.1/lib/cmake/SFML/SFMLConfigVersion.cmake
+D:/IntelliJ/CS3141/TeamJAKK/SFML-2.5.1/lib/cmake/SFML/SFMLSharedTargets-debug.cmake
+D:/IntelliJ/CS3141/TeamJAKK/SFML-2.5.1/lib/cmake/SFML/SFMLSharedTargets-release.cmake
+D:/IntelliJ/CS3141/TeamJAKK/SFML-2.5.1/lib/cmake/SFML/SFMLSharedTargets.cmake
 D:/IntelliJ/CS3141/TeamJAKK/build/CMakeFiles/3.15.3/CMakeCCompiler.cmake
 D:/IntelliJ/CS3141/TeamJAKK/build/CMakeFiles/3.15.3/CMakeCXXCompiler.cmake
 D:/IntelliJ/CS3141/TeamJAKK/build/CMakeFiles/3.15.3/CMakeRCCompiler.cmake

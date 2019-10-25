@@ -221,6 +221,9 @@ OPENGL_gl_LIBRARY:STRING=opengl32
 //GLU library for win32
 OPENGL_glu_LIBRARY:STRING=glu32
 
+//Path to a file.
+SFML_DOC_DIR:PATH=SFML_DOC_DIR-NOTFOUND
+
 //Value Computed by CMake
 swordthrow_BINARY_DIR:STATIC=D:/IntelliJ/CS3141/TeamJAKK/build
 
