@@ -126,6 +126,21 @@ void SetView(mat4 view) {
   V = view;
 }
 
+mat4 GetView()
+{
+	return V;
+}
+
+mat4 GetP()
+{
+	return P;
+}
+
+GLuint GetShader()
+{
+	return boxProgramID;
+}
+
 GLuint GetPlayerVAO(void) {
   return playerVAO;
 }

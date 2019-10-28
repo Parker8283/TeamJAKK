@@ -16,17 +16,17 @@ int main(void) {
   CreateWindow();         //Setup GLFW window and intitialize it
   SystemInit();           //Initialize game timer and game state
   SetupGraphics();        //Setup shader programs with shader variable locations
-  SetGameState(RUN_GAME); //Set the game into a run game state for demoing right now
+  SetGameState(GameState::RUN_GAME); //Set the game into a run game state for demoing right now
 
-  while(GetGameState() != EXIT_GAME) {
+  while(GetGameState() != GameState::EXIT_GAME) {
     switch(GetGameState()) {
-      case MAIN_MENU:
+	case GameState::MAIN_MENU:
         //Do something here
         break;
-      case RUN_GAME:
+	case GameState::RUN_GAME:
         EnterGameLoop();  // Enter game loop
         break;
-      case EXIT_GAME:
+	case GameState::EXIT_GAME:
         break;
     }
   }

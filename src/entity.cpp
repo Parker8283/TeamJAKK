@@ -1,33 +1,95 @@
 #include "entity.h"
-#include "resource_manager.h"
+#include <Graphics.h>
+#include <GameRunner.h>
 
-/*
-Entity::Entity()
+using namespace glm;
+
+static int idCounter = 0;
+
+static float UV[12]{
+  0, 0,
+  0, 1,
+  1, 0,
+  0, 1,
+  1, 1,
+  1, 0
+};
+
+static float verts[18]{
+  -1, -1, 0,
+  -1,  1, 0,
+  1,  -1, 0,
+  -1,  1, 0,
+  1,  1, 0,
+  1, -1, 0
+};
+
+static const glm::mat2 rot = {
+  -1,  0,
+   0, -1
+};
+
+Entity::Entity(char* filepath)
+{
+	Entity::uID = idCounter + 1;
+	idCounter++;
+	Entity::textureFilepath = filepath;
+}
+
+Entity::~Entity(void)
 {
 
 }
 
-Entity::~Entity()
+void Entity::Init(glm::vec2 pos)
 {
+	Position.x = pos.x;
+	Position.y = pos.y;
+	texture = LoadTexture(textureFilepath);
+	glGenVertexArrays(1, &VAO);
+	glBindVertexArray(VAO);
 
+	glGenBuffers(2, VBO);
+	glBindBuffer(GL_ARRAY_BUFFER, VBO[0]);
+	glBufferData(GL_ARRAY_BUFFER, sizeof(verts), verts, GL_STATIC_DRAW);
+
+	glEnableVertexAttribArray(0);
+	glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 0, (void*)0);
+	
+	glBindBuffer(GL_ARRAY_BUFFER, VBO[1]);
+	glBufferData(GL_ARRAY_BUFFER, sizeof(UV), UV, GL_STATIC_DRAW);
+
+	glEnableVertexAttribArray(1);
+	glVertexAttribPointer(1, 2, GL_FLOAT, GL_FALSE, 0, (void*)0);
+
+	//AddEntity(this);
 }
 
-void Entity::Init()
+void Entity::Draw(void)
 {
-	ResourceManager::LoadShader("shaders/sprite.vs", "shaders/sprite.frag", nullptr, "sprite");
+	mat4 M = glm::translate(mat4(1), Entity::GetPos());
+	//printf("%f, %f\n", Entity::GetPos().x, Entity::GetPos().y);
+	mat4 MVP = GetP() * GetView() * M;
 
-	glm::mat4 projection = glm::ortho(0.0f, static_cast<GLfloat>(this->Width), static_cast<GLfloat>(this->Height), 0.0f, -1.0f, 1.0f);
-	ResourceManager::GetShader("sprite").Use().SetInteger("image", 0);
-	ResourceManager::GetShader("sprite").SetMatrix4("projection", projection);
+	glBindVertexArray(Entity::VAO);
+	glUseProgram(GetShader());
+	
+	glBindTexture(GL_TEXTURE_2D, Entity::texture);
+	
+	glUniform1i(glGetUniformLocation(GetShader(), "tex"), 0);
 
-	Shader myShader = ResourceManager::GetShader("sprite");
-	Renderer = new SpriteRenderer(myShader);
-
-	ResourceManager::LoadTexture("textures/awesomeface.png", GL_TRUE, "face");
+	glUniformMatrix2fv(glGetUniformLocation(GetShader(), "uvRot"), 1, GL_FALSE, &rot[0][0]);
+	glUniformMatrix4fv(glGetUniformLocation(GetShader(), "MVP"), 1, GL_FALSE, &MVP[0][0]);
+	
+	glDrawArrays(GL_TRIANGLES, 0, 6);
 }
 
-void Entity::render()
+glm::vec3 Entity::GetPos(void)
 {
-	Texture2D myTexture = ResourceManager::GetTexture("face");
-	Renderer->DrawSprite(myTexture, glm::vec2(200, 200), glm::vec2(300, 400), 45.0f, glm::vec3(0.0f, 1.0f, 0.0f));
-}*/
+	return glm::vec3(Entity::Position, 0);
+}
+
+void Entity::Update(void)
+{
+	
+}

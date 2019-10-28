@@ -59,7 +59,7 @@ static void moveRight(void* null) {
 }
 
 static void exitGame(void* null) {
-  SetGameState(EXIT_GAME);
+  SetGameState(GameState::EXIT_GAME);
 }
 
 void LoadPlayerControls(void) {

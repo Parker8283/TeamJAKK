@@ -39,7 +39,7 @@ void SystemInit(void) {
   frameTime.lastTime    = glTime;
   frameTime.deltaTime   = glTime;
 
-  system_Game_State = MAIN_MENU;
+  system_Game_State = GameState::MAIN_MENU;
 }
 
 void UpdateSystemTimer(void) {

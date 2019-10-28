@@ -4,7 +4,7 @@
 #include <GL/glew.h>
 #include <GLFW/glfw3.h>
 
-typedef enum GameState {
+typedef enum class GameState {
   MAIN_MENU = 0,
   RUN_GAME,
   EXIT_GAME
@@ -22,10 +22,10 @@ float GetFrameCurrentTime(void);
 
 FrameTime GetFrameTime(void);
 
-GameState GetGameState(void);
+enum GameState GetGameState(void);
 
 void RefreshSystemTimer(void);
-void SetGameState(GameState state);
+void SetGameState(enum GameState state);
 void SystemInit(void);
 void UpdateSystemTimer(void);
 
