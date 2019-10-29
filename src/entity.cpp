@@ -86,7 +86,7 @@ void Entity::Draw(void)
 
 glm::vec3 Entity::GetPos(void)
 {
-	return glm::vec3(Entity::Position, 0);
+	return vec3(Entity::Position, 0);
 }
 
 void Entity::Update(void)
