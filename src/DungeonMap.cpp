@@ -38,6 +38,9 @@ DungeonTile** DungeonMap::testRoom(){
       if(i==0 || j==0 || i==9 || j==9){
         testRoom[i][j] = *(new DungeonTile(false, j+0.5,i+0.5));
       }
+      else {
+        testRoom[i][j] = *(new DungeonTile(true, j+0.5, i+0.5));
+      }
     }
   }
 }
