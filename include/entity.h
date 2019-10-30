@@ -20,8 +20,6 @@ public:
 	GLuint VBO[2];
 	GLuint VAO;
 
-	//float UV[12];
-
 	int Height;
 	int Width;
 	GLfloat rotation;
