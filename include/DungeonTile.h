@@ -1,3 +1,7 @@
+#ifndef DUNGEONTILE_H
+#define DUNGEONTILE_H
+#endif
+
 //Class to model a (default 32x32p) tile in a map
 //@author Cody Keilitz
 //Last modified Oct 30 2019
