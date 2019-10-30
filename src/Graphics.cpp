@@ -6,6 +6,7 @@
 #include <Texture.h>
 #include <WindowManager.h>
 #include <stb_image.h>
+#include <helpers/RootDir.h.in>
 
 using namespace glm;
 
@@ -93,13 +94,13 @@ void SetupGraphics(void) {
   P = perspective(radians(60.0f), (float) xRes / (float) yRes, .1f, 100.0f);
 
   //Setup box shader program and player texture
-  boxProgramID = LoadShader("shaders/BoxShader.vert", "shaders/BoxShader.frag");
+  boxProgramID = LoadShader(ROOT_DIR"/shaders/BoxShader.vert", ROOT_DIR"/shaders/BoxShader.frag");
   boxMVPID     = glGetUniformLocation(boxProgramID, "MVP");
   boxTexID     = glGetUniformLocation(boxProgramID, "tex");
   boxRotID     = glGetUniformLocation(boxProgramID, "uvRot");
 
-  playerTexture = LoadTexture("common/sprites/GungeonRipoffBase.png");
-  playerTextureBack = LoadTexture("common/sprites/GungeonRipoffBaseBack.png");
+  playerTexture = LoadTexture(ROOT_DIR"/common/sprites/GungeonRipoffBase.png");
+  playerTextureBack = LoadTexture(ROOT_DIR"/common/sprites/GungeonRipoffBaseBack.png");
 
   LoadCursor();
 
@@ -125,6 +126,21 @@ void SetView(mat4 view) {
   V = view;
 }
 
+mat4 GetView()
+{
+	return V;
+}
+
+mat4 GetP()
+{
+	return P;
+}
+
+GLuint GetShader()
+{
+	return boxProgramID;
+}
+
 GLuint GetPlayerVAO(void) {
   return playerVAO;
 }
@@ -132,7 +148,7 @@ GLuint GetPlayerVAO(void) {
 
 void LoadCursor() {
   int width, height, n;
-  unsigned char* pixels = stbi_load("common/sprites/Cursor32.png", &width, &height, &n, 4);
+  unsigned char* pixels = stbi_load(ROOT_DIR"/common/sprites/Cursor32.png", &width, &height, &n, 4);
 
   GLFWimage image;
   image.width = width;

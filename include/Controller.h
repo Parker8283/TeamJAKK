@@ -2,6 +2,7 @@
 #define CONTROLLER_H
 #include <GL/glew.h>
 #include <glm/glm.hpp>
+#include <control.h>
 
 void LoadPlayerControls(void);
 void MakeGameRunControlContext(void);

@@ -13,8 +13,11 @@
 #include <stdlib.h>
 #include <string.h>
 #include <string>
-#include <unistd.h>
 #include <vector>
+
+#ifdef __unix__
+#include <unistd.h>
+#endif
 
 using namespace std;
 using namespace glm;

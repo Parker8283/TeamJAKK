@@ -1,0 +1,5 @@
+D:/IntelliJ/CS3141/TeamJAKK/build/CMakeFiles/swordthrow.dir
+D:/IntelliJ/CS3141/TeamJAKK/build/CMakeFiles/STB_IMAGE.dir
+D:/IntelliJ/CS3141/TeamJAKK/build/CMakeFiles/GLAD.dir
+D:/IntelliJ/CS3141/TeamJAKK/build/CMakeFiles/ALL_BUILD.dir
+D:/IntelliJ/CS3141/TeamJAKK/build/CMakeFiles/ZERO_CHECK.dir

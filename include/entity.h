@@ -4,28 +4,36 @@
 
 #include <GL/glew.h>
 #include <GLFW/glfw3.h>
-#include "Texture.h"
-#include "sprite_renderer.h"
+#include <Texture.h>
+#include <glm/glm.hpp>
 
 
 class Entity
 {
 	
 public:
+
 	glm::vec2 Position;
 
-	Texture2D texture;
-	SpriteRenderer* Renderer;
+	GLuint texture;
+	char* textureFilepath;
+	GLuint VBO[2];
+	GLuint VAO;
 
-	GLuint Height;
-	GLuint Width;
+	int Height;
+	int Width;
+	GLfloat rotation;
 
-	Entity();
-	~Entity();
+	int uID;
 
-	void Init();
-	void render();
-	
+	Entity(char* filepath);
+	~Entity(void);
+
+	void Init(glm::vec2);
+	void Draw(void);
+	void Update(void);
+	glm::vec3 GetPos(void);
+	GLuint GetVBO(void);
 };
 
 
