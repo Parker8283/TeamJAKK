@@ -36,10 +36,10 @@ DungeonTile** DungeonMap::testRoom(){
   for(int i=0;i<10;i++){
     for(int j=0;j<10;j++){
       if(i==0 || j==0 || i==9 || j==9){
-        testRoom[i][j] = *(new DungeonTile(false, j+0.5,i+0.5));
+        testRoom[i][j] = *(new DungeonTile(false, j+0.5,10-i+0.5));
       }
       else {
-        testRoom[i][j] = *(new DungeonTile(true, j+0.5, i+0.5));
+        testRoom[i][j] = *(new DungeonTile(true, j+0.5, 10-i+0.5));
       }
     }
   }
