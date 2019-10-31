@@ -10,6 +10,9 @@
     <ClCompile Include="D:\IntelliJ\CS3141\TeamJAKK\src\DungeonMap.cpp">
       <Filter>Sources</Filter>
     </ClCompile>
+    <ClCompile Include="D:\IntelliJ\CS3141\TeamJAKK\src\DungeonTile.cpp">
+      <Filter>Sources</Filter>
+    </ClCompile>
     <ClCompile Include="D:\IntelliJ\CS3141\TeamJAKK\src\FileLoader.cpp">
       <Filter>Sources</Filter>
     </ClCompile>
@@ -22,7 +25,13 @@
     <ClCompile Include="D:\IntelliJ\CS3141\TeamJAKK\src\Graphics.cpp">
       <Filter>Sources</Filter>
     </ClCompile>
+    <ClCompile Include="D:\IntelliJ\CS3141\TeamJAKK\src\LinkedList.cpp">
+      <Filter>Sources</Filter>
+    </ClCompile>
     <ClCompile Include="D:\IntelliJ\CS3141\TeamJAKK\src\Main.cpp">
+      <Filter>Sources</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\IntelliJ\CS3141\TeamJAKK\src\ResourceManager.cpp">
       <Filter>Sources</Filter>
     </ClCompile>
     <ClCompile Include="D:\IntelliJ\CS3141\TeamJAKK\src\Shader.cpp">
@@ -57,6 +66,9 @@
     <ClInclude Include="D:\IntelliJ\CS3141\TeamJAKK\include\DungeonMap.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="D:\IntelliJ\CS3141\TeamJAKK\include\DungeonTile.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
     <ClInclude Include="D:\IntelliJ\CS3141\TeamJAKK\include\FileLoader.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -67,6 +79,12 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="D:\IntelliJ\CS3141\TeamJAKK\include\Graphics.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\IntelliJ\CS3141\TeamJAKK\include\LinkedList.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\IntelliJ\CS3141\TeamJAKK\include\ResourceManager.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="D:\IntelliJ\CS3141\TeamJAKK\include\Shader.h">
@@ -91,12 +109,6 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="D:\IntelliJ\CS3141\TeamJAKK\include\projectile.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="D:\IntelliJ\CS3141\TeamJAKK\include\resource_manager.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="D:\IntelliJ\CS3141\TeamJAKK\include\sprite_renderer.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="D:\IntelliJ\CS3141\TeamJAKK\include\sword.h">
