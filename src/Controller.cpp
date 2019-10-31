@@ -91,7 +91,8 @@ void UpdatePlayer(void) {
 
   moveDir    = normalizeDir(moveDir);
   playerPos += moveDir * frameDelta * playerWalkSpeed;
-  SetView(lookAt(vec3(0, 0, 10), vec3(0, 0, 0), UP));
+  //SetView(lookAt(vec3(0, 0, 10), vec3(0, 0, 0), UP));
+  SetView(lookAt(vec3(playerPos.x, playerPos.y, 10), vec3(playerPos.x, playerPos.y, 0), UP));
 }
 
 GLuint GetPlayerSpriteID(void) {

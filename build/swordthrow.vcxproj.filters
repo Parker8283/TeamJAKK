@@ -37,13 +37,13 @@
     <ClCompile Include="D:\IntelliJ\CS3141\TeamJAKK\src\WindowManager.cpp">
       <Filter>Sources</Filter>
     </ClCompile>
+    <ClCompile Include="D:\IntelliJ\CS3141\TeamJAKK\src\enemy.cpp">
+      <Filter>Sources</Filter>
+    </ClCompile>
     <ClCompile Include="D:\IntelliJ\CS3141\TeamJAKK\src\entity.cpp">
       <Filter>Sources</Filter>
     </ClCompile>
-    <ClCompile Include="D:\IntelliJ\CS3141\TeamJAKK\src\resource_manager.cpp">
-      <Filter>Sources</Filter>
-    </ClCompile>
-    <ClCompile Include="D:\IntelliJ\CS3141\TeamJAKK\src\sprite_renderer.cpp">
+    <ClCompile Include="D:\IntelliJ\CS3141\TeamJAKK\src\projectile.cpp">
       <Filter>Sources</Filter>
     </ClCompile>
   </ItemGroup>

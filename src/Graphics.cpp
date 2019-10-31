@@ -71,9 +71,11 @@ void DrawPlayer(void) {
 
   double xPos, yPos;
   glfwGetCursorPos(GetWindow(), &xPos, &yPos);
-  // glBindTexture(GL_TEXTURE_2D, NULL);
-   printf("%.2f %.2f\n", yPos, GetPlayerPos().y);
-  if (yPos < GetPlayerPos().y) {
+  
+  yPos = (yPos - (1080 / 2)) / (yPos / 2);
+  xPos = (xPos - (1920 / 2)) / (xPos / 2);
+
+  if (yPos < GetPlayerPos().y /** 0*/ ) {
     glBindTexture(GL_TEXTURE_2D, playerTextureBack);
   } else {
     glBindTexture(GL_TEXTURE_2D, playerTexture);

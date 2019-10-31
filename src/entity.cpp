@@ -29,11 +29,17 @@ static const glm::mat2 rot = {
    0, -1
 };
 
-Entity::Entity(char* filepath)
+Entity::Entity(char* filepath = ROOT_DIR"/common/sprites/FireballOutline.png")
 {
 	Entity::uID = idCounter + 1;
 	idCounter++;
 	Entity::textureFilepath = filepath;
+
+	rotation = 0;
+	Width = 1;
+	Height = 1;
+	size = glm::vec2(Width, Height);
+	Position = glm::vec2(0, 0);
 }
 
 Entity::~Entity(void)
@@ -43,6 +49,7 @@ Entity::~Entity(void)
 
 void Entity::Init(glm::vec2 pos)
 {
+	printf("called entity init\n");
 	Position.x = pos.x;
 	Position.y = pos.y;
 	texture = LoadTexture(textureFilepath);
@@ -62,19 +69,28 @@ void Entity::Init(glm::vec2 pos)
 	glEnableVertexAttribArray(1);
 	glVertexAttribPointer(1, 2, GL_FLOAT, GL_FALSE, 0, (void*)0);
 
-	//AddEntity(this);
+	AddEntity(this);
 }
 
 void Entity::Draw(void)
 {
-	mat4 M = glm::translate(mat4(1), Entity::GetPos());
-	//printf("%f, %f\n", Entity::GetPos().x, Entity::GetPos().y);
+	glUseProgram(GetShader());
+
+	mat4 M = glm::translate(mat4(1), GetPos());
+	//printf("%f, %f\n", GetPos().x, GetPos().y);
+
 	mat4 MVP = GetP() * GetView() * M;
 
-	glBindVertexArray(Entity::VAO);
-	glUseProgram(GetShader());
+	MVP = glm::translate(MVP, glm::vec3(0.5f * size.x, 0.5f * size.y, 0.0f)); //Move origin to center to rotate
+	MVP = glm::rotate(MVP, rotation, glm::vec3(0.0f, 0.0f, 1.0f)); //Then rotate
+	MVP = glm::translate(MVP, glm::vec3(-0.5f * size.x, -0.5f * size.y, 0.0f)); // Move the origin back
+
+	MVP = glm::scale(MVP, glm::vec3(size, 1.0f)); // Last scale
+
+	glBindVertexArray(VAO);
 	
-	glBindTexture(GL_TEXTURE_2D, Entity::texture);
+	
+	glBindTexture(GL_TEXTURE_2D, texture);
 	
 	glUniform1i(glGetUniformLocation(GetShader(), "tex"), 0);
 
@@ -89,7 +105,12 @@ glm::vec3 Entity::GetPos(void)
 	return vec3(Entity::Position, 0);
 }
 
-void Entity::Update(void)
+void Entity::SetUID(int id)
 {
-	
+	uID = id;
+}
+
+bool Entity::operator==(const Entity& e)
+{
+	return this->uID == e.uID;
 }
