@@ -37,7 +37,7 @@ void Enemy::Update(void)
 		}
 		break;
 	case BehaviorState::Fire:
-		printf("Shoot her!\n");
+		//printf("Shoot her!\n");
 
 		shot = new Projectile(ROOT_DIR"/common/sprites/FireballnoOutline.png");
 		

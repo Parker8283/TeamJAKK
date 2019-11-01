@@ -12,6 +12,8 @@ file (GLOB_RECURSE OPENGL_FILES
 	${CMAKE_SOURCE_DIR}/opengllib/Include/*.hpp
 	${CMAKE_SOURCE_DIR}/opengllib/Include/*.c
 	${CMAKE_SOURCE_DIR}/opengllib/Include/*.cpp)
+file (GLOB_RECURSE TEST_SOURCE
+	${CMAKE_SOURCE_DIR}/test/*.cpp)
 
 # Add .lib files
 link_directories(${CMAKE_SOURCE_DIR}/opengllib/Lib)
@@ -40,7 +42,6 @@ set (GLEW_LIBRARY "" CACHE FILEPATH "glew32s.lib or glew32.lib")
 add_library (STB_IMAGE "thirdparty/stb_image.cpp")
 # GLAD
 add_library (GLAD "thirdparty/glad.c")
-
 
 # Put all libraries into a variable
 set (LIBS glfw3 opengl32 STB_IMAGE GLAD ${GLEW_LIBRARY})
@@ -84,3 +85,12 @@ if(WIN32)
 		"${PROJECT_SOURCE_DIR}/dlls"
 		$<TARGET_FILE_DIR:${PROJECT_NAME}>)
 endif()
+
+# Catch (for testing)
+#add_library (Catch INTERFACE)
+#target_include_directories (Catch INTERFACE "thirdparty/catch.hpp")
+
+#add_executable (project_test ${TEST_SOURCE})
+#target_link_libraries (project_test Catch)
+
+#add_test(NAME first_test COMMAND project_test)

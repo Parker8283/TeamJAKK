@@ -14,6 +14,8 @@ static int xRes, yRes;
 
 static GLuint textureProgramID;
 
+static GLuint currentPlayerTex;
+
 static const mat2 rot = { 
   -1,  0,
    0, -1
@@ -50,6 +52,11 @@ static float playerUVs[12] {
   1, 1,
   1, 0
 };
+
+void SetPlayerCurrentFrame(GLuint newFrame)
+{
+	currentPlayerTex = newFrame;
+}
 
 void DrawPlayer(void) {
   mat4 M   = translate(mat4(1), GetPlayerPos());

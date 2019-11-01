@@ -20,8 +20,8 @@ public:
 	// variables used in Drawing the entity
 	GLuint texture;
 	glm::vec2 Position;
-	int Height;
-	int Width;
+	float Height;
+	float Width;
 	glm::vec2 size;
 	GLfloat rotation;
 

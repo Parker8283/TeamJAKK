@@ -16,6 +16,9 @@ void EnterGameLoop(void) {
   Enemy* e = new Enemy("../../common/sprites/GhostEnemySingle.png");
   e->Init(glm::vec2(1, 1));
 
+  Sword s("../../common/sprites/Sword1.png");
+  s.Init();
+
   glClearColor(0, 0, 0, 1);
   RefreshSystemTimer();
   while (GetGameState() == GameState::RUN_GAME) {
@@ -31,7 +34,6 @@ void EnterGameLoop(void) {
 	}
 
     DrawPlayer();
-	//e->Draw();
 	for (it = entities.begin(); it != entities.end(); ++it)
 	{
 		//printf("Draw entities\n");

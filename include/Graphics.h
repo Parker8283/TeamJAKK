@@ -19,6 +19,7 @@ void LoadCursor();
 glm::mat4 GetView();
 glm::mat4 GetP();
 GLuint GetShader();
+void SetPlayerCurrentFrame(GLuint);
 
 GLuint GetPlayerVAO(void);
 #endif

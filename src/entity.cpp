@@ -49,7 +49,7 @@ Entity::~Entity(void)
 
 void Entity::Init(glm::vec2 pos)
 {
-	printf("called entity init\n");
+	//printf("called entity init\n");
 	Position.x = pos.x;
 	Position.y = pos.y;
 	texture = LoadTexture(textureFilepath);
