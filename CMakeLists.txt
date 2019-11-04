@@ -86,11 +86,37 @@ if(WIN32)
 		$<TARGET_FILE_DIR:${PROJECT_NAME}>)
 endif()
 
+
+include(CTest)
+enable_testing()
+
+#add_library (stBase ${HEADER_FILES} ${SOURCE_FILES} ${LIBS} )
+
+add_library (sword_test 
+	"src/Control.cpp"
+	"src/Controller.cpp"
+	"src/enemy.cpp"
+	"src/entity.cpp"
+	"src/FileLoader.cpp"
+	"src/GameMath.cpp"
+	"src/GameRunner.cpp"
+	"src/Graphics.cpp"
+	"src/projectile.cpp"
+	"src/Shader.cpp"
+	"src/sword.cpp"
+	"src/System.cpp"
+	"src/Texture.cpp"
+	"src/WindowManager.cpp"
+)
+
+#target_include_directories(stBase PUBLIC $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>)
+
 # Catch (for testing)
-#add_library (Catch INTERFACE)
-#target_include_directories (Catch INTERFACE "thirdparty/catch.hpp")
+add_library (Catch INTERFACE )
+target_include_directories (Catch INTERFACE "include/catch.hpp")
 
-#add_executable (project_test ${TEST_SOURCE})
-#target_link_libraries (project_test Catch)
 
-#add_test(NAME first_test COMMAND project_test)
+add_executable (project_test ${TEST_SOURCE} ${HEADER_FILES})
+target_link_libraries (project_test PUBLIC Catch sword_test ${LIBS})
+
+add_test(NAME first_test COMMAND project_test)

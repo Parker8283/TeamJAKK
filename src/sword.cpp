@@ -1,5 +1,7 @@
 #include <sword.h>
 
+static float radius = 1.5f;
+
 Sword::State currentState;
 
 Sword::Sword(char* file) : Projectile(file)
@@ -28,13 +30,14 @@ void Sword::Update(void)
 		break;
 	case State::Held:
 		// insert code here to set the rotation and position of the sword based on cursor
-
-		rotation = swordMath();
-		rotation += glm::radians(-135.0f);
+		glm::vec3 temp = swordMath();
+		rotation = temp.z;
+		rotation += glm::radians(45.0f);
 		rotation *= -1;
-		Position = GetPlayerPos();
-		Position.x += .1 * sin(rotation);
-		Position.y += .1 * cos(rotation);
+
+		printf("%f %f \n", temp.x, temp.y);
+		Position = vec3(temp.x, temp.y, 0) * radius + GetPlayerPos();
+		//Position = GetPlayerPos();
 		//printf("deg: %f\n", glm::degrees(rotation));
 
 		break;

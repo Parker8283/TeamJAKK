@@ -6,7 +6,7 @@
 #include <glm/gtc/matrix_transform.hpp>
 
 glm::vec2 normalizeDir(glm::vec2 p);
-double swordMath();
+glm::vec3 swordMath();
 float distance(float, float, float, float);
 
 #endif

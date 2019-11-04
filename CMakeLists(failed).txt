@@ -1,0 +1,110 @@
+cmake_minimum_required (VERSION 3.5)
+project (swordthrow LANGUAGES CXX)
+
+# Add local project module path so cmake includes cutom cmake modules
+list (APPEND CMAKE_MODULE_PATH "${PROJECT_SOURCE_DIR}/cmake/Modules")
+# Add local project path for find files
+list (APPEND CMAKE_MODULE_PATH "${PROJECT_SOURCE_DIR}/cmake/")
+
+include (CTest)
+enable_testing()
+
+# Search recursively in various directories for where various files are
+file (GLOB_RECURSE MY_SOURCE
+	${PROJECT_SOURCE_DIR}/src/*.c
+	${PROJECT_SOURCE_DIR}/src/*.cpp)
+file (GLOB_RECURSE HEADER_FILES
+	${PROJECT_SOURCE_DIR}/include/*.h
+	${PROJECT_SOURCE_DIR}/include/*.hpp)
+file (GLOB_RECURSE OPENGL_FILES
+	${PROJECT_SOURCE_DIR}/opengllib/Include/*.h
+	${PROJECT_SOURCE_DIR}/opengllib/Include/*.hpp
+	${PROJECT_SOURCE_DIR}/opengllib/Include/*.c
+	${PROJECT_SOURCE_DIR}/opengllib/Include/*.cpp)
+file (GLOB_RECURSE TEST_SOURCE
+	${PROJECT_SOURCE_DIR}/test/*.cpp)
+
+# Create library target for all the source and header files
+add_library (sourceFiles )
+target_sources (sourceFiles PUBLIC MY_SOURCE HEADER_FILES)
+target_include_directories (sourceFiles PUBLIC src)
+
+target_compile_options(sourceFiles
+	PRIVATE
+		$<$<OR:$<CXX_COMPILER_ID:Clang>,$<CXX_COMPILER_ID:AppleClang>,$<CXX_COMPILER_ID:GNU>>:
+			-Werror -Wall -Wextra>
+		$<$<CXX_COMPILER_ID:MSVC>:
+			/W4>
+)
+
+# Create a library target for all the Opengl libraries
+	# OpenGL
+	find_package(OpenGL REQUIRED)
+	# GLM
+	find_package(GLM REQUIRED)
+	message (STATUS "GLM included at ${GLM_INCLUDE_DIR}")
+	# GLFW
+	find_package(GLFW3 REQUIRED)
+	message (STATUS "GLFW3 included at ${GLFW3_INCLUDE_DIR}")
+	# GLEW
+	set (GLEW_INCLUDE_PATH "opengllib/Include")
+	set (GLEW_LIBRARY "" CACHE FILEPATH "glew32s.lib or glew32.lib")
+	# STB_IMAGE
+	add_library (STB_IMAGE "thirdparty/stb_image.cpp")
+	# GLAD
+	add_library (GLAD "thirdparty/glad.c")
+
+	# Put all libraries into a variable
+	add_library (LIBS glfw3 opengl32 STB_IMAGE GLAD ${GLEW_LIBRARY})
+
+# Create an executable for the project
+add_executable (swordthrow src/Main.cpp)
+target_link_libraries (swordthrow PRIVATE sourceFiles LIBS)
+
+target_compile_options(swordthrow
+	PRIVATE
+		$<$<OR:$<CXX_COMPILER_ID:Clang>,$<CXX_COMPILER_ID:AppleClang>,$<CXX_COMPILER_ID:GNU>>:
+			-Werror -Wall -Wextra>
+		$<$<CXX_COMPILER_ID:MSVC>:
+			/W4>
+)
+
+# Create a library for executing the Catch unit tests
+add_library (Catch INTERFACE)
+target_include_directories (Catch INTERFACE test/)
+
+# Create a target for executing tests
+add_executable (project_test 
+	test/TestBase.cpp
+	test/TestGameMath.cpp
+	test/TestEntity.cpp
+	test/TestEnemy.cpp
+	test/TestProjectile.cpp
+	test/TestSword.cpp
+)
+target_include_directories (project_test PUBLIC test/)
+target_link_libraries (project_test Catch sourceFiles LIBS)
+target_compile_options(project_test
+	PRIVATE
+		$<$<OR:$<CXX_COMPILER_ID:Clang>,$<CXX_COMPILER_ID:AppleClang>,$<CXX_COMPILER_ID:GNU>>:
+			-Werror -Wall -Wextra>
+		$<$<CXX_COMPILER_ID:MSVC>:
+			/W4>
+)
+
+# Load and use .cmake file provided by Catch so that all test cases are avaliable to CTest
+include (ParseAndAddCatchTests)
+ParseAndAddCatchTests(project_test)
+
+set(CPACK_PACKAGE_NAME "Sword throw")
+set(CPACK_PACKAGE_DESCRIPTION_SUMMARY "Swordthrow - A TSP game!")
+set(CPACK_PACKAGE_VERSION "1.0.0")
+set(CPACK_PACKAGE_VERSION_MAJOR "1")
+set(CPACK_PACKAGE_VERSION_MINOR "0")
+set(CPACK_PACKAGE_VERSION_PATCH "0")
+set(CPACK_PACKAGE_INSTALL_DIRECTORY "swordthrowComponent")
+
+
+
+# This must always be last!
+include(CPack)
