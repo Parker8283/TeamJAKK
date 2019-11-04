@@ -2,10 +2,11 @@
 #define CONTROLLER_H
 #include <GL/glew.h>
 #include <glm/glm.hpp>
-#include <control.h>
+#include <Control.h>
+#include <System.h>
 
 void LoadPlayerControls(void);
-void MakeGameRunControlContext(void);
+void SetControlContext(GameState state);
 void UpdatePlayer(void);
 
 GLuint GetPlayerSpriteID(void);

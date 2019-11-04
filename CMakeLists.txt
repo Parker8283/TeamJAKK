@@ -53,6 +53,7 @@ include_directories(
 	"${CMAKE_SOURCE_DIR}/opengllib/Lib"
 	${GLEW_INCLUDE_PATH}
 )
+
 # Define the link libraries
 target_link_libraries (${PROJECT_NAME} ${LIBS})
 

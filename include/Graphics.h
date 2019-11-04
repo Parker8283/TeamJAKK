@@ -10,15 +10,19 @@
 #include <Texture.h>
 #include <WindowManager.h>
 #include <stb_image.h>
-#include <helpers/RootDir.h.in>
 
 void DrawPlayer(void);
 void SetupGraphics(void);
 void SetView(glm::mat4 view);
 void LoadCursor();
-glm::mat4 GetView();
-glm::mat4 GetP();
-GLuint GetShader();
 
+glm::mat4 GetView();
+glm::mat4 GetProjection();
+
+GLuint GetShader();
 GLuint GetPlayerVAO(void);
+GLuint GetWallTextureID(void);
+GLuint GetFloorTextureID(void);
+GLuint GetTileVAO(void);
+
 #endif

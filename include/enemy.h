@@ -5,33 +5,36 @@
 #include <player.h>
 #include <projectile.h>
 
-class Enemy : public Entity {
+class Enemy : Entity {
 
 private:
 
 public:
-
-	glm::vec2 target;
-	glm::vec2 moveTarget;
-	float moveSpeed;
-	int health;
-	Projectile* shot;
-	double damage;
-	GLuint weapon;
-	double timer=0;
-	
-
 	typedef enum class BehaviorState
 	{
 		Seek, 
 		Fire, 
 		Flee
 	} BehaviorState;
+
+	int health;
+	
+	float moveSpeed;
+
+	double timer=0;
+	double damage;
+	
+	GLuint weapon;
+	
+	glm::vec2 target;
+	glm::vec2 moveTarget;
+	
+	Projectile* shot;
+	
 	BehaviorState currentState;
 
-	Enemy(char*);
+	Enemy(glm::vec2 pos, const char*);
 
-	void Init(glm::vec2);
 	void Update();
 	void Draw();
 	void UpdateState(BehaviorState s);

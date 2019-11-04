@@ -11,12 +11,14 @@ public:
 	bool HitEnemy;
 	bool doesExist;
 
-	Projectile(char*);
+	Projectile(const char*);
+	~Projectile(void);
+
 	void Init(glm::vec2, glm::vec2);
 	void Update();
 	glm::vec2 GetDirection();
 	void UpdateSpeed(double s);
-	void collide();
+	void collide(void);
 
 };
 

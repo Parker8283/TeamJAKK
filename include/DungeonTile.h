@@ -10,19 +10,24 @@
 class DungeonTile {
     private:
     bool passable;
-    double worldX;
-    double worldY;
+    
+    float worldX;
+    float worldY;
 
     public:
-    bool isPassable();
+
+    DungeonTile(void) : passable(false), worldX(0), worldY(0) { }
+    DungeonTile(bool p, float x, float y);
+    
+    void Draw(void);
     void setPassable(bool p);
-
-    double getWorldX();
-    double getWorldY();
-
-    void setWorldCoordCenter(double x, double y);
-
-    DungeonTile();
-    DungeonTile(bool p, double x, double y);
+    void setWorldCoordCenter(float x, float y);
+    
+    bool isPassable();
     bool moveOnEvent();
+
+    float getWorldX();
+    float getWorldY();
+
+
 };

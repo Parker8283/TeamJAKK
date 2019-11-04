@@ -1,0 +1,5 @@
+/home/mark/Documents/Mark/MTU School/CS3141/TeamJAKK/CMakeFiles/GLAD.dir
+/home/mark/Documents/Mark/MTU School/CS3141/TeamJAKK/CMakeFiles/edit_cache.dir
+/home/mark/Documents/Mark/MTU School/CS3141/TeamJAKK/CMakeFiles/swordthrow.dir
+/home/mark/Documents/Mark/MTU School/CS3141/TeamJAKK/CMakeFiles/rebuild_cache.dir
+/home/mark/Documents/Mark/MTU School/CS3141/TeamJAKK/CMakeFiles/STB_IMAGE.dir
