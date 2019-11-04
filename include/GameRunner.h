@@ -5,6 +5,7 @@
 #include <enemy.h>
 #include <player.h>
 #include <projectile.h>
+#include <sword.h>
 
 void EnterGameLoop(void);
 void AddEntity(Entity* e);

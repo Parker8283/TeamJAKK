@@ -55,6 +55,9 @@
     <ClCompile Include="D:\IntelliJ\CS3141\TeamJAKK\src\projectile.cpp">
       <Filter>Sources</Filter>
     </ClCompile>
+    <ClCompile Include="D:\IntelliJ\CS3141\TeamJAKK\src\sword.cpp">
+      <Filter>Sources</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="D:\IntelliJ\CS3141\TeamJAKK\include\Control.h">
@@ -97,6 +100,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="D:\IntelliJ\CS3141\TeamJAKK\include\WindowManager.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\IntelliJ\CS3141\TeamJAKK\include\catch.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="D:\IntelliJ\CS3141\TeamJAKK\include\enemy.h">

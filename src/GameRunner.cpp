@@ -41,6 +41,9 @@ void EnterGameLoop(void) {
   Enemy* e         = new Enemy(vec2(1,1), "../../common/sprites/GhostEnemySingle.png");
   DungeonTile* map = GenerateTestRoom();
 
+  Sword s("../../common/sprites/Sword1.png");
+  s.Init();
+
   glClearColor(0, 0, 0, 1);
   RefreshSystemTimer();
   while (GetGameState() == GameState::RUN_GAME) {
@@ -60,7 +63,6 @@ void EnterGameLoop(void) {
 	}
 
     DrawPlayer();
-	//e->Draw();
 	for (it = entities.begin(); it != entities.end(); ++it)
 	{
 		//printf("Draw entities\n");

@@ -1,5 +1,13 @@
 D:/IntelliJ/CS3141/TeamJAKK/build/CMakeFiles/swordthrow.dir
+D:/IntelliJ/CS3141/TeamJAKK/build/CMakeFiles/Continuous.dir
+D:/IntelliJ/CS3141/TeamJAKK/build/CMakeFiles/Nightly.dir
 D:/IntelliJ/CS3141/TeamJAKK/build/CMakeFiles/STB_IMAGE.dir
 D:/IntelliJ/CS3141/TeamJAKK/build/CMakeFiles/GLAD.dir
+D:/IntelliJ/CS3141/TeamJAKK/build/CMakeFiles/sword_test.dir
+D:/IntelliJ/CS3141/TeamJAKK/build/CMakeFiles/NightlyMemoryCheck.dir
+D:/IntelliJ/CS3141/TeamJAKK/build/CMakeFiles/Experimental.dir
+D:/IntelliJ/CS3141/TeamJAKK/build/CMakeFiles/project_test.dir
+D:/IntelliJ/CS3141/TeamJAKK/build/CMakeFiles/PACKAGE.dir
+D:/IntelliJ/CS3141/TeamJAKK/build/CMakeFiles/RUN_TESTS.dir
 D:/IntelliJ/CS3141/TeamJAKK/build/CMakeFiles/ALL_BUILD.dir
 D:/IntelliJ/CS3141/TeamJAKK/build/CMakeFiles/ZERO_CHECK.dir

@@ -11,6 +11,7 @@ using namespace glm;
 
 static int xRes, yRes;
 
+static GLuint currentPlayerTex;
 static GLuint textureProgramID;
 
 static const mat2 rot = {
@@ -64,6 +65,11 @@ static float tileVerts[18] {
   .5f,  .5f, 0,
   .5f, -.5f, 0
 };
+
+void SetPlayerCurrentFrame(GLuint newFrame)
+{
+	currentPlayerTex = newFrame;
+}
 
 void DrawPlayer(void) {
   mat4 M   = translate(mat4(1), GetPlayerPos());

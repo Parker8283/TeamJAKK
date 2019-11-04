@@ -20,6 +20,10 @@ glm::mat4 GetView();
 glm::mat4 GetProjection();
 
 GLuint GetShader();
+
+void SetPlayerCurrentFrame(GLuint);
+
+GLuint GetShader();
 GLuint GetPlayerVAO(void);
 GLuint GetWallTextureID(void);
 GLuint GetFloorTextureID(void);

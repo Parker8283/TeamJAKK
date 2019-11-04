@@ -91,8 +91,7 @@ DungeonTile* GenerateTestRoom() {
       int index = i + j * 10;
       if (i == 0 || j == 0 || i == 9 || j == 9) {
         testRoom[index] = DungeonTile(false, j*2 + 0.5f, 10 - i*2 + 0.5f);
-      }
-      else {
+      } else {
         testRoom[index] = DungeonTile(true , j*2 + 0.5f, 10 - i*2 + 0.5f);
       }
     }

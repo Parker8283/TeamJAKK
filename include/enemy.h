@@ -31,7 +31,7 @@ public:
 	
 	Projectile* shot;
 	
-	BehaviorState currentState;
+	BehaviorState behaviorState;
 
 	Enemy(glm::vec2 pos, const char*);
 

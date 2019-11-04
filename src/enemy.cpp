@@ -2,7 +2,6 @@
 #include <System.h>
 #include <Graphics.h>
 
-Enemy::BehaviorState currentState;
 //Projectile* shot;
 
 Enemy::Enemy(glm::vec2 pos, const char* c) : Entity(pos, c)
@@ -52,10 +51,10 @@ void Enemy::Draw(void)
 
 Enemy::BehaviorState Enemy::GetState()
 {
-	return currentState;
+	return this->behaviorState;
 }
 
-void Enemy::SetState(BehaviorState s)
+void Enemy::SetState(Enemy::BehaviorState s)
 {
-	currentState = s;
+	this->behaviorState = s;
 }
