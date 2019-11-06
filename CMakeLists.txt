@@ -109,8 +109,6 @@ add_library (sword_test
 	"src/WindowManager.cpp"
 )
 
-#target_include_directories(stBase PUBLIC $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>)
-
 # Catch (for testing)
 add_library (Catch INTERFACE )
 target_include_directories (Catch INTERFACE "include/catch.hpp")
