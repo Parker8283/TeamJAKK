@@ -98,9 +98,16 @@ void LoadPlayerControls(void) {
   BindKey(GLFW_KEY_ESCAPE, exitGame,  NULL, NULL);
 }
 
-void MakeGameRunControlContext(void) {
-  glfwSetKeyCallback(GetWindow(), player_key_callback);
-  glfwSetMouseButtonCallback(GetWindow(), player_mouse_callback);
+void SetControlContext(GameState state) {
+  switch (state) {
+  case GameState::RUN_GAME:
+    glfwSetKeyCallback(GetWindow(), player_key_callback);
+    glfwSetMouseButtonCallback(GetWindow(), player_mouse_callback);
+    break;
+  default:
+    glfwSetKeyCallback(GetWindow(), NULL);
+    glfwSetMouseButtonCallback(GetWindow(), NULL);
+  }
 }
 
 void UpdatePlayer(void) {

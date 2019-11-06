@@ -6,15 +6,11 @@
 #include <GLFW/glfw3.h>
 #include <Texture.h>
 #include <glm/glm.hpp>
-#include "helpers/RootDir.h.in"
-
 
 class Entity
 {
 	
 public:
-	
-	char* textureFilepath;
 	GLuint VBO[2];
 	GLuint VAO;
 	// variables used in Drawing the entity
@@ -27,17 +23,19 @@ public:
 
 	int uID;
 
-	Entity(char* filepath);
+	Entity(glm::vec2 pos, const char* filepath);
 	~Entity(void);
 
-	void Init(glm::vec2);
 	void Draw(void);
-	virtual void Update(void) {};
-	glm::vec3 GetPos(void);
-	GLuint GetVBO(void);
 	void SetUID(int);
 
 	bool operator==(const Entity&);
+	
+	virtual void Update(void) {};
+
+	GLuint GetVBO(void);
+	
+	glm::vec3 GetPos(void);
 };
 
 

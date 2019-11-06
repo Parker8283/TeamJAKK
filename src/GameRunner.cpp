@@ -1,20 +1,45 @@
 #include <Controller.h>
+#include <DungeonMap.h>
 #include <GameRunner.h>
+#include <glm/glm.hpp>
 #include <Graphics.h>
 #include <stdio.h>
 #include <System.h>
 #include <WindowManager.h>
-#include <helpers/RootDir.h.in>
 #include <list>
 
-std::list< Entity* > entities;
-int cursor = 0;
+static std::list< Entity* > entities;
+static int cursor = 0;
+
+using namespace glm;
+
+void AddEntity(Entity* e)
+{
+  //printf("Adding entity\n");
+  entities.push_back(e);
+  e->SetUID(cursor);
+  cursor++;
+}
+
+void RemoveEntity(Entity* e)
+{
+  std::list<Entity*> ::iterator it;
+  for (it = entities.begin(); it != entities.end(); ++it)
+  {
+    if ((*it)->uID == e->uID)
+    {
+      entities.erase(it);
+      break;
+    }
+  }
+}
 
 void EnterGameLoop(void) {
   LoadPlayerControls();
-  MakeGameRunControlContext();
-  Enemy* e = new Enemy("../../common/sprites/GhostEnemySingle.png");
-  e->Init(glm::vec2(1, 1));
+  SetControlContext(GameState::RUN_GAME);
+
+  Enemy* e         = new Enemy(vec2(1,1), "../../common/sprites/GhostEnemySingle.png");
+  DungeonTile* map = GenerateTestRoom();
 
   Sword s("../../common/sprites/Sword1.png");
   s.Init();
@@ -27,7 +52,11 @@ void EnterGameLoop(void) {
     UpdateSystemTimer();
     UpdatePlayer();
 
-	std::list<Entity*> ::iterator it;
+  for (uint i = 0; i < 100; i++) {
+    map[i].Draw();
+  }
+  
+	std::list<Entity*>::iterator it;
 	for (it = entities.begin(); it != entities.end(); ++it)
 	{
 		(*it)->Update();
@@ -45,23 +74,6 @@ void EnterGameLoop(void) {
   }
 }
 
-void AddEntity(Entity* e)
-{
-	printf("Adding entity\n");
-	entities.push_back(e);
-	e->SetUID(cursor);
-	cursor++;
-}
 
-void RemoveEntity(Entity* e)
-{
-	std::list<Entity*> ::iterator it;
-	for (it = entities.begin(); it != entities.end(); ++it)
-	{
-		if ((*it)->uID == e->uID)
-		{
-			entities.erase(it);
-			break;
-		}
-	}
-}
+
+

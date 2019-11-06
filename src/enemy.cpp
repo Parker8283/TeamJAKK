@@ -2,22 +2,13 @@
 #include <System.h>
 #include <Graphics.h>
 
-Enemy::BehaviorState currentState;
 //Projectile* shot;
 
-Enemy::Enemy(char* c) : Entity(c) 
+Enemy::Enemy(glm::vec2 pos, const char* c) : Entity(pos, c)
 {
-
-}
-
-void Enemy::Init(glm::vec2 iPos)
-{
-	Entity::Init(iPos);
 	SetState(BehaviorState::Seek);
 	timer = 0;
 	moveSpeed = 1;
-
-	
 }
 
 void Enemy::Update(void)
@@ -39,11 +30,11 @@ void Enemy::Update(void)
 	case BehaviorState::Fire:
 		//printf("Shoot her!\n");
 
-		shot = new Projectile(ROOT_DIR"/common/sprites/FireballnoOutline.png");
+		shot = new Projectile("../../common/sprites/FireballNoOutline.png");
 		
 		shot->Init(Position + glm::vec2((size.x * 0.5), 0), target);
 
-		SetState(BehaviorState::Seek);
+		this->SetState(BehaviorState::Seek);
 		break;
 	case BehaviorState::Flee:
 		break;
@@ -60,10 +51,10 @@ void Enemy::Draw(void)
 
 Enemy::BehaviorState Enemy::GetState()
 {
-	return currentState;
+	return this->behaviorState;
 }
 
-void Enemy::SetState(BehaviorState s)
+void Enemy::SetState(Enemy::BehaviorState s)
 {
-	currentState = s;
+	this->behaviorState = s;
 }

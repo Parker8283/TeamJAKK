@@ -22,19 +22,20 @@ public:
 		Held, 
 		Fly, 
 		Ground
-	}State;
+	} State;
+
 	State currentState;
 
-	Sword(char*);
+	Sword(const char*);
+
 	void Init();
 	void Update(void);
 	void HitEnemy(Enemy e);
 	void Pickup();
 	void Throw();
 	void UpdateState(State);
+
 	State GetState(void);
-
 };
-
 
 #endif // !SWORD_H

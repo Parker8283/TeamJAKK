@@ -28,7 +28,7 @@ vec3 swordMath() {
 	double ndcX = (xpos - (1920 / 2)) / (1920 / 2);
 	double ndcY = (ypos - (1080 / 2)) / (1080 / 2);
 	vec2 ndc = normalizeDir(vec2(ndcX, ndcY));
-	vec4 mouseView = inverse(GetP()) * vec4(ndc.x, ndc.y, 0, 1);
+	vec4 mouseView = inverse(GetProjection()) * vec4(ndc.x, ndc.y, 0, 1);
 	vec4 mouseWorld = inverse(GetView()) * vec4(mouseView.x, mouseView.y, 0, 1);
 
 	vec2 mouseDir = playerPosition - vec2(mouseWorld.x, mouseWorld.y);
@@ -43,9 +43,9 @@ vec3 swordMath() {
 	
 
 	//First side
-	float sideOne = distance(playerPosition.x, playerPosition.y, mouseWorld.x, mouseWorld.y);
+	//float sideOne = distance(playerPosition.x, playerPosition.y, mouseWorld.x, mouseWorld.y);
 	//second side
-	float sideTwo = distance(mouseWorld.x, mouseWorld.y, mouseWorld.x, playerPosition.y);
+	//float sideTwo = distance(mouseWorld.x, mouseWorld.y, mouseWorld.x, playerPosition.y);
 
 	//angle sword needs to be at to appear to follow the cursor
 	//double angle = atan(sideTwo / sideOne);

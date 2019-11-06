@@ -3,30 +3,66 @@
 //Last modified Oct 30 2019
 
 #include <DungeonTile.h>
+#include <glm/glm.hpp>
+#include <Graphics.h>
 
-bool DungeonTile::isPassable(){
+using namespace glm;
+
+static const mat2 rot = {
+  -1,  0,
+  0, -1
+};
+
+DungeonTile::DungeonTile(bool p, float x, float y) {
+    passable = p;
+    worldX = x;
+    worldY = y;
+}
+
+void DungeonTile::Draw(void) {
+    glUseProgram(GetShader());
+
+    mat4 M = translate(mat4(1), vec3(this->worldX, this->worldY, 0));
+    mat4 MVP = GetProjection() * GetView() * M;
+
+    glBindVertexArray(GetTileVAO());
+    
+    if (this->isPassable())
+        glBindTexture(GL_TEXTURE_2D, GetFloorTextureID());
+    else
+        glBindTexture(GL_TEXTURE_2D, GetWallTextureID());
+
+    glUniform1i(glGetUniformLocation(GetShader(), "tex"), 0);
+    glUniformMatrix2fv(glGetUniformLocation(GetShader(), "uvRot"), 1, GL_FALSE, &rot[0][0]);
+    glUniformMatrix4fv(glGetUniformLocation(GetShader(), "MVP"), 1, GL_FALSE, &MVP[0][0]);
+
+    glDrawArrays(GL_TRIANGLES, 0, 6);
+    glBindVertexArray(GetTileVAO());
+    glUseProgram(GetShader());
+}
+
+void DungeonTile::setPassable(bool p) {
+    passable = p;
+}
+
+void DungeonTile::setWorldCoordCenter(float x, float y) {
+    worldX = x;
+    worldY = y;
+}
+
+bool DungeonTile::isPassable() {
     return passable;
 }
 
-void DungeonTile::setPassable(bool p){
-        passable = p;
-}
-
-double DungeonTile::getWorldX(){
-    return worldX;
-}
-double DungeonTile::getWorldY(){
-    return worldY;
-}
-void DungeonTile::setWorldCoordCenter(double x, double y){
-    worldX=x;
-    worldY=y;
-}
-DungeonTile::DungeonTile(bool p, double x, double y){
-    passable=p;
-    worldX=x;
-    worldY=y;
-}
-bool DungeonTile::moveOnEvent(){
+bool DungeonTile::moveOnEvent() {
     return false;
 }
+
+inline float DungeonTile::getWorldX() {
+    return worldX;
+}
+
+inline float DungeonTile::getWorldY() {
+    return worldY;
+}
+

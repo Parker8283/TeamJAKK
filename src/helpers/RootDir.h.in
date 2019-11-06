@@ -1,2 +1,2 @@
 #pragma once
-#define ROOT_DIR "@CMAKE_SOURCE_DIR@/"
+#define ROOT_DIR "/home/mark/Documents/Mark/MTU School/CS3141/TeamJAKK/"

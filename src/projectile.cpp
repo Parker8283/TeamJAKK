@@ -1,20 +1,24 @@
 #include <projectile.h>
 #include <math.h>
 #include <GameMath.h>
+#include <glm/glm.hpp>
 #include <System.h>
 #include <GameRunner.h>
 
 #define PI 3.14159265
 
-Projectile::Projectile(char* file) : Entity(file)
+Projectile::Projectile(const char* file) : Entity(glm::vec2(0), file)
+{
+
+}
+
+Projectile::~Projectile()
 {
 
 }
 
 void Projectile::Init(glm::vec2 iPos, glm::vec2 target)
 {
-	Entity::Init(iPos);
-
 	direction.y = (float)target.y - iPos.y;
 	direction.x = (float)target.x - iPos.x;
 
