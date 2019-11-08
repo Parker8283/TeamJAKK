@@ -116,7 +116,7 @@ void SetupGraphics(void) {
   playerTextureBack = LoadTexture("../../common/sprites/GungeonRipoffBaseBack.png");
 
   wallTexture       = LoadTexture("../../common/sprites/WallBottom2.png");
-  floorTexture      = LoadTexture("../../common/sprites/WallTop2.png");
+  floorTexture      = LoadTexture("../../common/sprites/ground.png");
   LoadCursor();
 
   //Setup Player program vert/uv buffer streams

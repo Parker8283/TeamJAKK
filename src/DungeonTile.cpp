@@ -25,6 +25,8 @@ void DungeonTile::Draw(void) {
     mat4 M = translate(mat4(1), vec3(this->worldX, this->worldY, 0));
     mat4 MVP = GetProjection() * GetView() * M;
 
+	MVP = scale(MVP, vec3(2.0f, 2.0f, 1.0f));
+
     glBindVertexArray(GetTileVAO());
     
     if (this->isPassable())
