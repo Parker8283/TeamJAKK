@@ -2,21 +2,21 @@ cmake_minimum_required(VERSION 3.2 FATAL_ERROR)
 project (swordthrow)
 
 file (GLOB_RECURSE SOURCE_FILES
-	${CMAKE_SOURCE_DIR}/src/*.c
-	${CMAKE_SOURCE_DIR}/src/*.cpp)
+	${PROJECT_SOURCE_DIR}/src/*.c
+	${PROJECT_SOURCE_DIR}/src/*.cpp)
 file (GLOB_RECURSE HEADER_FILES
-	${CMAKE_SOURCE_DIR}/include/*.h
-	${CMAKE_SOURCE_DIR}/include/*.hpp)
+	${PROJECT_SOURCE_DIR}/include/*.h
+	${PROJECT_SOURCE_DIR}/include/*.hpp)
 file (GLOB_RECURSE OPENGL_FILES
-	${CMAKE_SOURCE_DIR}/opengllib/Include/*.h
-	${CMAKE_SOURCE_DIR}/opengllib/Include/*.hpp
-	${CMAKE_SOURCE_DIR}/opengllib/Include/*.c
-	${CMAKE_SOURCE_DIR}/opengllib/Include/*.cpp)
+	${PROJECT_SOURCE_DIR}/opengllib/Include/*.h
+	${PROJECT_SOURCE_DIR}/opengllib/Include/*.hpp
+	${PROJECT_SOURCE_DIR}/opengllib/Include/*.c
+	${PROJECT_SOURCE_DIR}/opengllib/Include/*.cpp)
 file (GLOB_RECURSE TEST_SOURCE
-	${CMAKE_SOURCE_DIR}/test/*.cpp)
+	${PROJECT_SOURCE_DIR}/test/*.cpp)
 
 # Add .lib files
-link_directories(${CMAKE_SOURCE_DIR}/opengllib/Lib)
+link_directories(${PROJECT_SOURCE_DIR}/opengllib/Lib)
 # Configure assets header folder
 configure_file(src/helpers/RootDir.h.in src/helpers/RootDir.h.in)
 
@@ -24,8 +24,12 @@ include_directories(${CMAKE_BINARY_DIR}/src)
 #Define the executable
 add_executable(${PROJECT_NAME} ${HEADER_FILES} ${SOURCE_FILES})
 
-#Need a CMAKE_DIR with some code in it to find external libraries
-set (CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} "${CMAKE_SOURCE_DIR}/cmake/")
+# Add local project module path so cmake includes cutom cmake modules
+list (APPEND CMAKE_MODULE_PATH "${PROJECT_SOURCE_DIR}/cmake/Modules")
+# Add local project path for find files
+list(APPEND CMAKE_PREFIX_PATH "${PROJECT_SOURCE_DIR}/opengllib")
+list (APPEND CMAKE_MODULE_PATH "${PROJECT_SOURCE_DIR}/cmake/")
+
 # OpenGL
 find_package(OpenGL REQUIRED)
 # GLM
@@ -35,8 +39,12 @@ message (STATUS "GLM included at ${GLM_INCLUDE_DIR}")
 find_package(GLFW3 REQUIRED)
 message (STATUS "GLFW3 included at ${GLFW3_INCLUDE_DIR}")
 # GLEW
+set (CMAKE_LIBRARY_PATH "${PROJECT_SOURCE_DIR}/opengllib/Lib")
+message (STATUS "CMAKE_LIBRARY_PATH included at ${CMAKE_LIBRARY_PATH}")
+#find_package (GLEW REQUIRED)
 set (GLEW_INCLUDE_PATH "opengllib/Include")
-set (GLEW_LIBRARY "" CACHE FILEPATH "glew32s.lib or glew32.lib")
+set (GLEW_LIBRARY "${PROJECT_SOURCE_DIR}/opengllib/Lib/glew32.lib")
+message (STATUS "GLEW_LIBRARY included at ${GLEW_LIBRARY}")
 
 # STB_IMAGE
 add_library (STB_IMAGE "thirdparty/stb_image.cpp")
@@ -48,15 +56,14 @@ set (LIBS glfw3 opengl32 STB_IMAGE GLAD ${GLEW_LIBRARY})
 
 # Define the Include DIRs
 include_directories( 
-	"${CMAKE_SOURCE_DIR}/src"
-	"${CMAKE_SOURCE_DIR}/include"
-	"${CMAKE_SOURCE_DIR}/opengllib/Include"
-	"${CMAKE_SOURCE_DIR}/opengllib/Lib"
+	"${PROJECT_SOURCE_DIR}/src"
+	"${PROJECT_SOURCE_DIR}/include"
+	"${PROJECT_SOURCE_DIR}/opengllib/Include"
+	"${PROJECT_SOURCE_DIR}/opengllib/Lib"
 	${GLEW_INCLUDE_PATH}
 )
-
 # Define the link libraries
-target_link_libraries (${PROJECT_NAME} ${LIBS})
+target_link_libraries (${PROJECT_NAME} ${LIBS} )
 
 # Create virtual folders to make it look nicer in VS
 if(MSVC_IDE)
@@ -87,27 +94,28 @@ if(WIN32)
 		$<TARGET_FILE_DIR:${PROJECT_NAME}>)
 endif()
 
+
 include(CTest)
 enable_testing()
 
 #add_library (stBase ${HEADER_FILES} ${SOURCE_FILES} ${LIBS} )
 
-#add_library (sword_test 
-#	"src/Control.cpp"
-#	"src/Controller.cpp"
-#	"src/enemy.cpp"
-#	"src/entity.cpp"
-#	"src/FileLoader.cpp"
-#	"src/GameMath.cpp"
-#	"src/GameRunner.cpp"
-#	"src/Graphics.cpp"
-#	"src/projectile.cpp"
-#	"src/Shader.cpp"
-#	"src/sword.cpp"
-#	"src/System.cpp"
-#	"src/Texture.cpp"
-#	"src/WindowManager.cpp"
-#)
+add_library (sword_test 
+	"src/Control.cpp"
+	"src/Controller.cpp"
+	"src/enemy.cpp"
+	"src/entity.cpp"
+	"src/FileLoader.cpp"
+	"src/GameMath.cpp"
+	"src/GameRunner.cpp"
+	"src/Graphics.cpp"
+	"src/projectile.cpp"
+	"src/Shader.cpp"
+	"src/sword.cpp"
+	"src/System.cpp"
+	"src/Texture.cpp"
+	"src/WindowManager.cpp"
+)
 
 # Catch (for testing)
 add_library (Catch INTERFACE )
