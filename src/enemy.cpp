@@ -1,34 +1,62 @@
 #include <enemy.h>
 #include <System.h>
 #include <Graphics.h>
+#include <cstdlib>
+#include <ctime>
 
 //Projectile* shot;
+bool flipped = false;
 
 Enemy::Enemy(glm::vec2 pos, const char* c) : Entity(pos, c)
 {
 	SetState(BehaviorState::Seek);
 	timer = 0;
 	moveSpeed = 1;
+	behavior = new Behavior(Behavior::AIType::Simple, 4);
+	srand(time(NULL));
+}
+
+Enemy::Enemy(glm::vec2 pos, const char* c, Behavior::AIType mood) : Entity(pos, c)
+{
+	SetState(BehaviorState::Seek);
+	timer = 0;
+	moveSpeed = 1;
+	behavior = new Behavior(mood, 4);
+	srand(time(NULL));
 }
 
 void Enemy::Update(void)
 {
+	int randX =0, randY=0;
 	//printf("in enemy update: %f \n   ", GetFrameDeltaTime());
 	switch (GetState())
 	{
 	case BehaviorState::Seek:
 		timer += GetFrameDeltaTime();
-
-		target = GetPlayerPos();
-
-		if (timer > 5) 
+		if (timer > 4) 
 		{
 			timer = 0;
 			SetState(BehaviorState::Fire);
 		}
+
+		moveTarget = behavior->GetMoveTarget(Position);
+		moveDir = moveTarget - Position;
+		moveDir = normalizeDir(moveDir);
+		Position += moveDir * GetFrameDeltaTime() * moveSpeed;
+		if (moveDir.x < 0 && !flipped) {
+			size.x = size.x * -1;
+			flipped = true;
+		} else if (moveDir.x < 0) {
+
+		} else {
+			size.x = abs(size.x);
+			flipped = false;
+		}
+
 		break;
 	case BehaviorState::Fire:
 		//printf("Shoot her!\n");
+		target = behavior->GetFireTarget();
 
 		shot = new Projectile("../../common/sprites/FireballNoOutline.png");
 		
@@ -37,6 +65,40 @@ void Enemy::Update(void)
 		this->SetState(BehaviorState::Seek);
 		break;
 	case BehaviorState::Flee:
+		randX = (rand() % 12) - 6;
+		randY = (rand() % 12) - 6;
+		if (quadrant(vec2(randX, randY)) == quadrant(GetPlayerPos())) {
+			randX = -randX;
+		}
+		moveTarget = vec2(GetPlayerPos()) + vec2(randX, randY);
+		SetState(BehaviorState::Fleeing);
+		break;
+	case BehaviorState::Fleeing:
+		timer += GetFrameDeltaTime();
+		if (timer > 4)
+		{
+			timer = 0;
+			SetState(BehaviorState::Seek);
+		}
+		if (abs(Position.x - moveTarget.x) < .1 && abs(Position.y - moveTarget.y) < .1) {
+			timer = 0;
+			SetState(BehaviorState::Seek);
+		}
+
+		moveDir = moveTarget - Position;
+		moveDir = normalizeDir(moveDir);
+		Position += moveDir * GetFrameDeltaTime() * moveSpeed;
+		if (moveDir.x < 0 && !flipped) {
+			size.x = size.x * -1;
+			flipped = true;
+		}
+		else if (moveDir.x < 0) {
+
+		}
+		else {
+			size.x = abs(size.x);
+			flipped = false;
+		}
 		break;
 	default:
 		SetState(BehaviorState::Seek);

@@ -34,7 +34,7 @@ void Sword::Update(void)
 		rotation += glm::radians(45.0f);
 		rotation *= -1;
 
-		printf("%f %f \n", temp.x, temp.y);
+		//printf("%f %f \n", temp.x, temp.y);
 		Position = vec3(temp.x, temp.y, 0) * radius + GetPlayerPos();
 		//Position = GetPlayerPos();
 		//printf("deg: %f\n", glm::degrees(rotation));

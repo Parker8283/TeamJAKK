@@ -62,3 +62,25 @@ float distance(float x1, float y1, float x2, float y2)
 {
 	return sqrt(pow(x2 - x1, 2) + pow(y2 - y1, 2) * 1.0);
 }
+
+int quadrant(glm::vec2 point)
+{
+	if (point.x == 0 && point.y == 0) {
+		return 9;
+	}
+	else if (point.x > 0 && point.y > 0) {
+		return 1;
+	}
+	else if (point.x < 0 && point.y > 0) {
+		return 2;
+	}
+	else if (point.x < 0 && point.y < 0) {
+		return 3;
+	}
+	else if (point.x > 0 && point.y < 0) {
+		return 4;
+	}
+	else {
+		return 5;
+	}
+}

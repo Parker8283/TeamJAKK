@@ -4,6 +4,8 @@
 #include <entity.h>
 #include <player.h>
 #include <projectile.h>
+#include <GameMath.h>
+#include <behaviors.h>
 
 class Enemy : Entity {
 
@@ -14,7 +16,8 @@ public:
 	{
 		Seek, 
 		Fire, 
-		Flee
+		Flee, 
+		Fleeing
 	} BehaviorState;
 
 	int health;
@@ -28,12 +31,15 @@ public:
 	
 	glm::vec2 target;
 	glm::vec2 moveTarget;
-	
+	glm::vec2 moveDir;
+
 	Projectile* shot;
+	Behavior* behavior;
 	
 	BehaviorState behaviorState;
 
 	Enemy(glm::vec2 pos, const char*);
+	Enemy(glm::vec2 pos, const char*, Behavior::AIType);
 
 	void Update();
 	void Draw();

@@ -86,7 +86,7 @@ void DrawPlayer(void) {
   yPos = (yPos - (1080 / 2)) / (yPos / 2);
   xPos = (xPos - (1920 / 2)) / (xPos / 2);
 
-  if (yPos < GetPlayerPos().y /** 0*/ ) {
+  if (yPos <   0) {
     glBindTexture(GL_TEXTURE_2D, playerTextureBack);
   } else {
     glBindTexture(GL_TEXTURE_2D, playerTexture);

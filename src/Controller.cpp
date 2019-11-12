@@ -137,3 +137,13 @@ GLuint GetPlayerSpriteID(void) {
 vec3 GetPlayerPos(void) {
   return vec3(playerPos, 0);
 }
+
+vec2 GetPlayerMoveDir(void)
+{
+	return moveDir;
+}
+
+float GetPlayerWalkSpeed(void)
+{
+	return playerWalkSpeed;
+}

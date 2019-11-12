@@ -8,5 +8,6 @@
 glm::vec2 normalizeDir(glm::vec2 p);
 glm::vec3 swordMath();
 float distance(float, float, float, float);
+int quadrant(glm::vec2);
 
 #endif

@@ -19,12 +19,13 @@ Projectile::~Projectile()
 
 void Projectile::Init(glm::vec2 iPos, glm::vec2 target)
 {
+	Position = iPos;
 	direction.y = (float)target.y - iPos.y;
 	direction.x = (float)target.x - iPos.x;
 
 	size = glm::vec2(0.4f, 0.4f);
 
-	speed = 2;
+	speed = 7;
 
 	direction = normalizeDir(direction);
 

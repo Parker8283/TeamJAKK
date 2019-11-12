@@ -12,4 +12,6 @@ void UpdatePlayer(void);
 GLuint GetPlayerSpriteID(void);
 
 glm::vec3 GetPlayerPos(void);
+glm::vec2 GetPlayerMoveDir(void);
+float GetPlayerWalkSpeed(void);
 #endif
