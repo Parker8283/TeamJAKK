@@ -1,20 +1,11 @@
 #include <enemy.h>
 #include <System.h>
 #include <Graphics.h>
+#include <GameRunner.h>
+
 #include <cstdlib>
 #include <ctime>
 
-//Projectile* shot;
-bool flipped = false;
-
-Enemy::Enemy(glm::vec2 pos, const char* c) : Entity(pos, c)
-{
-	SetState(BehaviorState::Seek);
-	timer = 0;
-	moveSpeed = 1;
-	behavior = new Behavior(Behavior::AIType::Simple, 4);
-	srand(time(NULL));
-}
 
 Enemy::Enemy(glm::vec2 pos, const char* c, Behavior::AIType mood) : Entity(pos, c)
 {
@@ -25,6 +16,22 @@ Enemy::Enemy(glm::vec2 pos, const char* c, Behavior::AIType mood) : Entity(pos, 
 	srand(time(NULL));
 }
 
+Enemy::Enemy(glm::vec2 pos, Archetype arch) : Entity(pos, arch.enemyTexture)
+{
+	timer =  (static_cast <float>(rand()) / static_cast <float> (RAND_MAX)) * arch.shotFrequency;
+	this->moveSpeed = arch.moveSpeed;
+	behavior = new Behavior(arch.behavior, arch.radius);
+	weaponFile = arch.shotTexture;
+	doesShoot = arch.doesShoot;
+	shotSpeed = arch.shotSpeed;
+	shotFrequency = arch.shotFrequency;
+	damage = arch.damage;
+	size = arch.size;
+	shotSize = arch.shotSize;
+
+	SetState(BehaviorState::Seek);
+}
+
 void Enemy::Update(void)
 {
 	int randX =0, randY=0;
@@ -33,8 +40,10 @@ void Enemy::Update(void)
 	{
 	case BehaviorState::Seek:
 		timer += GetFrameDeltaTime();
-		if (timer > 4) 
+		//printf("%f \n", GetFrameDeltaTime());
+		if (doesShoot && timer > shotFrequency) 
 		{
+			//printf("in if\n");
 			timer = 0;
 			SetState(BehaviorState::Fire);
 		}
@@ -58,9 +67,9 @@ void Enemy::Update(void)
 		//printf("Shoot her!\n");
 		target = behavior->GetFireTarget();
 
-		shot = new Projectile("../../common/sprites/FireballNoOutline.png");
+		shot = new Projectile(weaponFile, Position + glm::vec2((size.x * 0.5), 0), target, damage, shotSize);
 		
-		shot->Init(Position + glm::vec2((size.x * 0.5), 0), target);
+		//shot->Init(Position + glm::vec2((size.x * 0.5), 0), target);
 
 		this->SetState(BehaviorState::Seek);
 		break;
@@ -119,4 +128,11 @@ Enemy::BehaviorState Enemy::GetState()
 void Enemy::SetState(Enemy::BehaviorState s)
 {
 	this->behaviorState = s;
+}
+
+void Enemy::Die()
+{
+	delete shot;
+	RemoveEntity(this);
+	delete this;
 }

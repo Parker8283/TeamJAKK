@@ -7,33 +7,29 @@
 
 #define PI 3.14159265
 
-Projectile::Projectile(const char* file) : Entity(glm::vec2(0), file)
+Projectile::Projectile(const char* file, glm::vec2 iPos, glm::vec2 target, float damage, glm::vec2 size) : Entity(iPos, file)
 {
-
-}
-
-Projectile::~Projectile()
-{
-
-}
-
-void Projectile::Init(glm::vec2 iPos, glm::vec2 target)
-{
+	this->damage = damage;
 	Position = iPos;
 	direction.y = (float)target.y - iPos.y;
 	direction.x = (float)target.x - iPos.x;
 
-	size = glm::vec2(0.4f, 0.4f);
+
+	this->size = size;
 
 	speed = 7;
 
 	direction = normalizeDir(direction);
 
-	rotation = (double)atan2(direction.y , direction.x);
+	rotation = (double)atan2(direction.y, direction.x);
 	rotation = (rotation >= 0 ? rotation : (2 * PI + rotation));
-	//printf("radians: %f, deg: %f", rotation, rotation * 180 / PI);
 
-	//AddEntity(this);
+	HitEnemy = false;
+}
+
+Projectile::~Projectile()
+{
+
 }
 
 void Projectile::Update()

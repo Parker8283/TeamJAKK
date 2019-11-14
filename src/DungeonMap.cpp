@@ -12,6 +12,8 @@ DungeonMap::DungeonMap() {
   textureType = "";
   xSize = 0;
   ySize = 0;
+
+  tileDim = glm::vec2(2, 2);
 }
 
 DungeonMap::DungeonMap(DungeonTile** map, int x, int y) {
@@ -98,4 +100,9 @@ DungeonTile* GenerateTestRoom() {
   }
 
   return testRoom;
+}
+
+glm::vec2 DungeonMap::getTileDim()
+{
+	return tileDim;
 }

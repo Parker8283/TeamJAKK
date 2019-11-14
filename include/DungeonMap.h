@@ -8,6 +8,7 @@
 #include <string>
 #include "DungeonTile.h"
 #include <vector>
+#include <glm/glm.hpp>
 
 class DungeonMap{
 private:
@@ -16,6 +17,7 @@ private:
   
   int xSize;               //number of internal rows
   int ySize;               //number of internal columns
+  glm::vec2 tileDim;
 
 public:
   DungeonMap();
@@ -39,7 +41,7 @@ public:
 
   std::vector<DungeonTile> getImpassableList();
 
-
+  glm::vec2 getTileDim(void);
 };
 
 DungeonTile* GenerateTestRoom(); //set map to predefined 10x10 room

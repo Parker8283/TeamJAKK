@@ -7,6 +7,7 @@
 #include <System.h>
 #include <WindowManager.h>
 #include <list>
+#include <enemy_manager.h>
 
 static std::list< Entity* > entities;
 static int cursor = 0;
@@ -38,8 +39,9 @@ void EnterGameLoop(void) {
   LoadPlayerControls();
   SetControlContext(GameState::RUN_GAME);
 
-  Enemy* e         = new Enemy(vec2(1,1), "../../common/sprites/GhostEnemySingle.png");
   DungeonTile* map = GenerateTestRoom();
+
+  GenerateEnemyRoom(map);
 
   Sword s("../../common/sprites/Sword1.png");
   s.Init();

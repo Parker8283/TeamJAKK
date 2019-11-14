@@ -9,9 +9,10 @@ public:
 	float speed;
 	glm::vec2 direction;
 	bool HitEnemy;
-	bool doesExist;
+	float damage;
 
-	Projectile(const char*);
+	//Projectile(const char*);
+	Projectile(const char*, glm::vec2, glm::vec2, float, glm::vec2);
 	~Projectile(void);
 
 	void Init(glm::vec2, glm::vec2);

@@ -6,6 +6,7 @@
 #include <projectile.h>
 #include <GameMath.h>
 #include <behaviors.h>
+#include <enemy_manager.h>
 
 class Enemy : Entity {
 
@@ -21,13 +22,18 @@ public:
 	} BehaviorState;
 
 	int health;
+	float shotFrequency;
+	bool doesShoot;
+	bool flipped = false;
 	
 	float moveSpeed;
+	float shotSpeed;
+	glm::vec2 shotSize;
 
-	double timer=0;
-	double damage;
+	float timer=0;
+	float damage;
 	
-	GLuint weapon;
+	char* weaponFile;
 	
 	glm::vec2 target;
 	glm::vec2 moveTarget;
@@ -38,8 +44,9 @@ public:
 	
 	BehaviorState behaviorState;
 
-	Enemy(glm::vec2 pos, const char*);
+	//Enemy(glm::vec2 pos, const char*);
 	Enemy(glm::vec2 pos, const char*, Behavior::AIType);
+	Enemy(glm::vec2 pos, Archetype);
 
 	void Update();
 	void Draw();

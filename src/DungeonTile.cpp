@@ -60,11 +60,11 @@ bool DungeonTile::moveOnEvent() {
     return false;
 }
 
-inline float DungeonTile::getWorldX() {
+ float DungeonTile::getWorldX() {
     return worldX;
 }
 
-inline float DungeonTile::getWorldY() {
+ float DungeonTile::getWorldY() {
     return worldY;
 }
 

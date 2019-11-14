@@ -1,6 +1,6 @@
 #ifndef DUNGEONTILE_H
 #define DUNGEONTILE_H
-#endif
+
 
 //Class to model a (default 32x32p) tile in a map
 //@author Cody Keilitz
@@ -31,3 +31,4 @@ class DungeonTile {
 
 
 };
+#endif

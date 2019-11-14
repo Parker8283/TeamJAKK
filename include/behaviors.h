@@ -9,7 +9,7 @@ using namespace glm;
 
 class Behavior {
 public:
-	typedef enum class AIType {
+	enum class AIType {
 		Cardinal, Simple, Circle, Lead
 	};
 	std::vector<vec2> moveTargets;
@@ -17,7 +17,7 @@ public:
 	int cursor;
 	int fireCursor;
 	bool leadShots = false;
-	int shotFrequency;
+	bool clockwise = true;
 
 	Behavior();
 	Behavior(AIType, float);

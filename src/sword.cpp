@@ -4,7 +4,7 @@ static float radius = 1.5f;
 
 Sword::State currentState;
 
-Sword::Sword(const char* file) : Projectile(file)
+Sword::Sword(const char* file) : Projectile(file, GetPlayerPos(), vec2(0), 1, size)
 {
 	Position = GetPlayerPos();
 	Width    = .8f;
