@@ -7,7 +7,6 @@
 #include <map>
 #include <TextBox.h>
 #include <WindowManager.h>
-#include <string>
 
 using namespace glm;
 
@@ -118,7 +117,6 @@ void TextBox::Draw(void) {
 
   GLfloat xTemp = x;
 
-  std::string::const_iterator c;
   for (uint i = 0; i < strlen(buf); i++) {
     Character ch = CharacterMap[buf[i]];
     if (buf[i] == '\n') {

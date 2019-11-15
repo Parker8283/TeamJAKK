@@ -52,6 +52,7 @@ public:
 	void Draw();
 	void UpdateState(BehaviorState s);
 	void Attack();
+	void TakeDamage(int damage);
 	void Die();
 	BehaviorState GetState();
 	void SetState(BehaviorState);

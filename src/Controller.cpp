@@ -100,6 +100,9 @@ void LoadPlayerControls(void) {
   BindKey(GLFW_KEY_S,      moveDown,  NULL, NULL);
   BindKey(GLFW_KEY_D,      moveRight, NULL, NULL);
   BindKey(GLFW_KEY_ESCAPE, exitGame,  NULL, NULL);
+  BindMouse(GLFW_MOUSE_BUTTON_1, Throw, NULL, NULL);
+
+  playerPos = vec2(7, 4);
 }
 
 void SetControlContext(GameState state) {

@@ -36,6 +36,7 @@ void Enemy::Update(void)
 {
 	int randX =0, randY=0;
 	//printf("in enemy update: %f \n   ", GetFrameDeltaTime());
+
 	switch (GetState())
 	{
 	case BehaviorState::Seek:
@@ -113,6 +114,10 @@ void Enemy::Update(void)
 		SetState(BehaviorState::Seek);
 		break;
 	}
+
+	/**if (checkCollision(hitBox, currentSword->hitBox)) {
+		TakeDamage(currentSword->damage);
+	}*/
 }
 
 void Enemy::Draw(void)
@@ -135,4 +140,12 @@ void Enemy::Die()
 	delete shot;
 	RemoveEntity(this);
 	delete this;
+}
+
+void Enemy::TakeDamage(int takenDam)
+{
+	health -= damage;
+	if (health <= 0) {
+		Die();
+	}
 }

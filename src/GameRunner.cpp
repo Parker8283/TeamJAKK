@@ -47,8 +47,8 @@ void EnterGameLoop(void) {
 
   GenerateEnemyRoom(map);
 
-  Sword s("../../common/sprites/Sword1.png");
-  s.Init();
+  currentSword = new Sword("../../common/sprites/Sword1.png");
+  //currentSword->Init();
 
   glClearColor(0, 0, 0, 1);
   RefreshSystemTimer();

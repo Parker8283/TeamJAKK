@@ -18,6 +18,7 @@ inline vec2 CollisionBox::GetPos(void) {
   return *this->pos;
 }
 
+
 bool checkCollision(CollisionBox box1, CollisionBox box2) {
   float b1x0 = box1.GetPos().x - box1.x / 2;
   float b1x1 = b1x0 + box1.x;

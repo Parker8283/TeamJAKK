@@ -5,6 +5,7 @@
 #include <Control.h>
 #include <System.h>
 #include <Collision.h>
+//#include <sword.h>
 
 void LoadPlayerControls(void);
 void SetControlContext(GameState state);
