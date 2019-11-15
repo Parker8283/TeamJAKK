@@ -1,10 +1,14 @@
+#include <Collision.h>
 #include <Control.h>
 #include <Controller.h>
+#include <entity.h>
+#include <GameRunner.h>
 #include <GameMath.h>
 #include <GL/glew.h>
 #include <glm/glm.hpp>
 #include <glm/gtc/matrix_transform.hpp>
 #include <Graphics.h>
+#include <list>
 #include <map>
 #include <System.h>
 #include <WindowManager.h>
@@ -56,34 +60,34 @@ static void moveDown(void* null) {
 
 static void moveRight(void* null) {
   moveDir.x += 1.0f;
-} 
+}
 
 /**
 double timer = 0;
 int currentF = 0;
 GLuint arrayFrames[4];
 static void moveRight(void* null) {
-	currentF = 0;
-	//glBindTexture(GL_TEXTURE_2D, arrayRight[0]);
-	arrayFrames[0] = LoadTexture(ROOT_DIR"/common/sprites/GungeonRipoffFrame1.png");
-	arrayFrames[1] = LoadTexture(ROOT_DIR"/common/sprites/GungeonRipoffFrame2.png");
-	arrayFrames[2] = LoadTexture(ROOT_DIR"/common/sprites/GungeonRipoffFrame3.png");
-	arrayFrames[3] = LoadTexture(ROOT_DIR"/common/sprites/GungeonRipoffFrame4.png");
-	
-	moveDir.x += 1.0f;
+  currentF = 0;
+  //glBindTexture(GL_TEXTURE_2D, arrayRight[0]);
+  arrayFrames[0] = LoadTexture(ROOT_DIR"/common/sprites/GungeonRipoffFrame1.png");
+  arrayFrames[1] = LoadTexture(ROOT_DIR"/common/sprites/GungeonRipoffFrame2.png");
+  arrayFrames[2] = LoadTexture(ROOT_DIR"/common/sprites/GungeonRipoffFrame3.png");
+  arrayFrames[3] = LoadTexture(ROOT_DIR"/common/sprites/GungeonRipoffFrame4.png");
+
+  moveDir.x += 1.0f;
 }
 
 void rightWalkCycle(void) {
-	timer += GetFrameDeltaTime();
-	if (timer > 0.2f) {
-		currentF++;
-		timer = 0;
-		SetPlayerCurrentFrame( arrayFrames[currentF]);
-		if (currentF = 3) {
-			currentF = 0;
-		}
+  timer += GetFrameDeltaTime();
+  if (timer > 0.2f) {
+    currentF++;
+    timer = 0;
+    SetPlayerCurrentFrame( arrayFrames[currentF]);
+    if (currentF = 3) {
+      currentF = 0;
+    }
 
-	}
+  }
 } */
 
 static void exitGame(void* null) {
@@ -123,9 +127,28 @@ void UpdatePlayer(void) {
       pressedMap.erase(it->first);
     }
   }
+  std::list<Entity *> * entities = GetEntityList();
 
   moveDir    = normalizeDir(moveDir);
-  playerPos += moveDir * frameDelta * playerWalkSpeed;
+  
+  vec2 nextPos = playerPos + moveDir * frameDelta * playerWalkSpeed;
+  
+  CollisionBox hitBox = CollisionBox(1,1, &nextPos);
+
+  bool collided = false;
+  std::list<Entity*>::iterator it;
+  for (it = entities->begin(); it != entities->end(); ++it)
+  {
+    if(checkCollision(hitBox, (*it)->GetHitBox())) {
+      collided = true;
+      break;
+    }
+  }
+
+  //Collision disabled for now
+  //if(!collided)
+  playerPos = nextPos;
+  
   //SetView(lookAt(vec3(0, 0, 10), vec3(0, 0, 0), UP));
   SetView(lookAt(vec3(playerPos.x, playerPos.y, 10), vec3(playerPos.x, playerPos.y, 0), UP));
 }

@@ -43,6 +43,8 @@ Entity::Entity(vec2 pos, const char* filepath)
   Position.x = pos.x;
   Position.y = pos.y;
 
+  hitBox = CollisionBox(1, 1, &Position);
+
   texture = LoadTexture(filepath);
   glGenVertexArrays(1, &VAO);
   glBindVertexArray(VAO);
@@ -74,7 +76,7 @@ void Entity::Draw(void)
 
   mat4 M = glm::translate(mat4(1), GetPos());
   //printf("%f, %f\n", GetPos().x, GetPos().y);
-
+  
   mat4 MVP = GetProjection() * GetView() * M;
 
   MVP = glm::translate(MVP, glm::vec3(0.5f * size.x, 0.5f * size.y, 0.0f)); //Move origin to center to rotate
@@ -93,6 +95,10 @@ void Entity::Draw(void)
   glUniformMatrix4fv(glGetUniformLocation(GetShader(), "MVP"), 1, GL_FALSE, &MVP[0][0]);
 
   glDrawArrays(GL_TRIANGLES, 0, 6);
+}
+
+CollisionBox Entity::GetHitBox(void) {
+  return this->hitBox;
 }
 
 glm::vec3 Entity::GetPos(void)

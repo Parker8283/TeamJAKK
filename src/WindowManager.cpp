@@ -73,6 +73,10 @@ int CreateWindow(void) {
   return 0;
 }
 
+glm::vec2 GetWindowResolution(void) {
+  return glm::vec2(float(xRes), float(yRes));
+}
+
 GLFWwindow* GetWindow(void) {
   return window;
 }

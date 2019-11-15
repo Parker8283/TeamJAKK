@@ -39,7 +39,8 @@ void Projectile::Update()
 	Position += direction * frameDelta * speed;
 	if (abs(Position.x) > 50 || abs(Position.y) > 50)
 	{
-		RemoveEntity(this);
+		//RemoveEntity(this);
+		printf("here2\n");
 		delete this;
 	}
 	

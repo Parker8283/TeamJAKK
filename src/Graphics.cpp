@@ -96,7 +96,7 @@ void DrawPlayer(void) {
 
   glUniformMatrix2fv(boxRotID, 1, GL_FALSE, &rot[0][0]);
   glUniformMatrix4fv(boxMVPID, 1, GL_FALSE, &MVP[0][0]);
-
+  
   glDrawArrays(GL_TRIANGLES, 0, 6);
 }
 

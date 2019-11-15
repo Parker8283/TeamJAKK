@@ -1,38 +1,18 @@
 [
 {
   "directory": "/home/mark/Documents/Mark/MTU School/CS3141/TeamJAKK",
-  "command": "/usr/bin/c++   -I\"/home/mark/Documents/Mark/MTU School/CS3141/TeamJAKK/src\" -I\"/home/mark/Documents/Mark/MTU School/CS3141/TeamJAKK/include\" -I\"/home/mark/Documents/Mark/MTU School/CS3141/TeamJAKK/opengllib/Include\" -I\"/home/mark/Documents/Mark/MTU School/CS3141/TeamJAKK/opengllib/Lib\" -I\"/home/mark/Documents/Mark/MTU School/CS3141/TeamJAKK/include/catch.hpp\"    -o CMakeFiles/project_test.dir/test/TestBase.cpp.o -c \"/home/mark/Documents/Mark/MTU School/CS3141/TeamJAKK/test/TestBase.cpp\"",
-  "file": "/home/mark/Documents/Mark/MTU School/CS3141/TeamJAKK/test/TestBase.cpp"
-},
-{
-  "directory": "/home/mark/Documents/Mark/MTU School/CS3141/TeamJAKK",
-  "command": "/usr/bin/c++   -I\"/home/mark/Documents/Mark/MTU School/CS3141/TeamJAKK/src\" -I\"/home/mark/Documents/Mark/MTU School/CS3141/TeamJAKK/include\" -I\"/home/mark/Documents/Mark/MTU School/CS3141/TeamJAKK/opengllib/Include\" -I\"/home/mark/Documents/Mark/MTU School/CS3141/TeamJAKK/opengllib/Lib\" -I\"/home/mark/Documents/Mark/MTU School/CS3141/TeamJAKK/include/catch.hpp\"    -o CMakeFiles/project_test.dir/test/TestEnemy.cpp.o -c \"/home/mark/Documents/Mark/MTU School/CS3141/TeamJAKK/test/TestEnemy.cpp\"",
-  "file": "/home/mark/Documents/Mark/MTU School/CS3141/TeamJAKK/test/TestEnemy.cpp"
-},
-{
-  "directory": "/home/mark/Documents/Mark/MTU School/CS3141/TeamJAKK",
-  "command": "/usr/bin/c++   -I\"/home/mark/Documents/Mark/MTU School/CS3141/TeamJAKK/src\" -I\"/home/mark/Documents/Mark/MTU School/CS3141/TeamJAKK/include\" -I\"/home/mark/Documents/Mark/MTU School/CS3141/TeamJAKK/opengllib/Include\" -I\"/home/mark/Documents/Mark/MTU School/CS3141/TeamJAKK/opengllib/Lib\" -I\"/home/mark/Documents/Mark/MTU School/CS3141/TeamJAKK/include/catch.hpp\"    -o CMakeFiles/project_test.dir/test/TestEntity.cpp.o -c \"/home/mark/Documents/Mark/MTU School/CS3141/TeamJAKK/test/TestEntity.cpp\"",
-  "file": "/home/mark/Documents/Mark/MTU School/CS3141/TeamJAKK/test/TestEntity.cpp"
-},
-{
-  "directory": "/home/mark/Documents/Mark/MTU School/CS3141/TeamJAKK",
-  "command": "/usr/bin/c++   -I\"/home/mark/Documents/Mark/MTU School/CS3141/TeamJAKK/src\" -I\"/home/mark/Documents/Mark/MTU School/CS3141/TeamJAKK/include\" -I\"/home/mark/Documents/Mark/MTU School/CS3141/TeamJAKK/opengllib/Include\" -I\"/home/mark/Documents/Mark/MTU School/CS3141/TeamJAKK/opengllib/Lib\" -I\"/home/mark/Documents/Mark/MTU School/CS3141/TeamJAKK/include/catch.hpp\"    -o CMakeFiles/project_test.dir/test/TestGameMath.cpp.o -c \"/home/mark/Documents/Mark/MTU School/CS3141/TeamJAKK/test/TestGameMath.cpp\"",
-  "file": "/home/mark/Documents/Mark/MTU School/CS3141/TeamJAKK/test/TestGameMath.cpp"
-},
-{
-  "directory": "/home/mark/Documents/Mark/MTU School/CS3141/TeamJAKK",
-  "command": "/usr/bin/c++   -I\"/home/mark/Documents/Mark/MTU School/CS3141/TeamJAKK/src\" -I\"/home/mark/Documents/Mark/MTU School/CS3141/TeamJAKK/include\" -I\"/home/mark/Documents/Mark/MTU School/CS3141/TeamJAKK/opengllib/Include\" -I\"/home/mark/Documents/Mark/MTU School/CS3141/TeamJAKK/opengllib/Lib\" -I\"/home/mark/Documents/Mark/MTU School/CS3141/TeamJAKK/include/catch.hpp\"    -o CMakeFiles/project_test.dir/test/TestProjectile.cpp.o -c \"/home/mark/Documents/Mark/MTU School/CS3141/TeamJAKK/test/TestProjectile.cpp\"",
-  "file": "/home/mark/Documents/Mark/MTU School/CS3141/TeamJAKK/test/TestProjectile.cpp"
-},
-{
-  "directory": "/home/mark/Documents/Mark/MTU School/CS3141/TeamJAKK",
-  "command": "/usr/bin/c++   -I\"/home/mark/Documents/Mark/MTU School/CS3141/TeamJAKK/src\" -I\"/home/mark/Documents/Mark/MTU School/CS3141/TeamJAKK/include\" -I\"/home/mark/Documents/Mark/MTU School/CS3141/TeamJAKK/opengllib/Include\" -I\"/home/mark/Documents/Mark/MTU School/CS3141/TeamJAKK/opengllib/Lib\" -I\"/home/mark/Documents/Mark/MTU School/CS3141/TeamJAKK/include/catch.hpp\"    -o CMakeFiles/project_test.dir/test/TestSword.cpp.o -c \"/home/mark/Documents/Mark/MTU School/CS3141/TeamJAKK/test/TestSword.cpp\"",
-  "file": "/home/mark/Documents/Mark/MTU School/CS3141/TeamJAKK/test/TestSword.cpp"
+  "command": "/usr/bin/cc  -I\"/home/mark/Documents/Mark/MTU School/CS3141/TeamJAKK/src\" -I\"/home/mark/Documents/Mark/MTU School/CS3141/TeamJAKK/include\" -I\"/home/mark/Documents/Mark/MTU School/CS3141/TeamJAKK/opengllib/Include\" -I\"/home/mark/Documents/Mark/MTU School/CS3141/TeamJAKK/opengllib/Lib\"    -o CMakeFiles/GLAD.dir/thirdparty/glad.c.o   -c \"/home/mark/Documents/Mark/MTU School/CS3141/TeamJAKK/thirdparty/glad.c\"",
+  "file": "/home/mark/Documents/Mark/MTU School/CS3141/TeamJAKK/thirdparty/glad.c"
 },
 {
   "directory": "/home/mark/Documents/Mark/MTU School/CS3141/TeamJAKK",
   "command": "/usr/bin/c++   -I\"/home/mark/Documents/Mark/MTU School/CS3141/TeamJAKK/src\" -I\"/home/mark/Documents/Mark/MTU School/CS3141/TeamJAKK/include\" -I\"/home/mark/Documents/Mark/MTU School/CS3141/TeamJAKK/opengllib/Include\" -I\"/home/mark/Documents/Mark/MTU School/CS3141/TeamJAKK/opengllib/Lib\"    -o CMakeFiles/STB_IMAGE.dir/thirdparty/stb_image.cpp.o -c \"/home/mark/Documents/Mark/MTU School/CS3141/TeamJAKK/thirdparty/stb_image.cpp\"",
   "file": "/home/mark/Documents/Mark/MTU School/CS3141/TeamJAKK/thirdparty/stb_image.cpp"
+},
+{
+  "directory": "/home/mark/Documents/Mark/MTU School/CS3141/TeamJAKK",
+  "command": "/usr/bin/c++   -I\"/home/mark/Documents/Mark/MTU School/CS3141/TeamJAKK/src\" -I\"/home/mark/Documents/Mark/MTU School/CS3141/TeamJAKK/include\" -I\"/home/mark/Documents/Mark/MTU School/CS3141/TeamJAKK/opengllib/Include\" -I\"/home/mark/Documents/Mark/MTU School/CS3141/TeamJAKK/opengllib/Lib\"    -o CMakeFiles/swordthrow.dir/src/Collision.cpp.o -c \"/home/mark/Documents/Mark/MTU School/CS3141/TeamJAKK/src/Collision.cpp\"",
+  "file": "/home/mark/Documents/Mark/MTU School/CS3141/TeamJAKK/src/Collision.cpp"
 },
 {
   "directory": "/home/mark/Documents/Mark/MTU School/CS3141/TeamJAKK",
@@ -81,6 +61,11 @@
 },
 {
   "directory": "/home/mark/Documents/Mark/MTU School/CS3141/TeamJAKK",
+  "command": "/usr/bin/c++   -I\"/home/mark/Documents/Mark/MTU School/CS3141/TeamJAKK/src\" -I\"/home/mark/Documents/Mark/MTU School/CS3141/TeamJAKK/include\" -I\"/home/mark/Documents/Mark/MTU School/CS3141/TeamJAKK/opengllib/Include\" -I\"/home/mark/Documents/Mark/MTU School/CS3141/TeamJAKK/opengllib/Lib\"    -o CMakeFiles/swordthrow.dir/src/MainMenu.cpp.o -c \"/home/mark/Documents/Mark/MTU School/CS3141/TeamJAKK/src/MainMenu.cpp\"",
+  "file": "/home/mark/Documents/Mark/MTU School/CS3141/TeamJAKK/src/MainMenu.cpp"
+},
+{
+  "directory": "/home/mark/Documents/Mark/MTU School/CS3141/TeamJAKK",
   "command": "/usr/bin/c++   -I\"/home/mark/Documents/Mark/MTU School/CS3141/TeamJAKK/src\" -I\"/home/mark/Documents/Mark/MTU School/CS3141/TeamJAKK/include\" -I\"/home/mark/Documents/Mark/MTU School/CS3141/TeamJAKK/opengllib/Include\" -I\"/home/mark/Documents/Mark/MTU School/CS3141/TeamJAKK/opengllib/Lib\"    -o CMakeFiles/swordthrow.dir/src/ResourceManager.cpp.o -c \"/home/mark/Documents/Mark/MTU School/CS3141/TeamJAKK/src/ResourceManager.cpp\"",
   "file": "/home/mark/Documents/Mark/MTU School/CS3141/TeamJAKK/src/ResourceManager.cpp"
 },
@@ -96,6 +81,11 @@
 },
 {
   "directory": "/home/mark/Documents/Mark/MTU School/CS3141/TeamJAKK",
+  "command": "/usr/bin/c++   -I\"/home/mark/Documents/Mark/MTU School/CS3141/TeamJAKK/src\" -I\"/home/mark/Documents/Mark/MTU School/CS3141/TeamJAKK/include\" -I\"/home/mark/Documents/Mark/MTU School/CS3141/TeamJAKK/opengllib/Include\" -I\"/home/mark/Documents/Mark/MTU School/CS3141/TeamJAKK/opengllib/Lib\"    -o CMakeFiles/swordthrow.dir/src/TextBox.cpp.o -c \"/home/mark/Documents/Mark/MTU School/CS3141/TeamJAKK/src/TextBox.cpp\"",
+  "file": "/home/mark/Documents/Mark/MTU School/CS3141/TeamJAKK/src/TextBox.cpp"
+},
+{
+  "directory": "/home/mark/Documents/Mark/MTU School/CS3141/TeamJAKK",
   "command": "/usr/bin/c++   -I\"/home/mark/Documents/Mark/MTU School/CS3141/TeamJAKK/src\" -I\"/home/mark/Documents/Mark/MTU School/CS3141/TeamJAKK/include\" -I\"/home/mark/Documents/Mark/MTU School/CS3141/TeamJAKK/opengllib/Include\" -I\"/home/mark/Documents/Mark/MTU School/CS3141/TeamJAKK/opengllib/Lib\"    -o CMakeFiles/swordthrow.dir/src/Texture.cpp.o -c \"/home/mark/Documents/Mark/MTU School/CS3141/TeamJAKK/src/Texture.cpp\"",
   "file": "/home/mark/Documents/Mark/MTU School/CS3141/TeamJAKK/src/Texture.cpp"
 },
@@ -103,6 +93,11 @@
   "directory": "/home/mark/Documents/Mark/MTU School/CS3141/TeamJAKK",
   "command": "/usr/bin/c++   -I\"/home/mark/Documents/Mark/MTU School/CS3141/TeamJAKK/src\" -I\"/home/mark/Documents/Mark/MTU School/CS3141/TeamJAKK/include\" -I\"/home/mark/Documents/Mark/MTU School/CS3141/TeamJAKK/opengllib/Include\" -I\"/home/mark/Documents/Mark/MTU School/CS3141/TeamJAKK/opengllib/Lib\"    -o CMakeFiles/swordthrow.dir/src/WindowManager.cpp.o -c \"/home/mark/Documents/Mark/MTU School/CS3141/TeamJAKK/src/WindowManager.cpp\"",
   "file": "/home/mark/Documents/Mark/MTU School/CS3141/TeamJAKK/src/WindowManager.cpp"
+},
+{
+  "directory": "/home/mark/Documents/Mark/MTU School/CS3141/TeamJAKK",
+  "command": "/usr/bin/c++   -I\"/home/mark/Documents/Mark/MTU School/CS3141/TeamJAKK/src\" -I\"/home/mark/Documents/Mark/MTU School/CS3141/TeamJAKK/include\" -I\"/home/mark/Documents/Mark/MTU School/CS3141/TeamJAKK/opengllib/Include\" -I\"/home/mark/Documents/Mark/MTU School/CS3141/TeamJAKK/opengllib/Lib\"    -o CMakeFiles/swordthrow.dir/src/behaviors.cpp.o -c \"/home/mark/Documents/Mark/MTU School/CS3141/TeamJAKK/src/behaviors.cpp\"",
+  "file": "/home/mark/Documents/Mark/MTU School/CS3141/TeamJAKK/src/behaviors.cpp"
 },
 {
   "directory": "/home/mark/Documents/Mark/MTU School/CS3141/TeamJAKK",
@@ -126,7 +121,102 @@
 },
 {
   "directory": "/home/mark/Documents/Mark/MTU School/CS3141/TeamJAKK",
-  "command": "/usr/bin/cc  -I\"/home/mark/Documents/Mark/MTU School/CS3141/TeamJAKK/src\" -I\"/home/mark/Documents/Mark/MTU School/CS3141/TeamJAKK/include\" -I\"/home/mark/Documents/Mark/MTU School/CS3141/TeamJAKK/opengllib/Include\" -I\"/home/mark/Documents/Mark/MTU School/CS3141/TeamJAKK/opengllib/Lib\"    -o CMakeFiles/GLAD.dir/thirdparty/glad.c.o   -c \"/home/mark/Documents/Mark/MTU School/CS3141/TeamJAKK/thirdparty/glad.c\"",
-  "file": "/home/mark/Documents/Mark/MTU School/CS3141/TeamJAKK/thirdparty/glad.c"
+  "command": "/usr/bin/c++   -I\"/home/mark/Documents/Mark/MTU School/CS3141/TeamJAKK/src\" -I\"/home/mark/Documents/Mark/MTU School/CS3141/TeamJAKK/include\" -I\"/home/mark/Documents/Mark/MTU School/CS3141/TeamJAKK/opengllib/Include\" -I\"/home/mark/Documents/Mark/MTU School/CS3141/TeamJAKK/opengllib/Lib\"    -o CMakeFiles/sword_test.dir/src/Control.cpp.o -c \"/home/mark/Documents/Mark/MTU School/CS3141/TeamJAKK/src/Control.cpp\"",
+  "file": "/home/mark/Documents/Mark/MTU School/CS3141/TeamJAKK/src/Control.cpp"
+},
+{
+  "directory": "/home/mark/Documents/Mark/MTU School/CS3141/TeamJAKK",
+  "command": "/usr/bin/c++   -I\"/home/mark/Documents/Mark/MTU School/CS3141/TeamJAKK/src\" -I\"/home/mark/Documents/Mark/MTU School/CS3141/TeamJAKK/include\" -I\"/home/mark/Documents/Mark/MTU School/CS3141/TeamJAKK/opengllib/Include\" -I\"/home/mark/Documents/Mark/MTU School/CS3141/TeamJAKK/opengllib/Lib\"    -o CMakeFiles/sword_test.dir/src/Controller.cpp.o -c \"/home/mark/Documents/Mark/MTU School/CS3141/TeamJAKK/src/Controller.cpp\"",
+  "file": "/home/mark/Documents/Mark/MTU School/CS3141/TeamJAKK/src/Controller.cpp"
+},
+{
+  "directory": "/home/mark/Documents/Mark/MTU School/CS3141/TeamJAKK",
+  "command": "/usr/bin/c++   -I\"/home/mark/Documents/Mark/MTU School/CS3141/TeamJAKK/src\" -I\"/home/mark/Documents/Mark/MTU School/CS3141/TeamJAKK/include\" -I\"/home/mark/Documents/Mark/MTU School/CS3141/TeamJAKK/opengllib/Include\" -I\"/home/mark/Documents/Mark/MTU School/CS3141/TeamJAKK/opengllib/Lib\"    -o CMakeFiles/sword_test.dir/src/enemy.cpp.o -c \"/home/mark/Documents/Mark/MTU School/CS3141/TeamJAKK/src/enemy.cpp\"",
+  "file": "/home/mark/Documents/Mark/MTU School/CS3141/TeamJAKK/src/enemy.cpp"
+},
+{
+  "directory": "/home/mark/Documents/Mark/MTU School/CS3141/TeamJAKK",
+  "command": "/usr/bin/c++   -I\"/home/mark/Documents/Mark/MTU School/CS3141/TeamJAKK/src\" -I\"/home/mark/Documents/Mark/MTU School/CS3141/TeamJAKK/include\" -I\"/home/mark/Documents/Mark/MTU School/CS3141/TeamJAKK/opengllib/Include\" -I\"/home/mark/Documents/Mark/MTU School/CS3141/TeamJAKK/opengllib/Lib\"    -o CMakeFiles/sword_test.dir/src/entity.cpp.o -c \"/home/mark/Documents/Mark/MTU School/CS3141/TeamJAKK/src/entity.cpp\"",
+  "file": "/home/mark/Documents/Mark/MTU School/CS3141/TeamJAKK/src/entity.cpp"
+},
+{
+  "directory": "/home/mark/Documents/Mark/MTU School/CS3141/TeamJAKK",
+  "command": "/usr/bin/c++   -I\"/home/mark/Documents/Mark/MTU School/CS3141/TeamJAKK/src\" -I\"/home/mark/Documents/Mark/MTU School/CS3141/TeamJAKK/include\" -I\"/home/mark/Documents/Mark/MTU School/CS3141/TeamJAKK/opengllib/Include\" -I\"/home/mark/Documents/Mark/MTU School/CS3141/TeamJAKK/opengllib/Lib\"    -o CMakeFiles/sword_test.dir/src/FileLoader.cpp.o -c \"/home/mark/Documents/Mark/MTU School/CS3141/TeamJAKK/src/FileLoader.cpp\"",
+  "file": "/home/mark/Documents/Mark/MTU School/CS3141/TeamJAKK/src/FileLoader.cpp"
+},
+{
+  "directory": "/home/mark/Documents/Mark/MTU School/CS3141/TeamJAKK",
+  "command": "/usr/bin/c++   -I\"/home/mark/Documents/Mark/MTU School/CS3141/TeamJAKK/src\" -I\"/home/mark/Documents/Mark/MTU School/CS3141/TeamJAKK/include\" -I\"/home/mark/Documents/Mark/MTU School/CS3141/TeamJAKK/opengllib/Include\" -I\"/home/mark/Documents/Mark/MTU School/CS3141/TeamJAKK/opengllib/Lib\"    -o CMakeFiles/sword_test.dir/src/GameMath.cpp.o -c \"/home/mark/Documents/Mark/MTU School/CS3141/TeamJAKK/src/GameMath.cpp\"",
+  "file": "/home/mark/Documents/Mark/MTU School/CS3141/TeamJAKK/src/GameMath.cpp"
+},
+{
+  "directory": "/home/mark/Documents/Mark/MTU School/CS3141/TeamJAKK",
+  "command": "/usr/bin/c++   -I\"/home/mark/Documents/Mark/MTU School/CS3141/TeamJAKK/src\" -I\"/home/mark/Documents/Mark/MTU School/CS3141/TeamJAKK/include\" -I\"/home/mark/Documents/Mark/MTU School/CS3141/TeamJAKK/opengllib/Include\" -I\"/home/mark/Documents/Mark/MTU School/CS3141/TeamJAKK/opengllib/Lib\"    -o CMakeFiles/sword_test.dir/src/GameRunner.cpp.o -c \"/home/mark/Documents/Mark/MTU School/CS3141/TeamJAKK/src/GameRunner.cpp\"",
+  "file": "/home/mark/Documents/Mark/MTU School/CS3141/TeamJAKK/src/GameRunner.cpp"
+},
+{
+  "directory": "/home/mark/Documents/Mark/MTU School/CS3141/TeamJAKK",
+  "command": "/usr/bin/c++   -I\"/home/mark/Documents/Mark/MTU School/CS3141/TeamJAKK/src\" -I\"/home/mark/Documents/Mark/MTU School/CS3141/TeamJAKK/include\" -I\"/home/mark/Documents/Mark/MTU School/CS3141/TeamJAKK/opengllib/Include\" -I\"/home/mark/Documents/Mark/MTU School/CS3141/TeamJAKK/opengllib/Lib\"    -o CMakeFiles/sword_test.dir/src/Graphics.cpp.o -c \"/home/mark/Documents/Mark/MTU School/CS3141/TeamJAKK/src/Graphics.cpp\"",
+  "file": "/home/mark/Documents/Mark/MTU School/CS3141/TeamJAKK/src/Graphics.cpp"
+},
+{
+  "directory": "/home/mark/Documents/Mark/MTU School/CS3141/TeamJAKK",
+  "command": "/usr/bin/c++   -I\"/home/mark/Documents/Mark/MTU School/CS3141/TeamJAKK/src\" -I\"/home/mark/Documents/Mark/MTU School/CS3141/TeamJAKK/include\" -I\"/home/mark/Documents/Mark/MTU School/CS3141/TeamJAKK/opengllib/Include\" -I\"/home/mark/Documents/Mark/MTU School/CS3141/TeamJAKK/opengllib/Lib\"    -o CMakeFiles/sword_test.dir/src/projectile.cpp.o -c \"/home/mark/Documents/Mark/MTU School/CS3141/TeamJAKK/src/projectile.cpp\"",
+  "file": "/home/mark/Documents/Mark/MTU School/CS3141/TeamJAKK/src/projectile.cpp"
+},
+{
+  "directory": "/home/mark/Documents/Mark/MTU School/CS3141/TeamJAKK",
+  "command": "/usr/bin/c++   -I\"/home/mark/Documents/Mark/MTU School/CS3141/TeamJAKK/src\" -I\"/home/mark/Documents/Mark/MTU School/CS3141/TeamJAKK/include\" -I\"/home/mark/Documents/Mark/MTU School/CS3141/TeamJAKK/opengllib/Include\" -I\"/home/mark/Documents/Mark/MTU School/CS3141/TeamJAKK/opengllib/Lib\"    -o CMakeFiles/sword_test.dir/src/Shader.cpp.o -c \"/home/mark/Documents/Mark/MTU School/CS3141/TeamJAKK/src/Shader.cpp\"",
+  "file": "/home/mark/Documents/Mark/MTU School/CS3141/TeamJAKK/src/Shader.cpp"
+},
+{
+  "directory": "/home/mark/Documents/Mark/MTU School/CS3141/TeamJAKK",
+  "command": "/usr/bin/c++   -I\"/home/mark/Documents/Mark/MTU School/CS3141/TeamJAKK/src\" -I\"/home/mark/Documents/Mark/MTU School/CS3141/TeamJAKK/include\" -I\"/home/mark/Documents/Mark/MTU School/CS3141/TeamJAKK/opengllib/Include\" -I\"/home/mark/Documents/Mark/MTU School/CS3141/TeamJAKK/opengllib/Lib\"    -o CMakeFiles/sword_test.dir/src/sword.cpp.o -c \"/home/mark/Documents/Mark/MTU School/CS3141/TeamJAKK/src/sword.cpp\"",
+  "file": "/home/mark/Documents/Mark/MTU School/CS3141/TeamJAKK/src/sword.cpp"
+},
+{
+  "directory": "/home/mark/Documents/Mark/MTU School/CS3141/TeamJAKK",
+  "command": "/usr/bin/c++   -I\"/home/mark/Documents/Mark/MTU School/CS3141/TeamJAKK/src\" -I\"/home/mark/Documents/Mark/MTU School/CS3141/TeamJAKK/include\" -I\"/home/mark/Documents/Mark/MTU School/CS3141/TeamJAKK/opengllib/Include\" -I\"/home/mark/Documents/Mark/MTU School/CS3141/TeamJAKK/opengllib/Lib\"    -o CMakeFiles/sword_test.dir/src/System.cpp.o -c \"/home/mark/Documents/Mark/MTU School/CS3141/TeamJAKK/src/System.cpp\"",
+  "file": "/home/mark/Documents/Mark/MTU School/CS3141/TeamJAKK/src/System.cpp"
+},
+{
+  "directory": "/home/mark/Documents/Mark/MTU School/CS3141/TeamJAKK",
+  "command": "/usr/bin/c++   -I\"/home/mark/Documents/Mark/MTU School/CS3141/TeamJAKK/src\" -I\"/home/mark/Documents/Mark/MTU School/CS3141/TeamJAKK/include\" -I\"/home/mark/Documents/Mark/MTU School/CS3141/TeamJAKK/opengllib/Include\" -I\"/home/mark/Documents/Mark/MTU School/CS3141/TeamJAKK/opengllib/Lib\"    -o CMakeFiles/sword_test.dir/src/Texture.cpp.o -c \"/home/mark/Documents/Mark/MTU School/CS3141/TeamJAKK/src/Texture.cpp\"",
+  "file": "/home/mark/Documents/Mark/MTU School/CS3141/TeamJAKK/src/Texture.cpp"
+},
+{
+  "directory": "/home/mark/Documents/Mark/MTU School/CS3141/TeamJAKK",
+  "command": "/usr/bin/c++   -I\"/home/mark/Documents/Mark/MTU School/CS3141/TeamJAKK/src\" -I\"/home/mark/Documents/Mark/MTU School/CS3141/TeamJAKK/include\" -I\"/home/mark/Documents/Mark/MTU School/CS3141/TeamJAKK/opengllib/Include\" -I\"/home/mark/Documents/Mark/MTU School/CS3141/TeamJAKK/opengllib/Lib\"    -o CMakeFiles/sword_test.dir/src/WindowManager.cpp.o -c \"/home/mark/Documents/Mark/MTU School/CS3141/TeamJAKK/src/WindowManager.cpp\"",
+  "file": "/home/mark/Documents/Mark/MTU School/CS3141/TeamJAKK/src/WindowManager.cpp"
+},
+{
+  "directory": "/home/mark/Documents/Mark/MTU School/CS3141/TeamJAKK",
+  "command": "/usr/bin/c++   -I\"/home/mark/Documents/Mark/MTU School/CS3141/TeamJAKK/src\" -I\"/home/mark/Documents/Mark/MTU School/CS3141/TeamJAKK/include\" -I\"/home/mark/Documents/Mark/MTU School/CS3141/TeamJAKK/opengllib/Include\" -I\"/home/mark/Documents/Mark/MTU School/CS3141/TeamJAKK/opengllib/Lib\" -I\"/home/mark/Documents/Mark/MTU School/CS3141/TeamJAKK/include/catch.hpp\"    -o CMakeFiles/project_test.dir/test/TestBase.cpp.o -c \"/home/mark/Documents/Mark/MTU School/CS3141/TeamJAKK/test/TestBase.cpp\"",
+  "file": "/home/mark/Documents/Mark/MTU School/CS3141/TeamJAKK/test/TestBase.cpp"
+},
+{
+  "directory": "/home/mark/Documents/Mark/MTU School/CS3141/TeamJAKK",
+  "command": "/usr/bin/c++   -I\"/home/mark/Documents/Mark/MTU School/CS3141/TeamJAKK/src\" -I\"/home/mark/Documents/Mark/MTU School/CS3141/TeamJAKK/include\" -I\"/home/mark/Documents/Mark/MTU School/CS3141/TeamJAKK/opengllib/Include\" -I\"/home/mark/Documents/Mark/MTU School/CS3141/TeamJAKK/opengllib/Lib\" -I\"/home/mark/Documents/Mark/MTU School/CS3141/TeamJAKK/include/catch.hpp\"    -o CMakeFiles/project_test.dir/test/TestEnemy.cpp.o -c \"/home/mark/Documents/Mark/MTU School/CS3141/TeamJAKK/test/TestEnemy.cpp\"",
+  "file": "/home/mark/Documents/Mark/MTU School/CS3141/TeamJAKK/test/TestEnemy.cpp"
+},
+{
+  "directory": "/home/mark/Documents/Mark/MTU School/CS3141/TeamJAKK",
+  "command": "/usr/bin/c++   -I\"/home/mark/Documents/Mark/MTU School/CS3141/TeamJAKK/src\" -I\"/home/mark/Documents/Mark/MTU School/CS3141/TeamJAKK/include\" -I\"/home/mark/Documents/Mark/MTU School/CS3141/TeamJAKK/opengllib/Include\" -I\"/home/mark/Documents/Mark/MTU School/CS3141/TeamJAKK/opengllib/Lib\" -I\"/home/mark/Documents/Mark/MTU School/CS3141/TeamJAKK/include/catch.hpp\"    -o CMakeFiles/project_test.dir/test/TestEntity.cpp.o -c \"/home/mark/Documents/Mark/MTU School/CS3141/TeamJAKK/test/TestEntity.cpp\"",
+  "file": "/home/mark/Documents/Mark/MTU School/CS3141/TeamJAKK/test/TestEntity.cpp"
+},
+{
+  "directory": "/home/mark/Documents/Mark/MTU School/CS3141/TeamJAKK",
+  "command": "/usr/bin/c++   -I\"/home/mark/Documents/Mark/MTU School/CS3141/TeamJAKK/src\" -I\"/home/mark/Documents/Mark/MTU School/CS3141/TeamJAKK/include\" -I\"/home/mark/Documents/Mark/MTU School/CS3141/TeamJAKK/opengllib/Include\" -I\"/home/mark/Documents/Mark/MTU School/CS3141/TeamJAKK/opengllib/Lib\" -I\"/home/mark/Documents/Mark/MTU School/CS3141/TeamJAKK/include/catch.hpp\"    -o CMakeFiles/project_test.dir/test/TestGameMath.cpp.o -c \"/home/mark/Documents/Mark/MTU School/CS3141/TeamJAKK/test/TestGameMath.cpp\"",
+  "file": "/home/mark/Documents/Mark/MTU School/CS3141/TeamJAKK/test/TestGameMath.cpp"
+},
+{
+  "directory": "/home/mark/Documents/Mark/MTU School/CS3141/TeamJAKK",
+  "command": "/usr/bin/c++   -I\"/home/mark/Documents/Mark/MTU School/CS3141/TeamJAKK/src\" -I\"/home/mark/Documents/Mark/MTU School/CS3141/TeamJAKK/include\" -I\"/home/mark/Documents/Mark/MTU School/CS3141/TeamJAKK/opengllib/Include\" -I\"/home/mark/Documents/Mark/MTU School/CS3141/TeamJAKK/opengllib/Lib\" -I\"/home/mark/Documents/Mark/MTU School/CS3141/TeamJAKK/include/catch.hpp\"    -o CMakeFiles/project_test.dir/test/TestProjectile.cpp.o -c \"/home/mark/Documents/Mark/MTU School/CS3141/TeamJAKK/test/TestProjectile.cpp\"",
+  "file": "/home/mark/Documents/Mark/MTU School/CS3141/TeamJAKK/test/TestProjectile.cpp"
+},
+{
+  "directory": "/home/mark/Documents/Mark/MTU School/CS3141/TeamJAKK",
+  "command": "/usr/bin/c++   -I\"/home/mark/Documents/Mark/MTU School/CS3141/TeamJAKK/src\" -I\"/home/mark/Documents/Mark/MTU School/CS3141/TeamJAKK/include\" -I\"/home/mark/Documents/Mark/MTU School/CS3141/TeamJAKK/opengllib/Include\" -I\"/home/mark/Documents/Mark/MTU School/CS3141/TeamJAKK/opengllib/Lib\" -I\"/home/mark/Documents/Mark/MTU School/CS3141/TeamJAKK/include/catch.hpp\"    -o CMakeFiles/project_test.dir/test/TestSword.cpp.o -c \"/home/mark/Documents/Mark/MTU School/CS3141/TeamJAKK/test/TestSword.cpp\"",
+  "file": "/home/mark/Documents/Mark/MTU School/CS3141/TeamJAKK/test/TestSword.cpp"
 }
 ]

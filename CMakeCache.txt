@@ -288,6 +288,9 @@ STB_IMAGE_LIB_DEPENDS:STATIC=
 //Path to a program.
 SVNCOMMAND:FILEPATH=/usr/bin/svn
 
+//Dependencies for target
+sword_test_LIB_DEPENDS:STATIC=
+
 //Value Computed by CMake
 swordthrow_BINARY_DIR:STATIC=/home/mark/Documents/Mark/MTU School/CS3141/TeamJAKK
 

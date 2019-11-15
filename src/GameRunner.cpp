@@ -22,6 +22,10 @@ void AddEntity(Entity* e)
   cursor++;
 }
 
+std::list<Entity*> * GetEntityList(void) {
+  return &entities;
+}
+
 void RemoveEntity(Entity* e)
 {
   std::list<Entity*> ::iterator it;
@@ -54,23 +58,25 @@ void EnterGameLoop(void) {
     UpdateSystemTimer();
     UpdatePlayer();
 
-  for (uint i = 0; i < 100; i++) {
-    map[i].Draw();
-  }
-  
-	std::list<Entity*>::iterator it;
-	for (it = entities.begin(); it != entities.end(); ++it)
-	{
-		(*it)->Update();
-	}
+    std::list<Entity*>::iterator it;
+
+    for (it = entities.begin(); it != entities.end(); ++it) {
+      if (*it == NULL)
+        break;
+      (*it)->Update();
+    }
+
+    for (uint i = 0; i < 100; i++) {
+      map[i].Draw();
+    }
 
     DrawPlayer();
-	for (it = entities.begin(); it != entities.end(); ++it)
-	{
-		//printf("Draw entities\n");
-		(*it)->Draw();
-	}
-	
+    for (it = entities.begin(); it != entities.end(); ++it)
+    {
+      //printf("Draw entities\n");
+      (*it)->Draw();
+    }
+
     glfwPollEvents();
     glfwSwapBuffers(GetWindow());
   }
