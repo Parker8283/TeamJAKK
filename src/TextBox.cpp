@@ -7,6 +7,7 @@
 #include <map>
 #include <TextBox.h>
 #include <WindowManager.h>
+#include <string>
 
 using namespace glm;
 

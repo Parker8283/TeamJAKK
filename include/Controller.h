@@ -4,6 +4,7 @@
 #include <glm/glm.hpp>
 #include <Control.h>
 #include <System.h>
+#include <Collision.h>
 
 void LoadPlayerControls(void);
 void SetControlContext(GameState state);

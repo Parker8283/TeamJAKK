@@ -51,8 +51,10 @@ add_library (STB_IMAGE "thirdparty/stb_image.cpp")
 # GLAD
 add_library (GLAD "thirdparty/glad.c")
 
+set (FREETYPE "${PROJECT_SOURCE_DIR}/opengllib/Lib/freetype.lib")
+
 # Put all libraries into a variable
-set (LIBS glfw3 opengl32 STB_IMAGE GLAD ${GLEW_LIBRARY})
+set (LIBS glfw3 opengl32 STB_IMAGE GLAD ${GLEW_LIBRARY} ${FREETYPE})
 
 # Define the Include DIRs
 include_directories( 
@@ -101,18 +103,25 @@ enable_testing()
 #add_library (stBase ${HEADER_FILES} ${SOURCE_FILES} ${LIBS} )
 
 add_library (sword_test 
+	"src/behaviors.cpp"
+	"src/Collision.cpp"
 	"src/Control.cpp"
 	"src/Controller.cpp"
+	"src/DungeonMap.cpp"
+	"src/DungeonTile.cpp"
 	"src/enemy.cpp"
+	"src/enemy_manager.cpp"
 	"src/entity.cpp"
 	"src/FileLoader.cpp"
 	"src/GameMath.cpp"
 	"src/GameRunner.cpp"
 	"src/Graphics.cpp"
+	"src/MainMenu.cpp"
 	"src/projectile.cpp"
 	"src/Shader.cpp"
 	"src/sword.cpp"
 	"src/System.cpp"
+	"src/TextBox.cpp"
 	"src/Texture.cpp"
 	"src/WindowManager.cpp"
 )
