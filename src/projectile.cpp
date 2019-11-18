@@ -21,8 +21,8 @@ Projectile::Projectile(const char* file, glm::vec2 iPos, glm::vec2 target, float
 
 	direction = normalizeDir(direction);
 
-	rotation = (double)atan2(direction.y, direction.x);
-	rotation = (rotation >= 0 ? rotation : (2 * PI + rotation));
+	rotation = (GLfloat)atan2(direction.y, direction.x);
+	rotation = (rotation >= 0 ? rotation : (GLfloat)(2 * PI + rotation) );
 
 	HitEnemy = false;
 }

@@ -1,4 +1,5 @@
 #include <sword.h>
+#include <GameRunner.h>
 
 static float radius = 1.5f;
 
@@ -16,8 +17,6 @@ Sword::Sword(const char* file) : Projectile(file, GetPlayerPos(), vec2(0), 1, si
 
 	currentState = State::Held;
 	damage = 1;
-
-	currentSword = this;
 }
 
 void Sword::Init()
@@ -54,16 +53,14 @@ void Sword::Update(void)
 	case Sword::State::Ground:
 		break;
 	case Sword::State::Held:
-		// insert code here to set the rotation and position of the sword based on cursor
 		glm::vec3 temp = swordMath();
 		rotation = temp.z;
 		rotation += glm::radians(45.0f);
 		rotation *= -1;
-
 		//printf("%f %f \n", temp.x, temp.y);
-		Position = vec3(temp.x, temp.y, 0) * radius + GetPlayerPos();
-		//Position = GetPlayerPos();
+		Position = vec3(temp.x, temp.y, 0) * radius + GetPlayer()->GetPosition();
 		//printf("deg: %f\n", glm::degrees(rotation));
+
 		break;
 	}
 }
@@ -80,18 +77,5 @@ void Sword::UpdateState(State s)
 
 void Throw(void* null)
 {
-	
-	double xpos, ypos;
-	glfwGetCursorPos(GetWindow(), &xpos, &ypos);
-	double ndcX = (xpos - (1920 / 2)) / (1920 / 2);
-	double ndcY = (ypos - (1080 / 2)) / (1080 / 2);
-	vec2 ndc = normalizeDir(vec2(ndcX, -ndcY));
-	
-	float angle = atan2(ndc.y, ndc.x);
-	angle = (angle >= 0 ? angle : (2 * 3.14159265 + angle));
-	angle = (angle * 180) / 3.14159265;
-	
-	currentSword->direction = ndc;
-	currentSword->rotation = angle;
-	currentSword->UpdateState(Sword::State::Fly);
+	GetPlayer()->Attack(null);
 }

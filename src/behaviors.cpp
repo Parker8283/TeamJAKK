@@ -1,6 +1,7 @@
 #include <behaviors.h>
 #include <cstdlib>
 #include <ctime>
+#include <GameRunner.h>
 
 Behavior::Behavior()
 {
@@ -62,7 +63,7 @@ Behavior::Behavior(Behavior::AIType type, float radius)
 vec2 Behavior::GetMoveTarget(vec2 pos)
 {
 	vec2 currentTar = moveTargets.at(cursor);
-	vec2 playerPos = vec2(GetPlayerPos().x, GetPlayerPos().y);
+	vec2 playerPos = vec2(GetPlayer()->GetPosition().x, GetPlayer()->GetPosition().y);
 	if (abs(pos.x - (currentTar.x + playerPos.x)) < .1 && abs(pos.y - (currentTar.y + playerPos.y)) < .1)
 	{
 		if (clockwise) cursor++;
@@ -77,13 +78,14 @@ vec2 Behavior::GetMoveTarget(vec2 pos)
 
 vec2 Behavior::GetFireTarget()
 {
+	printf("here\n");
 	if (leadShots) 
 	{
 		//printf("%f %f\n", GetPlayerMoveDir().x, GetPlayerMoveDir().y);
-		float speed = GetPlayerWalkSpeed();
+		float speed = GetPlayer()->GetPlayerWalkSpeed();
 		float moveX = static_cast <float>( GetPlayerMoveDir().x);
 		float moveY = static_cast <float>( GetPlayerMoveDir().y);
-		return fireTargets.at(fireCursor) + vec2(GetPlayerPos()) + vec2(moveX * speed * 1.5, moveY * speed * 1.5);
+		return fireTargets.at(fireCursor) + vec2(GetPlayer()->GetPosition()) + vec2(moveX * speed * 1.5, moveY * speed * 1.5);
 	}
-	return fireTargets.at(fireCursor) + vec2(GetPlayerPos());
+	return fireTargets.at(fireCursor) + vec2(GetPlayer()->GetPosition());
 }

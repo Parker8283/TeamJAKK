@@ -11,6 +11,7 @@
 
 static std::list< Entity* > entities;
 static int cursor = 0;
+Player* player;
 
 using namespace glm;
 
@@ -39,6 +40,14 @@ void RemoveEntity(Entity* e)
   }
 }
 
+Player* GetPlayer() {
+	return player;
+}
+
+void SetPlayer(Player* play) {
+	player = play;
+}
+
 void EnterGameLoop(void) {
   LoadPlayerControls();
   SetControlContext(GameState::RUN_GAME);
@@ -47,8 +56,7 @@ void EnterGameLoop(void) {
 
   GenerateEnemyRoom(map);
 
-  currentSword = new Sword("../../common/sprites/Sword1.png");
-  //currentSword->Init();
+  player = new Player();
 
   glClearColor(0, 0, 0, 1);
   RefreshSystemTimer();
@@ -56,7 +64,8 @@ void EnterGameLoop(void) {
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
     UpdateSystemTimer();
-    UpdatePlayer();
+	UpdateKeys();
+    //UpdatePlayer();
 
     std::list<Entity*>::iterator it;
 
@@ -70,7 +79,7 @@ void EnterGameLoop(void) {
       map[i].Draw();
     }
 
-    DrawPlayer();
+    //DrawPlayer();
     for (it = entities.begin(); it != entities.end(); ++it)
     {
       //printf("Draw entities\n");

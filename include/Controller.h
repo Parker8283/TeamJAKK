@@ -10,10 +10,12 @@
 void LoadPlayerControls(void);
 void SetControlContext(GameState state);
 void UpdatePlayer(void);
+void UpdateKeys(void);
 
 GLuint GetPlayerSpriteID(void);
 
 glm::vec3 GetPlayerPos(void);
+glm::vec2 GetPlayerMoveDir(void);
 glm::vec2 GetPlayerMoveDir(void);
 float GetPlayerWalkSpeed(void);
 #endif

@@ -26,7 +26,6 @@ public:
 	bool doesShoot;
 	bool flipped = false;
 	
-	float moveSpeed;
 	float shotSpeed;
 	glm::vec2 shotSize;
 

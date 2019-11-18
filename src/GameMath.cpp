@@ -1,4 +1,5 @@
 #include <GameMath.h>
+#include <GameRunner.h>
 
 using namespace glm;
 
@@ -22,8 +23,8 @@ vec3 swordMath() {
 	//printf("Mouse coord: %f %f\n", xpos, ypos);
 
 	vec2 playerPosition;
-	playerPosition.x = GetPlayerPos().x;
-	playerPosition.y = GetPlayerPos().y;
+	playerPosition.x = GetPlayer()->GetPosition().x;
+	playerPosition.y = GetPlayer()->GetPosition().y;
 
 	double ndcX = (xpos - (1920 / 2)) / (1920 / 2);
 	double ndcY = (ypos - (1080 / 2)) / (1080 / 2);

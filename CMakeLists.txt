@@ -117,6 +117,7 @@ add_library (sword_test
 	"src/GameRunner.cpp"
 	"src/Graphics.cpp"
 	"src/MainMenu.cpp"
+	"src/player.cpp"
 	"src/projectile.cpp"
 	"src/Shader.cpp"
 	"src/sword.cpp"

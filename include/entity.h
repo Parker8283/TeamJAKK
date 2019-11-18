@@ -23,6 +23,7 @@ public:
 	float Width;
 	glm::vec2 size;
 	GLfloat rotation;
+	float speed;
 	
 
 	int uID;

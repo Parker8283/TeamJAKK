@@ -11,7 +11,7 @@ Enemy::Enemy(glm::vec2 pos, const char* c, Behavior::AIType mood) : Entity(pos, 
 {
 	SetState(BehaviorState::Seek);
 	timer = 0;
-	moveSpeed = 1;
+	speed = 1;
 	behavior = new Behavior(mood, 4);
 	srand(time(NULL));
 }
@@ -19,8 +19,8 @@ Enemy::Enemy(glm::vec2 pos, const char* c, Behavior::AIType mood) : Entity(pos, 
 Enemy::Enemy(glm::vec2 pos, Archetype arch) : Entity(pos, arch.enemyTexture)
 {
 	timer =  (static_cast <float>(rand()) / static_cast <float> (RAND_MAX)) * arch.shotFrequency;
-	this->moveSpeed = arch.moveSpeed;
-	behavior = new Behavior(arch.behavior, arch.radius);
+	this->speed = arch.moveSpeed;
+	behavior = new Behavior(arch.behavior, (float)arch.radius);
 	weaponFile = arch.shotTexture;
 	doesShoot = arch.doesShoot;
 	shotSpeed = arch.shotSpeed;
@@ -52,7 +52,7 @@ void Enemy::Update(void)
 		moveTarget = behavior->GetMoveTarget(Position);
 		moveDir = moveTarget - Position;
 		moveDir = normalizeDir(moveDir);
-		Position += moveDir * GetFrameDeltaTime() * moveSpeed;
+		Position += moveDir * GetFrameDeltaTime() * speed;
 		if (moveDir.x < 0 && !flipped) {
 			size.x = size.x * -1;
 			flipped = true;
@@ -97,7 +97,7 @@ void Enemy::Update(void)
 
 		moveDir = moveTarget - Position;
 		moveDir = normalizeDir(moveDir);
-		Position += moveDir * GetFrameDeltaTime() * moveSpeed;
+		Position += moveDir * GetFrameDeltaTime() * speed;
 		if (moveDir.x < 0 && !flipped) {
 			size.x = size.x * -1;
 			flipped = true;
@@ -144,7 +144,7 @@ void Enemy::Die()
 
 void Enemy::TakeDamage(int takenDam)
 {
-	health -= damage;
+	health -= takenDam;
 	if (health <= 0) {
 		Die();
 	}

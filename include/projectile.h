@@ -6,7 +6,6 @@
 class Projectile : public Entity {
 
 public:
-	float speed;
 	glm::vec2 direction;
 	bool HitEnemy;
 	float damage;

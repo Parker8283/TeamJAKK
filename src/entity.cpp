@@ -31,6 +31,8 @@ static const glm::mat2 rot = {
 
 Entity::Entity(vec2 pos, const char* filepath)
 {
+	speed = 1;
+
   uID = idCounter + 1;
   idCounter++;
 

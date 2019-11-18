@@ -117,6 +117,21 @@ void SetControlContext(GameState state) {
   }
 }
 
+void UpdateKeys(void) {
+	//Reset move direction
+	moveDir = vec2(0);
+	/* Check all keyboard keys */
+	for (std::map<int, bool>::iterator it = pressedMap.begin(); it != pressedMap.end(); it++) {
+		if (it->second) {
+			ActivateKey(it->first);
+		}
+		else {
+			DeActivateKey(it->first);
+			pressedMap.erase(it->first);
+		}
+	}
+}
+
 void UpdatePlayer(void) {
   float frameDelta = GetFrameDeltaTime();
   //Reset move direction
@@ -160,13 +175,13 @@ GLuint GetPlayerSpriteID(void) {
   return playerSpriteID;
 }
 
-vec3 GetPlayerPos(void) {
-  return vec3(playerPos, 0);
-}
-
 vec2 GetPlayerMoveDir(void)
 {
 	return moveDir;
+}
+
+vec3 GetPlayerPos(void) {
+  return vec3(playerPos, 0);
 }
 
 float GetPlayerWalkSpeed(void)

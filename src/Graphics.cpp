@@ -136,7 +136,7 @@ void SetupGraphics(void) {
   glEnableVertexAttribArray(1);
   glVertexAttribPointer(1, 2, GL_FLOAT, GL_FALSE, 0, (void*)0);
 
-  //Setup Player program vert/uv buffer streams
+  //Setup Tile program vert/uv buffer streams
   glGenVertexArrays(1, &tileVAO);
   glBindVertexArray(tileVAO);
   
