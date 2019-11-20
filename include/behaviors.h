@@ -18,6 +18,7 @@ public:
 	int fireCursor;
 	bool leadShots = false;
 	bool clockwise = true;
+	AIType ai;
 
 	Behavior();
 	Behavior(AIType, float);

@@ -50,6 +50,10 @@ void Enemy::Update(void)
 		}
 
 		moveTarget = behavior->GetMoveTarget(Position);
+		if (moveTarget.x == 3.14159265 && moveTarget.y == 3.14159265) {
+			SetState(BehaviorState::Flee);
+			return;
+		}
 		moveDir = moveTarget - Position;
 		moveDir = normalizeDir(moveDir);
 		Position += moveDir * GetFrameDeltaTime() * speed;

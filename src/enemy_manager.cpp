@@ -1,5 +1,6 @@
 #include <enemy_manager.h>
 #include <enemy.h>
+#include <GameRunner.h>
 
 Archetype GHOST("../../common/sprites/GhostEnemySingle.png", "../../common/sprites/FireballNoOutline.png",		true,     1, 6,    1, 1, 3, 4, Behavior::AIType::Simple,   glm::vec2(1.0f, 1.0f),     glm::vec2(0.4f));
 Archetype REDGHOST("../../common/sprites/RedGhost.png", "../../common/sprites/RedFireball.png",					true,  1.2f, 6, 1.5f, 1, 4, 4, Behavior::AIType::Lead,     glm::vec2(1.0f, 1.0f),     glm::vec2(0.4f));
@@ -26,38 +27,36 @@ Archetype::Archetype(char* enemyTex, char* shotTex, bool doesShoot, float moveSp
 	this->shotSize = shotSize;
 }
 
-void GenerateEnemyRoom(DungeonTile* tiles)
+void GenerateEnemyRoom(DungeonTile* tiles, int numTiles)
 {
 	srand(time(NULL));
-	float minX = FLT_MAX;
-	float minY = FLT_MAX;
-	float maxX = FLT_MIN; 
-	float maxY = FLT_MIN;
-	int tilesLen = sizeof tiles;
-	for (int i = 0; i < tilesLen; i++) {
-		if (tiles[i].getWorldX() > maxX) maxX = tiles[i].getWorldX();
-		if (tiles[i].getWorldX() < minX) minX = tiles[i].getWorldX();
-		if (tiles[i].getWorldY() > maxY) maxY = tiles[i].getWorldY();
-		if (tiles[i].getWorldY() < minY) minY = tiles[i].getWorldY();
-	}
 	
+	int scale = (numTiles / 20) + 1;
+
 	int numEnemies = (rand() % 10) + 1;
 	std::vector<glm::vec2> enemies;
 	int i = 0;
-	glm::vec2 max = vec2(10, 10);
-	glm::vec2 min = vec2(0, 0);
-	//printf("mxX %f mxY %f\n", max.x, max.y);
+
 	while (i < numEnemies) {
-		glm::vec2 pos = GetRandomPos(max, min);
+		int t = rand() % numTiles;
+		glm::vec2 pos = glm::vec2(tiles[t].getWorldX(), tiles[t].getWorldY());
 		bool farEnough = true;
+		if (distance(glm::vec2(GetPlayer()->GetPosition()), pos) < 3) {
+			farEnough = false;
+		}
 		for (glm::vec2 p : enemies) {
-			if (distance(pos, p) < .2) farEnough = false;
+			if (distance(pos, p) < .1) {
+				farEnough = false;
+				break;
+			}
 		}
 		if (farEnough) {
 			enemies.push_back(pos);
 			i++;
 		}
 	}
+
+
 	int scenario = 0;
 	switch (numEnemies)
 	{
@@ -76,6 +75,9 @@ void GenerateEnemyRoom(DungeonTile* tiles)
 			break;
 		case 3:
 			GenerateEnemy(enemies.at(0), CRYINGGHOST);
+			break;
+		case 4:
+			GenerateEnemy(enemies.at(0), SPIDER);
 			break;
 		default:
 			break;

@@ -44,5 +44,5 @@ public:
   glm::vec2 getTileDim(void);
 };
 
-DungeonTile* GenerateTestRoom(); //set map to predefined 10x10 room
+DungeonTile* GenerateTestRoom(int, int); //set map to predefined 10x10 room
 #endif

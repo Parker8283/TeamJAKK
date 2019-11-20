@@ -52,11 +52,12 @@ void EnterGameLoop(void) {
   LoadPlayerControls();
   SetControlContext(GameState::RUN_GAME);
 
-  DungeonTile* map = GenerateTestRoom();
+  DungeonTile* map = GenerateTestRoom(10, 10);
+  int numTiles = 10 * 10;
 
-  GenerateEnemyRoom(map);
+  SetPlayer(new Player);
 
-  player = new Player();
+  GenerateEnemyRoom(map, numTiles);
 
   glClearColor(0, 0, 0, 1);
   RefreshSystemTimer();

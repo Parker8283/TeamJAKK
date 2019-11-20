@@ -16,7 +16,6 @@ Player::Player() : Entity(glm::vec2(0, 0), textureFilepath)
 	speed = 5.0f;
 
 	Position = glm::vec2(0, 0);
-	printf("F\n");
 	SetPlayer(this);
 
 	heldSword = new Sword("../../common/sprites/Sword1.png");

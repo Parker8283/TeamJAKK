@@ -85,13 +85,13 @@ std::vector<DungeonTile> DungeonMap::getImpassableList() {
   return ret;
 }
 
-DungeonTile* GenerateTestRoom() {
-  DungeonTile* testRoom = new DungeonTile[100];
+DungeonTile* GenerateTestRoom(int width, int height) {
+  DungeonTile* testRoom = new DungeonTile[width * height];
 
-  for (int j = 0; j < 10; j++) {
-    for (int i = 0; i < 10; i++) {
-      int index = i + j * 10;
-      if (i == 0 || j == 0 || i == 9 || j == 9) {
+  for (int j = 0; j < height; j++) {
+    for (int i = 0; i < width; i++) {
+      int index = i + j * width;
+      if (i == 0 || j == 0 || i == (width - 1) || j == (height - 1)) {
         testRoom[index] = DungeonTile(false, j*2 + 0.5f, 10 - i*2 + 0.5f);
       } else {
         testRoom[index] = DungeonTile(true , j*2 + 0.5f, 10 - i*2 + 0.5f);
