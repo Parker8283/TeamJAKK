@@ -91,8 +91,7 @@ void EnterGameLoop(void) {
 
     glfwPollEvents();
     glfwSwapBuffers(GetWindow());
-	timer += GetFrameDeltaTime();
-	if (timer > 3/**GetPlayer()->health <= 0*/) {
+	if (GetPlayer()->health <= 0) {
 		LeaveGameLoop(map);
 		break;
 	}
