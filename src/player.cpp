@@ -19,6 +19,7 @@ Player::Player() : Entity(glm::vec2(0, 0), textureFilepath)
 	SetPlayer(this);
 
 	heldSword = new Sword("../../common/sprites/Sword1.png");
+
 }
 
 

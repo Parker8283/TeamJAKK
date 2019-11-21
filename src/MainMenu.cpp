@@ -85,3 +85,31 @@ void MainMenu(void) {
   //Disable key call back
   glfwSetKeyCallback(GetWindow(), NULL);
 }
+
+void GameOver(void) {
+	
+	loop = 1;
+	TextBox box0 = TextBox("GAME OVER", vec4(-.8f, .75f, .8f, .25f));
+	TextBox box1 = TextBox("Restart Game", vec4(-.1f, .05f, .1f, .15f));
+	TextBox box2 = TextBox("Exit", vec4(-.1f, -.15f, .1f, -.05f));
+
+	glClearColor(0, 0, 0, 1);
+	glfwSetKeyCallback(GetWindow(), mainmenu_key_callback);
+	while (loop) {
+		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+
+		box1.SetBrightness(brightness[0]);
+		box2.SetBrightness(brightness[1]);
+		box0.SetBrightness(1.0f);
+
+		box0.Draw();
+		box1.Draw();
+		box2.Draw();
+
+		glfwPollEvents();
+		glfwSwapBuffers(GetWindow());
+	}
+
+	//Disable key call back
+	glfwSetKeyCallback(GetWindow(), NULL);
+}

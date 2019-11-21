@@ -7,8 +7,10 @@
 #include <projectile.h>
 #include <sword.h>
 #include <player.h>
+#include <list>
 
 void EnterGameLoop(void);
+void LeaveGameLoop(DungeonTile*);
 void AddEntity(Entity* e);
 void RemoveEntity(Entity* e);
 Player* GetPlayer();

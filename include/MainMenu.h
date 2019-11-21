@@ -2,5 +2,6 @@
 #define MAIN_MENU_H
 
 void MainMenu(void);
+void GameOver(void);
 
 #endif

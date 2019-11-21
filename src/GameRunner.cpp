@@ -6,7 +6,6 @@
 #include <stdio.h>
 #include <System.h>
 #include <WindowManager.h>
-#include <list>
 #include <enemy_manager.h>
 
 static std::list< Entity* > entities;
@@ -89,7 +88,25 @@ void EnterGameLoop(void) {
 
     glfwPollEvents();
     glfwSwapBuffers(GetWindow());
+
+	if (GetPlayer()->health <= 0) {
+		LeaveGameLoop(map);
+		break;
+	}
   }
+}
+
+void LeaveGameLoop(DungeonTile* map) {
+	glClearColor(0, 0, 0, 1);
+	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+	SetControlContext(GameState::GAME_OVER);
+	std::list<Entity*> ::iterator it;
+	for (it = entities.begin(); it != entities.end(); ++it) {
+		entities.erase(it);
+		delete (*it);
+	}
+	UnpressKeys();
+	SetGameState(GameState::GAME_OVER);
 }
 
 

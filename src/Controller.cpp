@@ -103,6 +103,7 @@ void LoadPlayerControls(void) {
   BindMouse(GLFW_MOUSE_BUTTON_1, Throw, NULL, NULL);
 
   playerPos = vec2(7, 4);
+  moveDir = vec2(0, 0);
 }
 
 void SetControlContext(GameState state) {
@@ -129,6 +130,14 @@ void UpdateKeys(void) {
 			DeActivateKey(it->first);
 			pressedMap.erase(it->first);
 		}
+	}
+}
+
+void UnpressKeys(void) {
+	moveDir = vec2(0);
+	for (std::map<int, bool>::iterator it = pressedMap.begin(); it != pressedMap.end(); it++) {
+		DeActivateKey(it->first);
+		pressedMap.erase(it->first);
 	}
 }
 

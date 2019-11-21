@@ -31,6 +31,9 @@ int main(void) {
         break;
 	case GameState::EXIT_GAME:
         break;
+	case GameState::GAME_OVER:
+		GameOver();
+		break;
     }
   }
 

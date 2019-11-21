@@ -7,7 +7,8 @@
 typedef enum class GameState {
   MAIN_MENU = 0,
   RUN_GAME,
-  EXIT_GAME
+  EXIT_GAME,
+  GAME_OVER
 } GameState;
 
 typedef struct FrameTime {
