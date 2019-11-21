@@ -15,6 +15,8 @@ void AddEntity(Entity* e);
 void RemoveEntity(Entity* e);
 Player* GetPlayer();
 void SetPlayer(Player*);
+int GetEnemiesKilled();
+void IncrementEnemiesKilled();
 
 std::list<Entity*> * GetEntityList(void);
 #endif

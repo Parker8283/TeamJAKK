@@ -141,6 +141,7 @@ void Enemy::SetState(Enemy::BehaviorState s)
 
 void Enemy::Die()
 {
+	IncrementEnemiesKilled();
 	delete shot;
 	RemoveEntity(this);
 	delete this;

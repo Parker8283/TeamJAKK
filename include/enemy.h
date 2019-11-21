@@ -13,6 +13,7 @@ class Enemy : Entity {
 private:
 
 public:
+
 	typedef enum class BehaviorState
 	{
 		Seek, 
