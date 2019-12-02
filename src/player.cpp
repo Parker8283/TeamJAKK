@@ -8,8 +8,9 @@ Player::Player() : Entity(glm::vec2(0, 0), "../../common/sprites/GungeonRipoffBa
 {
 	front = LoadTexture("../../common/sprites/GungeonRipoffBase.png");
 	back = LoadTexture("../../common/sprites/GungeonRipoffBaseBack.png");
-	hasSword = true;
-	health = 10;
+	hasSword  = true;
+	maxHealth = 10;
+	curHealth = maxHealth;
 	speed = 5.0f;
 
 	Position = glm::vec2(0, 0);
@@ -51,7 +52,7 @@ bool Player::Update()
 }
 
 void Player::DamagePlayer(int damage) {
-	health -= damage;
+	curHealth -= damage;
 }
 
 void Player::Draw()
@@ -74,6 +75,14 @@ void Player::Draw()
 glm::vec3 Player::GetPosition()
 {
 	return glm::vec3(Position, 0);
+}
+
+int Player::GetHealth(void) {
+	return curHealth;
+}
+
+int Player::GetMaxHealth(void) {
+	return maxHealth;
 }
 
 float Player::GetPlayerWalkSpeed(void)

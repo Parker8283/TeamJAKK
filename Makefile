@@ -820,6 +820,33 @@ src/Graphics.cpp.s:
 	$(MAKE) -f CMakeFiles/sword_test.dir/build.make CMakeFiles/sword_test.dir/src/Graphics.cpp.s
 .PHONY : src/Graphics.cpp.s
 
+src/Hud.o: src/Hud.cpp.o
+
+.PHONY : src/Hud.o
+
+# target to build an object file
+src/Hud.cpp.o:
+	$(MAKE) -f CMakeFiles/swordthrow.dir/build.make CMakeFiles/swordthrow.dir/src/Hud.cpp.o
+.PHONY : src/Hud.cpp.o
+
+src/Hud.i: src/Hud.cpp.i
+
+.PHONY : src/Hud.i
+
+# target to preprocess a source file
+src/Hud.cpp.i:
+	$(MAKE) -f CMakeFiles/swordthrow.dir/build.make CMakeFiles/swordthrow.dir/src/Hud.cpp.i
+.PHONY : src/Hud.cpp.i
+
+src/Hud.s: src/Hud.cpp.s
+
+.PHONY : src/Hud.s
+
+# target to generate assembly for a file
+src/Hud.cpp.s:
+	$(MAKE) -f CMakeFiles/swordthrow.dir/build.make CMakeFiles/swordthrow.dir/src/Hud.cpp.s
+.PHONY : src/Hud.cpp.s
+
 src/Main.o: src/Main.cpp.o
 
 .PHONY : src/Main.o
@@ -1549,6 +1576,9 @@ help:
 	@echo "... src/Graphics.o"
 	@echo "... src/Graphics.i"
 	@echo "... src/Graphics.s"
+	@echo "... src/Hud.o"
+	@echo "... src/Hud.i"
+	@echo "... src/Hud.s"
 	@echo "... src/Main.o"
 	@echo "... src/Main.i"
 	@echo "... src/Main.s"

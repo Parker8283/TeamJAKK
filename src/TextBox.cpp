@@ -18,6 +18,10 @@ static GLuint brightnessID;
 static GLuint colorID;
 static GLuint textureID;
 
+static GLuint filledProgram;
+static GLuint filledColorID;
+static GLuint filledBrightnessID;
+
 static GLuint VAO, VBO;
 static GLuint texture;
 
@@ -89,6 +93,13 @@ void SetupText(void) {
 
   FT_Done_Face(face);
   FT_Done_FreeType(library);
+
+  //Setup Filled Box Graphics
+  filledProgram      = LoadShader("../../shaders/FillShader.vert", "../../shaders/FillShader.frag");
+  filledBrightnessID = glGetUniformLocation(filledProgram, "brightness");
+  filledColorID      = glGetUniformLocation(filledProgram, "color");
+
+
 }
 
 TextBox::TextBox(const char* s, glm::vec4 p) {
@@ -180,3 +191,46 @@ void TextBox::SetText(const char* text) {
   memset(buf, 0, sizeof(buf));
   strncpy(buf, text, 256);
 }
+
+FilledBox::FilledBox(vec4 p, vec3 col) {
+  pos   = p;
+  color = col;
+}
+
+void FilledBox::Draw(void) {
+  float verts[] = {
+    pos.x, pos.y, 0, 0,
+    pos.z, pos.y, 0, 0,
+    pos.x, pos.w, 0, 0, 
+
+    pos.z, pos.y, 0, 0,
+    pos.z, pos.w, 0, 0,
+    pos.x, pos.w, 0, 0
+  };
+
+  glUseProgram(filledProgram);
+  glBindVertexArray(VAO);
+
+  glUniform1f(filledBrightnessID, brightness);
+  glUniform3f(filledColorID, color.x, color.y, color.z);
+
+  // Update content of VBO memory
+  glBindBuffer(GL_ARRAY_BUFFER, VBO);
+  glBufferSubData(GL_ARRAY_BUFFER, 0, sizeof(float) * 6 * 4, verts);
+
+  // Render quad
+  glDrawArrays(GL_TRIANGLES, 0, 6);
+}
+
+void FilledBox::SetBrightness(float b) {
+  brightness = b;
+}
+
+void FilledBox::SetColor(vec3 col) {
+  color = col;
+}
+
+void FilledBox::SetPos(vec4 p) {
+  pos = p;
+}
+

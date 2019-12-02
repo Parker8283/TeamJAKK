@@ -67,11 +67,6 @@ Entity::Entity(vec2 pos, const char* filepath)
   AddEntity(this);
 }
 
-Entity::~Entity(void)
-{
-  RemoveEntity(this);
-}
-
 void Entity::Draw(void)
 {
   glUseProgram(GetShader());

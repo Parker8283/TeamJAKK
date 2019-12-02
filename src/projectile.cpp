@@ -27,8 +27,7 @@ Projectile::Projectile(const char* file, glm::vec2 iPos, glm::vec2 target, float
 	HitEnemy = false;
 }
 
-Projectile::~Projectile()
-{
+Projectile::~Projectile(void) {
 
 }
 
