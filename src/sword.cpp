@@ -24,7 +24,7 @@ void Sword::Init()
 	UpdateState(State::Held);
 }
 
-void Sword::Update(void)
+bool Sword::Update(void)
 {
 	float frameDelta = GetFrameDeltaTime();
 
@@ -63,6 +63,8 @@ void Sword::Update(void)
 
 		break;
 	}
+
+	return false;
 }
 
 Sword::State Sword::GetState()

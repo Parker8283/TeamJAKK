@@ -33,7 +33,7 @@ public:
 	float timer=0;
 	float damage;
 	
-	char* weaponFile;
+	char weaponFile[64];
 	
 	glm::vec2 target;
 	glm::vec2 moveTarget;
@@ -48,7 +48,6 @@ public:
 	Enemy(glm::vec2 pos, const char*, Behavior::AIType);
 	Enemy(glm::vec2 pos, Archetype);
 
-	void Update();
 	void Draw();
 	void UpdateState(BehaviorState s);
 	void Attack();
@@ -56,7 +55,8 @@ public:
 	void Die();
 	BehaviorState GetState();
 	void SetState(BehaviorState);
-
+	
+	bool Update();
 };
 
 #endif // !ENEMY_H

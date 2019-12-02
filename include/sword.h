@@ -26,7 +26,7 @@ public:
 	Sword(const char*);
 
 	void Init();
-	void Update(void);
+	bool Update(void);
 	void Pickup();
 	void UpdateState(State);
 

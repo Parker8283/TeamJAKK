@@ -64,7 +64,6 @@ static void mainmenu_key_callback(GLFWwindow* window, int key, int scancode, int
 }
 
 void MainMenu(void) {
-
   TextBox box1 = TextBox("Start Game", vec4(-.1f, .05f, .1f, .15f));
   TextBox box2 = TextBox("Exit", vec4(-.1f, -.15f, .1f, -.05f));
 
@@ -90,10 +89,10 @@ void MainMenu(void) {
 void GameOver(void) {
 	
 	loop = 1;
-	TextBox box0 = TextBox("GAME OVER", vec4(-.8f, .75f, .8f, .25f));
+	TextBox box0  = TextBox("GAME OVER", vec4(-.8f, .75f, .8f, .25f));
 	TextBox box05 = TextBox("Congrats you killed x enemies", vec4(-.8f, .35f, .8f, -.05f));
-	TextBox box1 = TextBox("Restart Game", vec4(-.1f, -.05f, .1f, -.15f));
-	TextBox box2 = TextBox("Exit", vec4(-.1f, -.25f, .1f, -.35f));
+	TextBox box1  = TextBox("Restart Game", vec4(-.1f, -.05f, .1f, -.15f));
+	TextBox box2  = TextBox("Exit", vec4(-.1f, -.25f, .1f, -.35f));
 
 	glClearColor(0, 0, 0, 1);
 	glfwSetKeyCallback(GetWindow(), mainmenu_key_callback);
@@ -105,15 +104,15 @@ void GameOver(void) {
 		box0.SetBrightness(1.0f);
 		box05.SetBrightness(1.0f);
 
-		box0.Draw();
-		box05.Draw();
-		box1.Draw();
-		box2.Draw();
-
 		box0.SetScale(5);
 		box05.SetScale(3);
 		box0.SetColor(glm::vec3(1, 0, 0));
 		box05.SetColor(glm::vec3(.5, 0, .5));
+		
+    box0.Draw();
+		box05.Draw();
+		box1.Draw();
+		box2.Draw();
 
 		glfwPollEvents();
 		glfwSwapBuffers(GetWindow());

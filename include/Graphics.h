@@ -14,7 +14,6 @@
 void DrawPlayer(void);
 void SetupGraphics(void);
 void SetView(glm::mat4 view);
-void LoadCursor();
 
 glm::mat4 GetView();
 glm::mat4 GetProjection();

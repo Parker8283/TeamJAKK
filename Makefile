@@ -557,6 +557,7 @@ src/Collision.o: src/Collision.cpp.o
 # target to build an object file
 src/Collision.cpp.o:
 	$(MAKE) -f CMakeFiles/swordthrow.dir/build.make CMakeFiles/swordthrow.dir/src/Collision.cpp.o
+	$(MAKE) -f CMakeFiles/sword_test.dir/build.make CMakeFiles/sword_test.dir/src/Collision.cpp.o
 .PHONY : src/Collision.cpp.o
 
 src/Collision.i: src/Collision.cpp.i
@@ -566,6 +567,7 @@ src/Collision.i: src/Collision.cpp.i
 # target to preprocess a source file
 src/Collision.cpp.i:
 	$(MAKE) -f CMakeFiles/swordthrow.dir/build.make CMakeFiles/swordthrow.dir/src/Collision.cpp.i
+	$(MAKE) -f CMakeFiles/sword_test.dir/build.make CMakeFiles/sword_test.dir/src/Collision.cpp.i
 .PHONY : src/Collision.cpp.i
 
 src/Collision.s: src/Collision.cpp.s
@@ -575,6 +577,7 @@ src/Collision.s: src/Collision.cpp.s
 # target to generate assembly for a file
 src/Collision.cpp.s:
 	$(MAKE) -f CMakeFiles/swordthrow.dir/build.make CMakeFiles/swordthrow.dir/src/Collision.cpp.s
+	$(MAKE) -f CMakeFiles/sword_test.dir/build.make CMakeFiles/sword_test.dir/src/Collision.cpp.s
 .PHONY : src/Collision.cpp.s
 
 src/Control.o: src/Control.cpp.o
@@ -644,6 +647,7 @@ src/DungeonMap.o: src/DungeonMap.cpp.o
 # target to build an object file
 src/DungeonMap.cpp.o:
 	$(MAKE) -f CMakeFiles/swordthrow.dir/build.make CMakeFiles/swordthrow.dir/src/DungeonMap.cpp.o
+	$(MAKE) -f CMakeFiles/sword_test.dir/build.make CMakeFiles/sword_test.dir/src/DungeonMap.cpp.o
 .PHONY : src/DungeonMap.cpp.o
 
 src/DungeonMap.i: src/DungeonMap.cpp.i
@@ -653,6 +657,7 @@ src/DungeonMap.i: src/DungeonMap.cpp.i
 # target to preprocess a source file
 src/DungeonMap.cpp.i:
 	$(MAKE) -f CMakeFiles/swordthrow.dir/build.make CMakeFiles/swordthrow.dir/src/DungeonMap.cpp.i
+	$(MAKE) -f CMakeFiles/sword_test.dir/build.make CMakeFiles/sword_test.dir/src/DungeonMap.cpp.i
 .PHONY : src/DungeonMap.cpp.i
 
 src/DungeonMap.s: src/DungeonMap.cpp.s
@@ -662,6 +667,7 @@ src/DungeonMap.s: src/DungeonMap.cpp.s
 # target to generate assembly for a file
 src/DungeonMap.cpp.s:
 	$(MAKE) -f CMakeFiles/swordthrow.dir/build.make CMakeFiles/swordthrow.dir/src/DungeonMap.cpp.s
+	$(MAKE) -f CMakeFiles/sword_test.dir/build.make CMakeFiles/sword_test.dir/src/DungeonMap.cpp.s
 .PHONY : src/DungeonMap.cpp.s
 
 src/DungeonTile.o: src/DungeonTile.cpp.o
@@ -671,6 +677,7 @@ src/DungeonTile.o: src/DungeonTile.cpp.o
 # target to build an object file
 src/DungeonTile.cpp.o:
 	$(MAKE) -f CMakeFiles/swordthrow.dir/build.make CMakeFiles/swordthrow.dir/src/DungeonTile.cpp.o
+	$(MAKE) -f CMakeFiles/sword_test.dir/build.make CMakeFiles/sword_test.dir/src/DungeonTile.cpp.o
 .PHONY : src/DungeonTile.cpp.o
 
 src/DungeonTile.i: src/DungeonTile.cpp.i
@@ -680,6 +687,7 @@ src/DungeonTile.i: src/DungeonTile.cpp.i
 # target to preprocess a source file
 src/DungeonTile.cpp.i:
 	$(MAKE) -f CMakeFiles/swordthrow.dir/build.make CMakeFiles/swordthrow.dir/src/DungeonTile.cpp.i
+	$(MAKE) -f CMakeFiles/sword_test.dir/build.make CMakeFiles/sword_test.dir/src/DungeonTile.cpp.i
 .PHONY : src/DungeonTile.cpp.i
 
 src/DungeonTile.s: src/DungeonTile.cpp.s
@@ -689,6 +697,7 @@ src/DungeonTile.s: src/DungeonTile.cpp.s
 # target to generate assembly for a file
 src/DungeonTile.cpp.s:
 	$(MAKE) -f CMakeFiles/swordthrow.dir/build.make CMakeFiles/swordthrow.dir/src/DungeonTile.cpp.s
+	$(MAKE) -f CMakeFiles/sword_test.dir/build.make CMakeFiles/sword_test.dir/src/DungeonTile.cpp.s
 .PHONY : src/DungeonTile.cpp.s
 
 src/FileLoader.o: src/FileLoader.cpp.o
@@ -845,6 +854,7 @@ src/MainMenu.o: src/MainMenu.cpp.o
 # target to build an object file
 src/MainMenu.cpp.o:
 	$(MAKE) -f CMakeFiles/swordthrow.dir/build.make CMakeFiles/swordthrow.dir/src/MainMenu.cpp.o
+	$(MAKE) -f CMakeFiles/sword_test.dir/build.make CMakeFiles/sword_test.dir/src/MainMenu.cpp.o
 .PHONY : src/MainMenu.cpp.o
 
 src/MainMenu.i: src/MainMenu.cpp.i
@@ -854,6 +864,7 @@ src/MainMenu.i: src/MainMenu.cpp.i
 # target to preprocess a source file
 src/MainMenu.cpp.i:
 	$(MAKE) -f CMakeFiles/swordthrow.dir/build.make CMakeFiles/swordthrow.dir/src/MainMenu.cpp.i
+	$(MAKE) -f CMakeFiles/sword_test.dir/build.make CMakeFiles/sword_test.dir/src/MainMenu.cpp.i
 .PHONY : src/MainMenu.cpp.i
 
 src/MainMenu.s: src/MainMenu.cpp.s
@@ -863,6 +874,7 @@ src/MainMenu.s: src/MainMenu.cpp.s
 # target to generate assembly for a file
 src/MainMenu.cpp.s:
 	$(MAKE) -f CMakeFiles/swordthrow.dir/build.make CMakeFiles/swordthrow.dir/src/MainMenu.cpp.s
+	$(MAKE) -f CMakeFiles/sword_test.dir/build.make CMakeFiles/sword_test.dir/src/MainMenu.cpp.s
 .PHONY : src/MainMenu.cpp.s
 
 src/ResourceManager.o: src/ResourceManager.cpp.o
@@ -959,6 +971,7 @@ src/TextBox.o: src/TextBox.cpp.o
 # target to build an object file
 src/TextBox.cpp.o:
 	$(MAKE) -f CMakeFiles/swordthrow.dir/build.make CMakeFiles/swordthrow.dir/src/TextBox.cpp.o
+	$(MAKE) -f CMakeFiles/sword_test.dir/build.make CMakeFiles/sword_test.dir/src/TextBox.cpp.o
 .PHONY : src/TextBox.cpp.o
 
 src/TextBox.i: src/TextBox.cpp.i
@@ -968,6 +981,7 @@ src/TextBox.i: src/TextBox.cpp.i
 # target to preprocess a source file
 src/TextBox.cpp.i:
 	$(MAKE) -f CMakeFiles/swordthrow.dir/build.make CMakeFiles/swordthrow.dir/src/TextBox.cpp.i
+	$(MAKE) -f CMakeFiles/sword_test.dir/build.make CMakeFiles/sword_test.dir/src/TextBox.cpp.i
 .PHONY : src/TextBox.cpp.i
 
 src/TextBox.s: src/TextBox.cpp.s
@@ -977,6 +991,7 @@ src/TextBox.s: src/TextBox.cpp.s
 # target to generate assembly for a file
 src/TextBox.cpp.s:
 	$(MAKE) -f CMakeFiles/swordthrow.dir/build.make CMakeFiles/swordthrow.dir/src/TextBox.cpp.s
+	$(MAKE) -f CMakeFiles/sword_test.dir/build.make CMakeFiles/sword_test.dir/src/TextBox.cpp.s
 .PHONY : src/TextBox.cpp.s
 
 src/Texture.o: src/Texture.cpp.o
@@ -1046,6 +1061,7 @@ src/behaviors.o: src/behaviors.cpp.o
 # target to build an object file
 src/behaviors.cpp.o:
 	$(MAKE) -f CMakeFiles/swordthrow.dir/build.make CMakeFiles/swordthrow.dir/src/behaviors.cpp.o
+	$(MAKE) -f CMakeFiles/sword_test.dir/build.make CMakeFiles/sword_test.dir/src/behaviors.cpp.o
 .PHONY : src/behaviors.cpp.o
 
 src/behaviors.i: src/behaviors.cpp.i
@@ -1055,6 +1071,7 @@ src/behaviors.i: src/behaviors.cpp.i
 # target to preprocess a source file
 src/behaviors.cpp.i:
 	$(MAKE) -f CMakeFiles/swordthrow.dir/build.make CMakeFiles/swordthrow.dir/src/behaviors.cpp.i
+	$(MAKE) -f CMakeFiles/sword_test.dir/build.make CMakeFiles/sword_test.dir/src/behaviors.cpp.i
 .PHONY : src/behaviors.cpp.i
 
 src/behaviors.s: src/behaviors.cpp.s
@@ -1064,6 +1081,7 @@ src/behaviors.s: src/behaviors.cpp.s
 # target to generate assembly for a file
 src/behaviors.cpp.s:
 	$(MAKE) -f CMakeFiles/swordthrow.dir/build.make CMakeFiles/swordthrow.dir/src/behaviors.cpp.s
+	$(MAKE) -f CMakeFiles/sword_test.dir/build.make CMakeFiles/sword_test.dir/src/behaviors.cpp.s
 .PHONY : src/behaviors.cpp.s
 
 src/enemy.o: src/enemy.cpp.o
@@ -1103,6 +1121,7 @@ src/enemy_manager.o: src/enemy_manager.cpp.o
 # target to build an object file
 src/enemy_manager.cpp.o:
 	$(MAKE) -f CMakeFiles/swordthrow.dir/build.make CMakeFiles/swordthrow.dir/src/enemy_manager.cpp.o
+	$(MAKE) -f CMakeFiles/sword_test.dir/build.make CMakeFiles/sword_test.dir/src/enemy_manager.cpp.o
 .PHONY : src/enemy_manager.cpp.o
 
 src/enemy_manager.i: src/enemy_manager.cpp.i
@@ -1112,6 +1131,7 @@ src/enemy_manager.i: src/enemy_manager.cpp.i
 # target to preprocess a source file
 src/enemy_manager.cpp.i:
 	$(MAKE) -f CMakeFiles/swordthrow.dir/build.make CMakeFiles/swordthrow.dir/src/enemy_manager.cpp.i
+	$(MAKE) -f CMakeFiles/sword_test.dir/build.make CMakeFiles/sword_test.dir/src/enemy_manager.cpp.i
 .PHONY : src/enemy_manager.cpp.i
 
 src/enemy_manager.s: src/enemy_manager.cpp.s
@@ -1121,6 +1141,7 @@ src/enemy_manager.s: src/enemy_manager.cpp.s
 # target to generate assembly for a file
 src/enemy_manager.cpp.s:
 	$(MAKE) -f CMakeFiles/swordthrow.dir/build.make CMakeFiles/swordthrow.dir/src/enemy_manager.cpp.s
+	$(MAKE) -f CMakeFiles/sword_test.dir/build.make CMakeFiles/sword_test.dir/src/enemy_manager.cpp.s
 .PHONY : src/enemy_manager.cpp.s
 
 src/entity.o: src/entity.cpp.o
@@ -1152,6 +1173,36 @@ src/entity.cpp.s:
 	$(MAKE) -f CMakeFiles/swordthrow.dir/build.make CMakeFiles/swordthrow.dir/src/entity.cpp.s
 	$(MAKE) -f CMakeFiles/sword_test.dir/build.make CMakeFiles/sword_test.dir/src/entity.cpp.s
 .PHONY : src/entity.cpp.s
+
+src/player.o: src/player.cpp.o
+
+.PHONY : src/player.o
+
+# target to build an object file
+src/player.cpp.o:
+	$(MAKE) -f CMakeFiles/swordthrow.dir/build.make CMakeFiles/swordthrow.dir/src/player.cpp.o
+	$(MAKE) -f CMakeFiles/sword_test.dir/build.make CMakeFiles/sword_test.dir/src/player.cpp.o
+.PHONY : src/player.cpp.o
+
+src/player.i: src/player.cpp.i
+
+.PHONY : src/player.i
+
+# target to preprocess a source file
+src/player.cpp.i:
+	$(MAKE) -f CMakeFiles/swordthrow.dir/build.make CMakeFiles/swordthrow.dir/src/player.cpp.i
+	$(MAKE) -f CMakeFiles/sword_test.dir/build.make CMakeFiles/sword_test.dir/src/player.cpp.i
+.PHONY : src/player.cpp.i
+
+src/player.s: src/player.cpp.s
+
+.PHONY : src/player.s
+
+# target to generate assembly for a file
+src/player.cpp.s:
+	$(MAKE) -f CMakeFiles/swordthrow.dir/build.make CMakeFiles/swordthrow.dir/src/player.cpp.s
+	$(MAKE) -f CMakeFiles/sword_test.dir/build.make CMakeFiles/sword_test.dir/src/player.cpp.s
+.PHONY : src/player.cpp.s
 
 src/projectile.o: src/projectile.cpp.o
 
@@ -1534,6 +1585,9 @@ help:
 	@echo "... src/entity.o"
 	@echo "... src/entity.i"
 	@echo "... src/entity.s"
+	@echo "... src/player.o"
+	@echo "... src/player.i"
+	@echo "... src/player.s"
 	@echo "... src/projectile.o"
 	@echo "... src/projectile.i"
 	@echo "... src/projectile.s"

@@ -2,15 +2,12 @@
 #include <GameRunner.h>
 #include <sword.h>
 
-char* textureFilepath = "../../common/sprites/GungeonRipoffBase.png";
-char* textureBack = ".. / .. / common / sprites / GungeonRipoffBaseBack.png";
 static const vec3 UP = vec3(0, 1, 0);
-Sword* heldSword;
 
-Player::Player() : Entity(glm::vec2(0, 0), textureFilepath)
+Player::Player() : Entity(glm::vec2(0, 0), "../../common/sprites/GungeonRipoffBase.png")
 {
-	front = LoadTexture(textureFilepath);
-	back = LoadTexture(textureBack);
+	front = LoadTexture("../../common/sprites/GungeonRipoffBase.png");
+	back = LoadTexture("../../common/sprites/GungeonRipoffBaseBack.png");
 	hasSword = true;
 	health = 10;
 	speed = 5.0f;
@@ -19,11 +16,10 @@ Player::Player() : Entity(glm::vec2(0, 0), textureFilepath)
 	SetPlayer(this);
 
 	heldSword = new Sword("../../common/sprites/Sword1.png");
-
 }
 
 
-void Player::Update()
+bool Player::Update()
 {
 	float frameDelta = GetFrameDeltaTime();
 	
@@ -50,6 +46,12 @@ void Player::Update()
 	Position = nextPos;
 
 	SetView(lookAt(vec3(Position.x, Position.y, 10), vec3(Position.x, Position.y, 0), UP));
+
+	return false;
+}
+
+void Player::DamagePlayer(int damage) {
+	health -= damage;
 }
 
 void Player::Draw()

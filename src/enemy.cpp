@@ -2,6 +2,7 @@
 #include <System.h>
 #include <Graphics.h>
 #include <GameRunner.h>
+#include <string.h>
 
 #include <cstdlib>
 #include <ctime>
@@ -21,7 +22,7 @@ Enemy::Enemy(glm::vec2 pos, Archetype arch) : Entity(pos, arch.enemyTexture)
 	timer =  (static_cast <float>(rand()) / static_cast <float> (RAND_MAX)) * arch.shotFrequency;
 	this->speed = arch.moveSpeed;
 	behavior = new Behavior(arch.behavior, (float)arch.radius);
-	weaponFile = arch.shotTexture;
+	strncpy(weaponFile, arch.shotTexture, strlen(arch.shotTexture) + 1);
 	doesShoot = arch.doesShoot;
 	shotSpeed = arch.shotSpeed;
 	shotFrequency = arch.shotFrequency;
@@ -32,7 +33,7 @@ Enemy::Enemy(glm::vec2 pos, Archetype arch) : Entity(pos, arch.enemyTexture)
 	SetState(BehaviorState::Seek);
 }
 
-void Enemy::Update(void)
+bool Enemy::Update(void)
 {
 	int randX =0, randY=0;
 	//printf("in enemy update: %f \n   ", GetFrameDeltaTime());
@@ -52,8 +53,9 @@ void Enemy::Update(void)
 		moveTarget = behavior->GetMoveTarget(Position);
 		if (moveTarget.x == 3.14159265 && moveTarget.y == 3.14159265) {
 			SetState(BehaviorState::Flee);
-			return;
+			return 0;
 		}
+
 		moveDir = moveTarget - Position;
 		moveDir = normalizeDir(moveDir);
 		Position += moveDir * GetFrameDeltaTime() * speed;
@@ -122,6 +124,8 @@ void Enemy::Update(void)
 	/**if (checkCollision(hitBox, currentSword->hitBox)) {
 		TakeDamage(currentSword->damage);
 	}*/
+
+	return false;
 }
 
 void Enemy::Draw(void)

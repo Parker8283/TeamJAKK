@@ -36,7 +36,7 @@ public:
 
 	bool operator==(const Entity&);
 	
-	virtual void Update(void) {};
+	virtual bool Update(void) { return false; };
 
 	CollisionBox GetHitBox(void);
 	

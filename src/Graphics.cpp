@@ -66,6 +66,21 @@ static float tileVerts[18] {
   .5f, -.5f, 0
 };
 
+static void loadCursor() {
+  int width, height, n;
+  unsigned char* pixels = stbi_load("../../common/sprites/Cursor32.png", &width, &height, &n, 4);
+
+
+  GLFWimage image;
+  image.width = width;
+  image.height = height;
+  image.pixels = pixels;
+
+  GLFWcursor* cursor = glfwCreateCursor(&image, 12, 12);
+  glfwSetCursor(GetWindow(), cursor);
+  glfwSetCursorPos(GetWindow(), 960, 540);
+}
+
 void SetPlayerCurrentFrame(GLuint newFrame)
 {
 	currentPlayerTex = newFrame;
@@ -117,7 +132,7 @@ void SetupGraphics(void) {
 
   wallTexture       = LoadTexture("../../common/sprites/WallBottom2.png");
   floorTexture      = LoadTexture("../../common/sprites/ground.png");
-  LoadCursor();
+  loadCursor();
 
   //Setup Player program vert/uv buffer streams
   glGenVertexArrays(1, &playerVAO);
@@ -189,15 +204,3 @@ GLuint GetFloorTextureID(void) {
   return floorTexture;
 }
 
-void LoadCursor() {
-  int width, height, n;
-  unsigned char* pixels = stbi_load("../../common/sprites/Cursor32.png", &width, &height, &n, 4);
-
-  GLFWimage image;
-  image.width = width;
-  image.height = height;
-  image.pixels = pixels;
-
-  GLFWcursor* cursor = glfwCreateCursor(&image, 12, 12);
-  glfwSetCursor(GetWindow(), cursor);
-}

@@ -7,22 +7,28 @@
 #include <sword.h>
 
 class Player : public Entity{
+	Sword* heldSword;
 
 public:
 	GLuint front, back;
 	bool hasSword;
 	int health;
-	
+		
 	Player();
 
-	void Draw();
-	void Update();
-	void loadControls();
-	Sword* GetSword();
+	bool Update();
+
 	void Attack(void*);
+	void DamagePlayer(int damage);
+	void Draw();
+	void loadControls();
 	void Pickup(Entity e);
-	glm::vec3 GetPosition();
+	
 	float GetPlayerWalkSpeed();
+	
+	Sword* GetSword();
+	
+	glm::vec3 GetPosition();
 };
 
 

@@ -1,6 +1,7 @@
 #include <enemy_manager.h>
 #include <enemy.h>
 #include <GameRunner.h>
+#include <string.h>
 
 Archetype GHOST("../../common/sprites/GhostEnemySingle.png", "../../common/sprites/FireballNoOutline.png",		true,     1, 6,    1, 1, 3, 4, Behavior::AIType::Simple,   glm::vec2(1.0f, 1.0f),     glm::vec2(0.4f));
 Archetype REDGHOST("../../common/sprites/RedGhost.png", "../../common/sprites/RedFireball.png",					true,  1.2f, 6, 1.5f, 1, 4, 4, Behavior::AIType::Lead,     glm::vec2(1.0f, 1.0f),     glm::vec2(0.4f));
@@ -10,11 +11,11 @@ Archetype SLIME("../../common/sprites/Slime.png", "../../common/sprites/Fireball
 Archetype BIGSLIME("../../common/sprites/BigSlime.png", "../../common/sprites/FireballNoOutline.png",			false, 1.2f, 6,    2, 2, 3, 4, Behavior::AIType::Simple,   glm::vec2(1.2f, 1.2f),		glm::vec2(0.4f));
 Archetype SPIDER("../../common/sprites/RedSpider.png", "../../common/sprites/WebShot.png",						true,     1, 7,    1, 1, 3, 5, Behavior::AIType::Cardinal, glm::vec2(0.5f, 0.5f),		glm::vec2(0.3f));
 
-Archetype::Archetype(char* enemyTex, char* shotTex, bool doesShoot, float moveSpeed, float shotSpeed,
-	float damage, int health, float shotFrequency, int radius, Behavior::AIType behave, glm::vec2 size, glm::vec2 shotSize)
+Archetype::Archetype(const char* enemyTex, const char* shotTex, bool doesShoot, float moveSpeed, float shotSpeed,
+                     float damage, int health, float shotFrequency, int radius, Behavior::AIType behave, glm::vec2 size, glm::vec2 shotSize)
 {
-	this->enemyTexture = enemyTex;
-	this->shotTexture = shotTex;
+	strncpy(this->enemyTexture, enemyTex, strlen(enemyTex) + 1);
+	strncpy(this->shotTexture, shotTex, strlen(shotTex) + 1);
 	this->doesShoot = doesShoot;
 	this->moveSpeed = moveSpeed;
 	this->shotSpeed = shotSpeed;
@@ -30,7 +31,7 @@ Archetype::Archetype(char* enemyTex, char* shotTex, bool doesShoot, float moveSp
 void GenerateEnemyRoom(DungeonTile* tiles, int numTiles)
 {
 	srand(time(NULL));
-	
+
 	int scale = (numTiles / 20) + 1;
 
 	int numEnemies = (rand() % 10) + 1;
@@ -425,8 +426,8 @@ void GenerateEnemyRoom(DungeonTile* tiles, int numTiles)
 	}
 }
 
-void GenerateEnemy(glm::vec2 pos, char* enemyTex, char* shotTex, bool doesShoot, float moveSpeed, float shotSpeed,
-	float damage, int health, float shotFrequency, int radius, Behavior::AIType behave, glm::vec2 size, glm::vec2 shotSize)
+void GenerateEnemy(glm::vec2 pos, const char* enemyTex, const char* shotTex, bool doesShoot, float moveSpeed, float shotSpeed,
+                   float damage, int health, float shotFrequency, int radius, Behavior::AIType behave, glm::vec2 size, glm::vec2 shotSize)
 {
 	Archetype arch(enemyTex, shotTex, doesShoot, moveSpeed, shotSpeed, damage, health, shotFrequency, radius, behave, size, shotSize);
 	GenerateEnemy(pos, arch);
@@ -434,7 +435,7 @@ void GenerateEnemy(glm::vec2 pos, char* enemyTex, char* shotTex, bool doesShoot,
 
 void GenerateEnemy(glm::vec2 pos, Archetype arch)
 {
-	Enemy* e = new Enemy(pos, arch);
+	new Enemy(pos, arch);
 }
 
 glm::vec2 GetRandomPos(glm::vec2 max, glm::vec2 min)

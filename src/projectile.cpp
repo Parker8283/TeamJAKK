@@ -32,16 +32,19 @@ Projectile::~Projectile()
 
 }
 
-void Projectile::Update()
+bool Projectile::Update()
 {
-	//printf("Projectile update run\n");
+	bool del = false;;
 	float frameDelta = GetFrameDeltaTime();
 	Position += direction * frameDelta * speed;
-	if (abs(Position.x) > 50 || abs(Position.y) > 50)
-	{
-		//RemoveEntity(this);
-		printf("here2\n");
-		delete this;
+
+	if (checkCollision(this->GetHitBox(), GetPlayer()->GetHitBox())) {
+		del = true;
+		GetPlayer()->DamagePlayer(damage);
 	}
-	
+
+	if (abs(Position.x) > 50 || abs(Position.y) > 50)
+		del = true;
+
+	return del;
 }

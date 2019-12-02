@@ -7,11 +7,16 @@
 #include <System.h>
 #include <WindowManager.h>
 #include <enemy_manager.h>
+#include <vector>
 
-static std::list< Entity* > entities;
+
 static int cursor = 0;
 static int enemiesKilled = 0;
-Player* player;
+
+static std::list< Entity* > entities;
+static std::vector<Entity*> removeList;
+
+static Player* player;
 
 using namespace glm;
 
@@ -41,11 +46,11 @@ void RemoveEntity(Entity* e)
 }
 
 Player* GetPlayer() {
-	return player;
+  return player;
 }
 
 void SetPlayer(Player* play) {
-	player = play;
+  player = play;
 }
 
 void EnterGameLoop(void) {
@@ -67,16 +72,28 @@ void EnterGameLoop(void) {
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
     UpdateSystemTimer();
-	UpdateKeys();
+    UpdateKeys();
     //UpdatePlayer();
 
     std::list<Entity*>::iterator it;
 
+    //Update entities and gather garbage
     for (it = entities.begin(); it != entities.end(); ++it) {
       if (*it == NULL)
         break;
-      (*it)->Update();
+      
+      if ((*it)->Update())
+        removeList.push_back(*it);
     }
+
+    //Remove and delete entities
+    for (uint i = 0; i < removeList.size(); i++) {
+      RemoveEntity(removeList[i]);
+      delete removeList[i];
+    }
+
+    //Clear removeList
+    removeList.clear();
 
     for (uint i = 0; i < 100; i++) {
       map[i].Draw();
@@ -91,30 +108,38 @@ void EnterGameLoop(void) {
 
     glfwPollEvents();
     glfwSwapBuffers(GetWindow());
-	if (GetPlayer()->health <= 0) {
-		LeaveGameLoop(map);
-		break;
-	}
+    if (GetPlayer()->health <= 0) {
+      LeaveGameLoop(map);
+      break;
+    }
   }
 }
 
 void LeaveGameLoop(DungeonTile* map) {
-	glClearColor(0, 0, 0, 1);
-	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-	SetControlContext(GameState::GAME_OVER);
-	std::list<Entity*> ::iterator it;
-	for (it = entities.begin(); it != entities.end(); ++it) {
-		entities.erase(it);
-		delete (*it);
-	}
-	UnpressKeys();
-	SetGameState(GameState::GAME_OVER);
+  glClearColor(0, 0, 0, 1);
+  glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+  SetControlContext(GameState::GAME_OVER);
+  std::list<Entity*> ::iterator it;
+  for (it = entities.begin(); it != entities.end(); ++it) {
+    removeList.push_back(*it);
+  }
+
+  for (uint i = 0; i < removeList.size(); i++) {
+    RemoveEntity(removeList[i]);
+    delete removeList[i];
+  }
+
+  removeList.clear();
+  entities.clear();
+  
+  UnpressKeys();
+  SetGameState(GameState::GAME_OVER);
 }
 
 void IncrementEnemiesKilled() {
-	enemiesKilled++;
+  enemiesKilled++;
 }
 
 int GetEnemiesKilled() {
-	return enemiesKilled;
+  return enemiesKilled;
 }
