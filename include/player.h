@@ -14,7 +14,9 @@ public:
 	bool hasSword;
 	int curHealth;
 	int maxHealth;
-		
+	
+	uint score;
+	
 	Player();
 
 	bool Update();

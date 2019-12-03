@@ -12,7 +12,8 @@ Player::Player() : Entity(glm::vec2(0, 0), "../../common/sprites/GungeonRipoffBa
 	maxHealth = 10;
 	curHealth = maxHealth;
 	speed = 5.0f;
-
+	score = 0;
+	
 	Position = glm::vec2(0, 0);
 	SetPlayer(this);
 

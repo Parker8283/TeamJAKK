@@ -103,6 +103,7 @@ void SetupText(void) {
 }
 
 TextBox::TextBox(const char* s, glm::vec4 p) {
+  align = CENTER;
   pos = p;
   SetText(s);
 }
@@ -120,11 +121,38 @@ void TextBox::Draw(void) {
       ysize = ((ch.size.y + ch.bearing.y) * scale) / res.y;
   }
 
-  float x  = (pos.x + pos.z) * 0.5f;
-  float y  = (pos.y + pos.w) * 0.5f;
+  float x, y;
 
-  x -= xlen / 2.0f;
-  y -= ysize / 4.0f;
+  //float x  = (pos.x + pos.z) * 0.5f;
+  //float y  = (pos.y + pos.w) * 0.5f;
+
+  switch (align) {
+  case LEFT:
+    x = (pos.x + .005f);
+    y = (pos.y + pos.w) * .5f;
+    break;
+  case CENTER:
+    x = (pos.x + pos.z) * .5f;
+    x -= xlen / 2;
+    y = (pos.y + pos.w) * .5f;
+    break;
+  case RIGHT:
+    x = (pos.z - .005f) * .5f;
+    y = (pos.y + pos.w) * .5f;
+    break;
+  case TOP_LEFT:
+    x = (pos.x + .005f) * .5f;
+    y = (pos.w - .005f) * .5f;
+    break;
+  case TOP_RIGHT:
+    break;
+  }
+
+  if (align == TOP_LEFT) {
+    y -= ysize / 2;
+  } else {
+    y -= ysize / 4;
+  }
 
   GLfloat xTemp = x;
 
@@ -175,6 +203,10 @@ void TextBox::Draw(void) {
   }
 }
 
+void TextBox::SetAlignment(alignment a) {
+  align = a;
+}
+
 void TextBox::SetBrightness(float b) {
   brightness = b;
 }
@@ -201,7 +233,7 @@ void FilledBox::Draw(void) {
   float verts[] = {
     pos.x, pos.y, 0, 0,
     pos.z, pos.y, 0, 0,
-    pos.x, pos.w, 0, 0, 
+    pos.x, pos.w, 0, 0,
 
     pos.z, pos.y, 0, 0,
     pos.z, pos.w, 0, 0,

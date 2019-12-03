@@ -22,6 +22,8 @@ public:
 		Fleeing
 	} BehaviorState;
 
+	uint score;
+	
 	int health;
 	float shotFrequency;
 	bool doesShoot;
