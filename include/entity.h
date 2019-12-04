@@ -7,6 +7,8 @@
 #include <GLFW/glfw3.h>
 #include <Texture.h>
 #include <glm/glm.hpp>
+#include <DungeonMap.h>
+#include <DungeonTile.h>
 
 class Entity
 {
@@ -36,9 +38,10 @@ public:
 
 	bool operator==(const Entity&);
 	
-	virtual bool Update(void) { return false; };
+	virtual bool Update(void) { return false; }
 
 	CollisionBox GetHitBox(void);
+	bool CheckWalls();
 	
 	GLuint GetVBO(void);
 	

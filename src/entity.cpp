@@ -99,6 +99,21 @@ void Entity::Draw(void)
   glDrawArrays(GL_TRIANGLES, 0, 6);
 }
 
+bool Entity::CheckWalls() {
+	int num = 0;
+	DungeonTile* walls = GetCurrentRoomWalls(num);
+
+	for (int i=0; i < num; i++) {
+		printf("(%f, %f) (%f, %f)\n", walls[i].getWorldX(), walls[i].getWorldY(), walls[i].GetHitBox().GetPos().x, walls[i].GetHitBox().GetPos().y);
+		if (checkCollision(walls[i].GetHitBox(), this->GetHitBox())) {
+			printf("true  %f %f\n", walls[i].getWorldX(), walls[i].getWorldY());
+			return true;
+		}
+	}
+
+	return false;
+}
+
 CollisionBox Entity::GetHitBox(void) {
   return this->hitBox;
 }

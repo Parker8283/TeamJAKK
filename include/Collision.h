@@ -12,8 +12,8 @@ public:
   float y;
 
   CollisionBox(void);
-  CollisionBox(float width, float height, glm::vec2* p);
-  glm::vec2 GetPos(void);
+  CollisionBox(float width, float height, glm::vec2 *p);
+   glm::vec2 GetPos(void);
 };
 
 bool checkCollision(CollisionBox box1, CollisionBox box2);

@@ -22,6 +22,33 @@ DungeonMap::DungeonMap(DungeonTile** map, int x, int y) {
 
   xSize = x;
   ySize = y;
+
+  for (int i = 0; i < xSize * ySize; i++) {
+		if (!tiles[0][i].isPassable()) {
+			impassableList.push_back(tiles[0][i]);
+		} else {
+			passableList.push_back(tiles[0][i]);
+		}
+  }
+
+  passableNum = passableList.size();
+  impassableNum = impassableList.size();
+
+  passable = new DungeonTile[passableNum];
+  impassable = new DungeonTile[impassableNum];
+  int p = 0;
+  int j = 0;
+
+  for (int i = 0; i < xSize * ySize; i++) {
+	  if (!tiles[0][i].isPassable()) {
+		  impassable[j] = tiles[0][i];
+		  j++;
+	  }
+	  else {
+		  passable[j] = tiles[0][i];
+		  p++;
+	  }
+  }
 }
 
 DungeonMap::~DungeonMap() {
@@ -70,19 +97,20 @@ void DungeonMap::setCols(int cols) {
   ySize = cols;
 }
 
-std::vector<DungeonTile> DungeonMap::getImpassableList() {
+DungeonTile* DungeonMap::getImpassableList(int& num) {
+	num = impassableNum;
+	//printf("%f %f\n", tiles[0][0].getWorldX(), tiles[0][0].GetHitBox().GetPos().x);
 
-  std::vector<DungeonTile> ret;
+	return impassable;
+}
 
-  for (int i = 0; i < xSize ; i++) {
-    for (int j = 0; j < ySize ; j++) {
-      if (!tiles[i][j].isPassable()) {
-        ret.insert(ret.end(), tiles[i][j]);
-      }
-    }
-  }
+DungeonTile* DungeonMap::getRoomFloor(int& num) {
+	return getPassableList(num);
+}
 
-  return ret;
+DungeonTile* DungeonMap::getPassableList(int& num) {
+	num = passableNum;
+	return passable;
 }
 
 DungeonTile* GenerateTestRoom(int width, int height) {
@@ -92,9 +120,9 @@ DungeonTile* GenerateTestRoom(int width, int height) {
     for (int i = 0; i < width; i++) {
       int index = i + j * width;
       if (i == 0 || j == 0 || i == (width - 1) || j == (height - 1)) {
-        testRoom[index] = DungeonTile(false, j*2 + 0.5f, 10 - i*2 + 0.5f);
+        testRoom[index] = DungeonTile(false, j*2 + 1.0f, (height - i*2) + 1.0f);
       } else {
-        testRoom[index] = DungeonTile(true , j*2 + 0.5f, 10 - i*2 + 0.5f);
+        testRoom[index] = DungeonTile(true , j*2 + 1.0f, (height - i*2) + 1.0f);
       }
     }
   }

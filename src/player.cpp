@@ -12,7 +12,7 @@ Player::Player() : Entity(glm::vec2(0, 0), "../../common/sprites/GungeonRipoffBa
 	health = 10;
 	speed = 5.0f;
 
-	Position = glm::vec2(0, 0);
+	Position = glm::vec2(5, 7);
 	SetPlayer(this);
 
 	heldSword = new Sword("../../common/sprites/Sword1.png");
@@ -40,6 +40,11 @@ bool Player::Update()
 			break;
 		}
 	}
+
+	bool coll = false;
+	coll = CheckWalls();
+	if (!coll)
+		Position = nextPos;
 
 	//Collision disabled for now
 	//if(!collided)

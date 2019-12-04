@@ -17,6 +17,7 @@ Player* GetPlayer();
 void SetPlayer(Player*);
 int GetEnemiesKilled();
 void IncrementEnemiesKilled();
+DungeonTile* GetCurrentRoomWalls(int&);
 
 std::list<Entity*> * GetEntityList(void);
 #endif

@@ -15,6 +15,7 @@ static int enemiesKilled = 0;
 
 static std::list< Entity* > entities;
 static std::vector<Entity*> removeList;
+static DungeonMap masterMap;
 
 static Player* player;
 
@@ -22,7 +23,6 @@ using namespace glm;
 
 void AddEntity(Entity* e)
 {
-  //printf("Adding entity\n");
   entities.push_back(e);
   e->SetUID(cursor);
   cursor++;
@@ -58,13 +58,16 @@ void EnterGameLoop(void) {
   SetControlContext(GameState::RUN_GAME);
   enemiesKilled = 0;
 
-  DungeonTile* map = GenerateTestRoom(10, 10);
-  int numTiles = 10 * 10;
+  int testX = 10;
+  int testY = 10;
+  DungeonTile* map = GenerateTestRoom(testX, testY);
+  int numTiles = testX * testY;
+  masterMap = DungeonMap(&map, testX, testY);
 
   SetPlayer(new Player);
   float timer = 0;
 
-  GenerateEnemyRoom(map, numTiles);
+  //GenerateEnemyRoom(map, numTiles);
 
   glClearColor(0, 0, 0, 1);
   RefreshSystemTimer();
@@ -142,4 +145,11 @@ void IncrementEnemiesKilled() {
 
 int GetEnemiesKilled() {
   return enemiesKilled;
+}
+
+DungeonTile* GetCurrentRoomWalls(int& num) {
+	DungeonTile* temp = masterMap.getImpassableList(num);
+	
+	//printf("%f %f\n", masterMap.tiles[0][0].getWorldX(), masterMap.tiles[0][0].GetHitBox().GetPos().x);
+	return temp;
 }
