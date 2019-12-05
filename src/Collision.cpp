@@ -5,18 +5,23 @@ using namespace glm;
 CollisionBox::CollisionBox(void) {
   x = 1;
   y = 1;
-  this->pos = NULL;
+  this->pos = glm::vec2(0);
 }
 
-CollisionBox::CollisionBox(float width, float height, vec2* p) {
+CollisionBox::CollisionBox(float width, float height, vec2 p) {
   x = width;
   y = height;
+  glm::vec2 pp = glm::vec2(p.x, p.y);
   this->pos = p;
 }
 
  vec2 CollisionBox::GetPos(void) {
-  return *this->pos;
+  return this->pos;
 }
+
+ void CollisionBox::SetPos(glm::vec2 p) {
+	 this->pos = p;
+ }
 
 
 bool checkCollision(CollisionBox box1, CollisionBox box2) {

@@ -21,6 +21,7 @@ Player::Player() : Entity(glm::vec2(0, 0), "../../common/sprites/GungeonRipoffBa
 
 bool Player::Update()
 {
+	Entity::Update();
 	float frameDelta = GetFrameDeltaTime();
 	
 	std::list<Entity*>* entities = GetEntityList();
@@ -29,7 +30,7 @@ bool Player::Update()
 
 	vec2 nextPos = Position + dir * frameDelta * speed;
 
-	CollisionBox hitBox = CollisionBox(1, 1, &nextPos);
+	CollisionBox hitBox = CollisionBox(1, 1, nextPos);
 
 	bool collided = false;
 	std::list<Entity*>::iterator it;
@@ -41,14 +42,26 @@ bool Player::Update()
 		}
 	}
 
-	bool coll = false;
-	coll = CheckWalls();
-	if (!coll)
+	if (CheckWalls(nextPos)) {
+		glm::vec2 nextX = glm::vec2(nextPos.x, Position.y);
+		glm::vec2 nextY = glm::vec2(Position.x, nextPos.y);
+		if (CheckWalls(nextX) && !CheckWalls(nextY)) {
+			Position = nextY;
+		}
+		else if (CheckWalls(nextY) && !CheckWalls(nextX)) {
+			Position = nextX;
+		}
+		else {
+
+		}
+	}
+	else {
 		Position = nextPos;
+	}
 
 	//Collision disabled for now
 	//if(!collided)
-	Position = nextPos;
+	//Position = nextPos;
 
 	SetView(lookAt(vec3(Position.x, Position.y, 10), vec3(Position.x, Position.y, 0), UP));
 

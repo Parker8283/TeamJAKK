@@ -38,10 +38,10 @@ public:
 
 	bool operator==(const Entity&);
 	
-	virtual bool Update(void) { return false; }
+	virtual bool Update(void);
 
 	CollisionBox GetHitBox(void);
-	bool CheckWalls();
+	bool CheckWalls(glm::vec2);
 	
 	GLuint GetVBO(void);
 	

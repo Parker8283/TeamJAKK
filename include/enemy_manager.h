@@ -33,6 +33,7 @@ public:
 	Archetype(const char*, const char*, bool, float, float, float, int, float, int, Behavior::AIType, glm::vec2, glm::vec2);
 };
 
+void GenerateEnemyRoom(std::vector<DungeonTile>);
 void GenerateEnemyRoom(DungeonTile*, int);
 // args		enemy texture, shot texture, doesShoot, moveSpeed, shotFrequency, AIType, 
 void GenerateEnemy(glm::vec2, char*, char*, bool, float, float, float, int, float, int, Behavior::AIType, glm::vec2, glm::vec2);

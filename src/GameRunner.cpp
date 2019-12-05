@@ -67,7 +67,7 @@ void EnterGameLoop(void) {
   SetPlayer(new Player);
   float timer = 0;
 
-  //GenerateEnemyRoom(map, numTiles);
+  GenerateEnemyRoom(masterMap.getPassableList());
 
   glClearColor(0, 0, 0, 1);
   RefreshSystemTimer();
@@ -147,9 +147,6 @@ int GetEnemiesKilled() {
   return enemiesKilled;
 }
 
-DungeonTile* GetCurrentRoomWalls(int& num) {
-	DungeonTile* temp = masterMap.getImpassableList(num);
-	
-	//printf("%f %f\n", masterMap.tiles[0][0].getWorldX(), masterMap.tiles[0][0].GetHitBox().GetPos().x);
-	return temp;
+std::vector<DungeonTile> GetCurrentRoomWalls() {
+	return masterMap.getImpassableList();
 }

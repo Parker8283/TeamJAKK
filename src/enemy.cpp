@@ -35,6 +35,7 @@ Enemy::Enemy(glm::vec2 pos, Archetype arch) : Entity(pos, arch.enemyTexture)
 
 bool Enemy::Update(void)
 {
+	Entity::Update();
 	int randX =0, randY=0;
 	//printf("in enemy update: %f \n   ", GetFrameDeltaTime());
 
@@ -58,7 +59,25 @@ bool Enemy::Update(void)
 
 		moveDir = moveTarget - Position;
 		moveDir = normalizeDir(moveDir);
-		Position += moveDir * GetFrameDeltaTime() * speed;
+		
+		glm::vec2 nextPos =Position +  (moveDir * GetFrameDeltaTime() * speed);
+		if (CheckWalls(nextPos)) {
+			glm::vec2 nextX = glm::vec2(nextPos.x, Position.y);
+			glm::vec2 nextY = glm::vec2(Position.x, nextPos.y);
+			if (CheckWalls(nextX) && !CheckWalls(nextY)) {
+				Position = nextY;
+			}
+			else if (CheckWalls(nextY) && !CheckWalls(nextX)) {
+				Position = nextX;
+			}
+			else {
+
+			}
+		}
+		else {
+			Position = nextPos;
+		}
+
 		if (moveDir.x < 0 && !flipped) {
 			size.x = size.x * -1;
 			flipped = true;

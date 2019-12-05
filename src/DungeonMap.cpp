@@ -19,7 +19,6 @@ DungeonMap::DungeonMap() {
 DungeonMap::DungeonMap(DungeonTile** map, int x, int y) {
   tiles = map;
   textureType = DEFAULTTEXTURE;
-
   xSize = x;
   ySize = y;
 
@@ -31,24 +30,6 @@ DungeonMap::DungeonMap(DungeonTile** map, int x, int y) {
 		}
   }
 
-  passableNum = passableList.size();
-  impassableNum = impassableList.size();
-
-  passable = new DungeonTile[passableNum];
-  impassable = new DungeonTile[impassableNum];
-  int p = 0;
-  int j = 0;
-
-  for (int i = 0; i < xSize * ySize; i++) {
-	  if (!tiles[0][i].isPassable()) {
-		  impassable[j] = tiles[0][i];
-		  j++;
-	  }
-	  else {
-		  passable[j] = tiles[0][i];
-		  p++;
-	  }
-  }
 }
 
 DungeonMap::~DungeonMap() {
@@ -97,24 +78,22 @@ void DungeonMap::setCols(int cols) {
   ySize = cols;
 }
 
-DungeonTile* DungeonMap::getImpassableList(int& num) {
-	num = impassableNum;
-	//printf("%f %f\n", tiles[0][0].getWorldX(), tiles[0][0].GetHitBox().GetPos().x);
-
-	return impassable;
+std::vector<DungeonTile> DungeonMap::getImpassableList() {
+	return impassableList;
 }
 
-DungeonTile* DungeonMap::getRoomFloor(int& num) {
-	return getPassableList(num);
+std::vector<DungeonTile> DungeonMap::getRoomFloor() {
+	return getPassableList();
 }
 
-DungeonTile* DungeonMap::getPassableList(int& num) {
-	num = passableNum;
-	return passable;
+std::vector<DungeonTile> DungeonMap::getPassableList() {
+	return passableList;
 }
 
 DungeonTile* GenerateTestRoom(int width, int height) {
   DungeonTile* testRoom = new DungeonTile[width * height];
+  float lastx;
+  float lasty;
 
   for (int j = 0; j < height; j++) {
     for (int i = 0; i < width; i++) {
@@ -124,9 +103,10 @@ DungeonTile* GenerateTestRoom(int width, int height) {
       } else {
         testRoom[index] = DungeonTile(true , j*2 + 1.0f, (height - i*2) + 1.0f);
       }
+	  lastx = j * 2 + 1.0f;
+	  lasty = height - i * 2 + 1.0f;
     }
   }
-
   return testRoom;
 }
 

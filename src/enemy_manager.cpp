@@ -28,6 +28,19 @@ Archetype::Archetype(const char* enemyTex, const char* shotTex, bool doesShoot, 
 	this->shotSize = shotSize;
 }
 
+void GenerateEnemyRoom(std::vector<DungeonTile> ve) {
+	int num = ve.size();
+	DungeonTile* tiles = new DungeonTile[num];
+	std::vector<DungeonTile>::iterator it;
+	int i = 0;
+
+	for (it = ve.begin(); it != ve.end(); ++it) {
+		tiles[i++] = *it;
+	}
+
+	GenerateEnemyRoom(tiles, num);
+}
+
 void GenerateEnemyRoom(DungeonTile* tiles, int numTiles)
 {
 	srand(time(NULL));

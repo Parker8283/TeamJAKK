@@ -20,13 +20,8 @@ private:
   int ySize;               //number of internal columns
   glm::vec2 tileDim;
 
-  std::list<DungeonTile> impassableList;
-  std::list<DungeonTile> passableList;
-
-  DungeonTile* impassable;
-  DungeonTile* passable;
-  int impassableNum = 0;
-  int passableNum = 0;
+  std::vector<DungeonTile> impassableList;
+  std::vector<DungeonTile> passableList;
 
 public:
 	DungeonTile** tiles;
@@ -49,9 +44,9 @@ public:
   int getCols();
   void setCols(int cols);
 
-  DungeonTile* getImpassableList(int&);
-  DungeonTile* getPassableList(int&);
-  DungeonTile* getRoomFloor(int&);
+  std::vector<DungeonTile> getImpassableList();
+  std::vector<DungeonTile> getPassableList();
+  std::vector<DungeonTile> getRoomFloor();
 
   glm::vec2 getTileDim(void);
 };

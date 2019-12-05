@@ -18,11 +18,11 @@ DungeonTile::DungeonTile(bool p, float x, float y) {
     worldX = x;
     worldY = y;
 	position = glm::vec2(x, y);
-	hitbox = CollisionBox(2.0f, 2.0f, &position);
+	box = CollisionBox(2.0f, 2.0f, position);
 }
 
 void DungeonTile::Draw(void) {
-	//printf("%f %f\n", this->worldX, hitbox.GetPos().x);
+	//printf("%f %f\n", this->worldX, GetHitBox().GetPos().x);
     glUseProgram(GetShader());
 
     mat4 M = translate(mat4(1), vec3(this->worldX, this->worldY, 0));
@@ -72,5 +72,5 @@ bool DungeonTile::moveOnEvent() {
 }
 
  CollisionBox DungeonTile::GetHitBox() {
-	 return hitbox;
+	 return box;
  }

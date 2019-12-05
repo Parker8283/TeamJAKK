@@ -34,7 +34,8 @@ Projectile::~Projectile()
 
 bool Projectile::Update()
 {
-	bool del = false;;
+	Entity::Update();
+	bool del = false;
 	float frameDelta = GetFrameDeltaTime();
 	Position += direction * frameDelta * speed;
 
@@ -42,6 +43,11 @@ bool Projectile::Update()
 		del = true;
 		GetPlayer()->DamagePlayer(damage);
 	}
+
+	if (!del && CheckWalls(Position)) {
+		del = true;
+	}
+	
 
 	if (abs(Position.x) > 50 || abs(Position.y) > 50)
 		del = true;

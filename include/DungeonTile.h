@@ -15,10 +15,11 @@ class DungeonTile {
     float worldX;
     float worldY;
 
+	CollisionBox box;
+	glm::vec2 position;
+
     public:
 
-	glm::vec2 position;
-	CollisionBox hitbox;
 
     DungeonTile(void) : passable(false), worldX(0), worldY(0) { }
     DungeonTile(bool p, float x, float y);
