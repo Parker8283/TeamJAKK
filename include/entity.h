@@ -31,7 +31,6 @@ public:
 	int uID;
 
 	Entity(glm::vec2 pos, const char* filepath);
-	~Entity(void);
 
 	void Draw(void);
 	void SetUID(int);

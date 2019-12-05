@@ -6,14 +6,17 @@
 #include <list>
 #include <sword.h>
 
-class Player : public Entity{
+class Player : public Entity {
 	Sword* heldSword;
 
 public:
 	GLuint front, back;
 	bool hasSword;
-	int health;
-		
+	int curHealth;
+	int maxHealth;
+	
+	uint score;
+	
 	Player();
 
 	bool Update();
@@ -24,6 +27,9 @@ public:
 	void loadControls();
 	void Pickup(Entity e);
 	
+	int GetHealth(void);
+	int GetMaxHealth(void);
+
 	float GetPlayerWalkSpeed();
 	
 	Sword* GetSword();

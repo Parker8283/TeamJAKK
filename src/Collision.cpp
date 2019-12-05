@@ -19,11 +19,14 @@ CollisionBox::CollisionBox(float width, float height, vec2 p) {
   return this->pos;
 }
 
+<<<<<<< HEAD
  void CollisionBox::SetPos(glm::vec2 p) {
 	 this->pos = p;
  }
 
 
+=======
+>>>>>>> 9b3f409dd95546a332a04d29bc218ee9f5c99182
 bool checkCollision(CollisionBox box1, CollisionBox box2) {
 	//printf("%f %f\n", box1.GetPos().x, box1.GetPos().y);
   float b1x0 = box1.GetPos().x - box1.x / 2;

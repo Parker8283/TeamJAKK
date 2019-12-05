@@ -7,7 +7,6 @@
 //@author Cody Keilitz
 //Last modified Oct 30 2019
 
-
 class DungeonTile {
     private:
     bool passable;

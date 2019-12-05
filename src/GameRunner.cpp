@@ -1,5 +1,6 @@
 #include <Controller.h>
 #include <DungeonMap.h>
+#include <Hud.h>
 #include <GameRunner.h>
 #include <glm/glm.hpp>
 #include <Graphics.h>
@@ -65,7 +66,6 @@ void EnterGameLoop(void) {
   masterMap = DungeonMap(&map, testX, testY);
 
   SetPlayer(new Player);
-  float timer = 0;
 
   GenerateEnemyRoom(masterMap.getPassableList());
 
@@ -76,7 +76,6 @@ void EnterGameLoop(void) {
 
     UpdateSystemTimer();
     UpdateKeys();
-    //UpdatePlayer();
 
     std::list<Entity*>::iterator it;
 
@@ -105,13 +104,15 @@ void EnterGameLoop(void) {
     //DrawPlayer();
     for (it = entities.begin(); it != entities.end(); ++it)
     {
-      //printf("Draw entities\n");
       (*it)->Draw();
     }
 
+    //Draw Hud
+    DrawHud();
+
     glfwPollEvents();
     glfwSwapBuffers(GetWindow());
-    if (GetPlayer()->health <= 0) {
+    if (GetPlayer()->GetHealth() <= 0) {
       LeaveGameLoop(map);
       break;
     }
