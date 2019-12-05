@@ -12,7 +12,6 @@ using namespace glm;
 static int xRes, yRes;
 
 static GLuint currentPlayerTex;
-static GLuint textureProgramID;
 
 static const mat2 rot = {
   -1,  0,
@@ -25,6 +24,8 @@ static mat4 V;
 //Player VAO and VBOs
 static GLuint playerVAO;
 static GLuint playerVBOs[2];
+static GLuint hitBoxVAO;
+static GLuint hitBoxVBO;
 
 static GLuint tileVAO;
 static GLuint tileVBOs[2];
@@ -35,9 +36,7 @@ static GLuint playerTexture;
 static GLuint playerTextureBack;
 
 static GLuint boxProgramID;
-static GLuint boxMVPID;
-static GLuint boxRotID;
-static GLuint boxTexID;
+static GLuint hitBoxProgramID;
 
 static float playerVerts[18] {
   -1, -1, 0,
@@ -86,35 +85,6 @@ void SetPlayerCurrentFrame(GLuint newFrame)
 	currentPlayerTex = newFrame;
 }
 
-void DrawPlayer(void) {
-  mat4 M   = translate(mat4(1), GetPlayerPos());
-  mat4 MVP = P * V * M;
-
-  glBindVertexArray(playerVAO);
-  glUseProgram(boxProgramID);
-
-  glActiveTexture(GL_TEXTURE0);
-
-  double xPos, yPos;
-  glfwGetCursorPos(GetWindow(), &xPos, &yPos);
-
-  yPos = (yPos - (1080 / 2)) / (yPos / 2);
-  xPos = (xPos - (1920 / 2)) / (xPos / 2);
-
-  if (yPos <   0) {
-    glBindTexture(GL_TEXTURE_2D, playerTextureBack);
-  } else {
-    glBindTexture(GL_TEXTURE_2D, playerTexture);
-  }
-
-  glUniform1i(boxTexID, 0);
-
-  glUniformMatrix2fv(boxRotID, 1, GL_FALSE, &rot[0][0]);
-  glUniformMatrix4fv(boxMVPID, 1, GL_FALSE, &MVP[0][0]);
-  
-  glDrawArrays(GL_TRIANGLES, 0, 6);
-}
-
 void SetupGraphics(void) {
   glfwGetFramebufferSize(GetWindow(), &xRes, &yRes);
 
@@ -123,15 +93,14 @@ void SetupGraphics(void) {
 
   //Setup box shader program and player texture
   boxProgramID = LoadShader("../../shaders/BoxShader.vert", "../../shaders/BoxShader.frag");
-  boxMVPID     = glGetUniformLocation(boxProgramID, "MVP");
-  boxTexID     = glGetUniformLocation(boxProgramID, "tex");
-  boxRotID     = glGetUniformLocation(boxProgramID, "uvRot");
 
   playerTexture     = LoadTexture("../../common/sprites/GungeonRipoffBase.png");
   playerTextureBack = LoadTexture("../../common/sprites/GungeonRipoffBaseBack.png");
 
   wallTexture       = LoadTexture("../../common/sprites/WallBottom2.png");
   floorTexture      = LoadTexture("../../common/sprites/ground.png");
+  hitBoxProgramID   = LoadShader("../../shaders/HitBoxShader.vert", "../../shaders/HitBoxShader.frag");
+
   loadCursor();
 
   //Setup Player program vert/uv buffer streams
@@ -160,13 +129,23 @@ void SetupGraphics(void) {
   glBufferData(GL_ARRAY_BUFFER, sizeof(tileVerts), tileVerts, GL_STATIC_DRAW);
 
   glEnableVertexAttribArray(0);
-  glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 0, (void*)0);
+  glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 0, (void*) 0);
 
   glBindBuffer(GL_ARRAY_BUFFER, tileVBOs[1]);
   glBufferData(GL_ARRAY_BUFFER, sizeof(playerUVs), playerUVs, GL_STATIC_DRAW);
 
   glEnableVertexAttribArray(1);
   glVertexAttribPointer(1, 2, GL_FLOAT, GL_FALSE, 0, (void*)0);
+
+  glGenVertexArrays(1, &hitBoxVAO);
+  glBindVertexArray(hitBoxVAO);
+
+  glGenBuffers(1, &hitBoxVBO);
+  glBindBuffer(GL_ARRAY_BUFFER, hitBoxVBO);
+  glBufferData(GL_ARRAY_BUFFER, 8 * sizeof(vec2), NULL, GL_STATIC_DRAW);
+
+  glEnableVertexAttribArray(0);
+  glVertexAttribPointer(0, 2, GL_FLOAT, GL_FALSE, 0, (void*) 0);
 }
 
 void SetView(mat4 view) {
@@ -181,6 +160,18 @@ mat4 GetView()
 mat4 GetProjection()
 {
   return P;
+}
+
+GLuint GetHitShader() {
+  return hitBoxProgramID;
+}
+
+GLuint GetHitVAO() {
+  return hitBoxVAO;
+}
+
+GLuint GetHitVBO() {
+  return hitBoxVBO;
 }
 
 GLuint GetShader()

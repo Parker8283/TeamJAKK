@@ -224,7 +224,7 @@ void TextBox::SetText(const char* text) {
   strncpy(buf, text, 256);
 }
 
-FilledBox::FilledBox(vec4 p, vec3 col) {
+FilledBox::FilledBox(vec4 p, vec4 col) {
   pos   = p;
   color = col;
 }
@@ -244,7 +244,7 @@ void FilledBox::Draw(void) {
   glBindVertexArray(VAO);
 
   glUniform1f(filledBrightnessID, brightness);
-  glUniform3f(filledColorID, color.x, color.y, color.z);
+  glUniform4f(filledColorID, color.x, color.y, color.z, color.a);
 
   // Update content of VBO memory
   glBindBuffer(GL_ARRAY_BUFFER, VBO);
@@ -258,7 +258,7 @@ void FilledBox::SetBrightness(float b) {
   brightness = b;
 }
 
-void FilledBox::SetColor(vec3 col) {
+void FilledBox::SetColor(vec4 col) {
   color = col;
 }
 

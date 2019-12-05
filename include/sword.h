@@ -21,8 +21,8 @@ public:
 
 	State currentState;
 
-	double damage;
-
+	int damage;
+	
 	Sword(const char*);
 
 	void Init();

@@ -37,19 +37,27 @@ bool Player::Update()
 	std::list<Entity*>::iterator it;
 	for (it = entities->begin(); it != entities->end(); ++it)
 	{
-		if (checkCollision(hitBox, (*it)->GetHitBox())) {
+		if (checkCollision(hitBox, (*it)->GetHitBox()) && this != *it) {
+			if (*it == this->heldSword)
+				this->heldSword->UpdateState(Sword::State::Held);
+
 			collided = true;
 			break;
 		}
 	}
 
-	//Collision disabled for now
-	//if(!collided)
-	Position = nextPos;
+	//Collision for player
+	if(!collided)
+		Position = nextPos;
 
 	SetView(lookAt(vec3(Position.x, Position.y, 10), vec3(Position.x, Position.y, 0), UP));
 
+	hitBox.Draw();
 	return false;
+}
+
+void Player::AddScore(uint s) {
+	score += s;
 }
 
 void Player::DamagePlayer(int damage) {

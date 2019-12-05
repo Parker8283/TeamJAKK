@@ -45,5 +45,6 @@ bool Projectile::Update()
 	if (abs(Position.x) > 50 || abs(Position.y) > 50)
 		del = true;
 
+	hitBox.Draw();
 	return del;
 }

@@ -1,5 +1,7 @@
 #include <Collision.h>
 #include <glm/glm.hpp>
+#include <Graphics.h>
+
 using namespace glm;
 
 CollisionBox::CollisionBox(void) {
@@ -16,6 +18,32 @@ CollisionBox::CollisionBox(float width, float height, vec2* p) {
 
 inline vec2 CollisionBox::GetPos(void) {
   return *this->pos;
+}
+
+void CollisionBox::Draw(void) {
+  float x0 = pos->x - x / 2.0f;
+  float x1 = x0 + x;
+  float y0 = pos->y - y / 2.0f;
+  float y1 = y0 + y;
+
+  float verts[] = {
+    x0, y0, x1, y0,
+    x1, y0, x1, y1,
+    x1, y1, x0, y1,
+    x0, y1, x0, y0
+  };
+
+  glLineWidth(20.0f);
+
+  glUseProgram(GetHitShader());
+  glBindVertexArray(GetHitVAO());
+  glBindBuffer(GL_ARRAY_BUFFER, GetHitVBO());
+  glBufferSubData(GL_ARRAY_BUFFER, 0, sizeof(verts), verts);
+
+  mat4 MVP = GetProjection() * GetView();
+  glUniformMatrix4fv(glGetUniformLocation(GetHitShader(), "MVP"), 1, GL_FALSE, &MVP[0][0]);
+
+  glDrawArrays(GL_LINES, 0, 8);
 }
 
 bool checkCollision(CollisionBox box1, CollisionBox box2) {

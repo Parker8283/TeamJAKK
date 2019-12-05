@@ -13,6 +13,9 @@ public:
 
   CollisionBox(void);
   CollisionBox(float width, float height, glm::vec2* p);
+  
+  void Draw(void);
+
   glm::vec2 GetPos(void);
 };
 

@@ -3,8 +3,8 @@
 out vec4 fragColor;
 
 uniform float brightness;
-uniform vec3 color;
+uniform vec4 color;
 
 void main() {
-  fragColor = vec4(brightness * color, 1.0f);
+  fragColor = vec4(brightness * color.xyz, color.a);
 }

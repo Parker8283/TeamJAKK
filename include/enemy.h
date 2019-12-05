@@ -25,6 +25,7 @@ public:
 	uint score;
 	
 	int health;
+	
 	float shotFrequency;
 	bool doesShoot;
 	bool flipped = false;
@@ -53,12 +54,12 @@ public:
 	void Draw();
 	void UpdateState(BehaviorState s);
 	void Attack();
-	void TakeDamage(int damage);
 	void Die();
 	BehaviorState GetState();
 	void SetState(BehaviorState);
 	
 	bool Update();
+	bool TakeDamage(int damage);
 };
 
 #endif // !ENEMY_H

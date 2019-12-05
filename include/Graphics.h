@@ -11,18 +11,19 @@
 #include <WindowManager.h>
 #include <stb_image.h>
 
-void DrawPlayer(void);
 void SetupGraphics(void);
 void SetView(glm::mat4 view);
 
-glm::mat4 GetView();
-glm::mat4 GetProjection();
-
-GLuint GetShader();
+glm::mat4 GetView(void);
+glm::mat4 GetProjection(void);
 
 void SetPlayerCurrentFrame(GLuint);
 
-GLuint GetShader();
+GLuint GetHitShader(void);
+GLuint GetHitVAO(void);
+GLuint GetHitVBO(void);
+
+GLuint GetShader(void);
 GLuint GetPlayerVAO(void);
 GLuint GetWallTextureID(void);
 GLuint GetFloorTextureID(void);

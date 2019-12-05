@@ -5,7 +5,6 @@ static float radius = 1.5f;
 
 Sword::State currentState;
 
-
 Sword::Sword(const char* file) : Projectile(file, GetPlayerPos(), vec2(0), 1, size)
 {
 	Position = GetPlayerPos();
@@ -15,8 +14,8 @@ Sword::Sword(const char* file) : Projectile(file, GetPlayerPos(), vec2(0), 1, si
 
 	speed    = 3;
 
+	damage   = 1;
 	currentState = State::Held;
-	damage = 1;
 }
 
 void Sword::Init()
@@ -64,6 +63,7 @@ bool Sword::Update(void)
 		break;
 	}
 
+	hitBox.Draw();
 	return false;
 }
 

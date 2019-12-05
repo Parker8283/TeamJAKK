@@ -14,11 +14,15 @@ Enemy::Enemy(glm::vec2 pos, const char* c, Behavior::AIType mood) : Entity(pos, 
 	timer = 0;
 	speed = 1;
 	behavior = new Behavior(mood, 4);
+	score = 100;
 	srand(time(NULL));
+	health = 2;
 }
 
 Enemy::Enemy(glm::vec2 pos, Archetype arch) : Entity(pos, arch.enemyTexture)
 {
+	health = 2;
+	score = 100; //Remove Later
 	timer =  (static_cast <float>(rand()) / static_cast <float> (RAND_MAX)) * arch.shotFrequency;
 	this->speed = arch.moveSpeed;
 	behavior = new Behavior(arch.behavior, (float)arch.radius);
@@ -35,15 +39,19 @@ Enemy::Enemy(glm::vec2 pos, Archetype arch) : Entity(pos, arch.enemyTexture)
 
 bool Enemy::Update(void)
 {
-	int randX =0, randY=0;
-	//printf("in enemy update: %f \n   ", GetFrameDeltaTime());
+	bool collided = false;
+	int randX = 0, randY = 0;
+
+	glm::vec2 nextPos;
+
+	std::list<Entity*>* entities = GetEntityList();
 
 	switch (GetState())
 	{
 	case BehaviorState::Seek:
 		timer += GetFrameDeltaTime();
 		//printf("%f \n", GetFrameDeltaTime());
-		if (doesShoot && timer > shotFrequency) 
+		if (doesShoot && timer > shotFrequency)
 		{
 			//printf("in if\n");
 			timer = 0;
@@ -58,7 +66,8 @@ bool Enemy::Update(void)
 
 		moveDir = moveTarget - Position;
 		moveDir = normalizeDir(moveDir);
-		Position += moveDir * GetFrameDeltaTime() * speed;
+
+		nextPos = Position + moveDir * GetFrameDeltaTime() * speed;
 		if (moveDir.x < 0 && !flipped) {
 			size.x = size.x * -1;
 			flipped = true;
@@ -75,7 +84,7 @@ bool Enemy::Update(void)
 		target = behavior->GetFireTarget();
 
 		shot = new Projectile(weaponFile, Position + glm::vec2((size.x * 0.5), 0), target, damage, shotSize);
-		
+
 		//shot->Init(Position + glm::vec2((size.x * 0.5), 0), target);
 
 		this->SetState(BehaviorState::Seek);
@@ -103,7 +112,8 @@ bool Enemy::Update(void)
 
 		moveDir = moveTarget - Position;
 		moveDir = normalizeDir(moveDir);
-		Position += moveDir * GetFrameDeltaTime() * speed;
+		nextPos = Position + moveDir * GetFrameDeltaTime() * speed;
+
 		if (moveDir.x < 0 && !flipped) {
 			size.x = size.x * -1;
 			flipped = true;
@@ -121,10 +131,24 @@ bool Enemy::Update(void)
 		break;
 	}
 
-	/**if (checkCollision(hitBox, currentSword->hitBox)) {
-		TakeDamage(currentSword->damage);
-	}*/
+	if (checkCollision(hitBox, GetPlayer()->GetSword()->GetHitBox()) && GetPlayer()->GetSword()->GetState() == Sword::State::Fly) {
+		GetPlayer()->GetSword()->UpdateState(Sword::State::Ground);
+		return this->TakeDamage(GetPlayer()->GetSword()->damage);
+	}
 
+	std::list<Entity*>::iterator it;
+	for (it = entities->begin(); it != entities->end(); ++it)
+	{
+		if (checkCollision(hitBox, (*it)->GetHitBox()) && this != *it) {
+			collided = true;
+			break;
+		}
+	}
+
+	if(!collided)
+		Position = nextPos;
+
+	hitBox.Draw();
 	return false;
 }
 
@@ -146,15 +170,15 @@ void Enemy::SetState(Enemy::BehaviorState s)
 void Enemy::Die()
 {
 	IncrementEnemiesKilled();
-	delete shot;
-	RemoveEntity(this);
-	delete this;
+	GetPlayer()->AddScore(score);
 }
 
-void Enemy::TakeDamage(int takenDam)
-{
+bool Enemy::TakeDamage(int takenDam) {
 	health -= takenDam;
 	if (health <= 0) {
-		Die();
+		this->Die();
+		return true;
 	}
+
+	return false;
 }

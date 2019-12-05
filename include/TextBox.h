@@ -38,14 +38,14 @@ class FilledBox
 
   float brightness = 1.0f;
 
-  glm::vec3 color = glm::vec3(1); //Default to white
+  glm::vec4 color = glm::vec4(1); //Default to white
   glm::vec4 pos;                  //NDC Screen Coords
 public:
-  FilledBox(glm::vec4 p, glm::vec3 col);
+  FilledBox(glm::vec4 p, glm::vec4 col);
 
   void Draw(void);
   void SetBrightness(float b);
-  void SetColor(glm::vec3 col);
+  void SetColor(glm::vec4 col);
   void SetPos(glm::vec4 p);
 };
 

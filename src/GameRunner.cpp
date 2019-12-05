@@ -70,12 +70,15 @@ void EnterGameLoop(void) {
   RefreshSystemTimer();
   while (GetGameState() == GameState::RUN_GAME) {
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-
     UpdateSystemTimer();
     UpdateKeys();
 
-    std::list<Entity*>::iterator it;
+    //Draw Map
+    for (uint i = 0; i < 100; i++) {
+      map[i].Draw();
+    }
 
+    std::list<Entity*>::iterator it;
     //Update entities and gather garbage
     for (it = entities.begin(); it != entities.end(); ++it) {
       if (*it == NULL)
@@ -94,11 +97,7 @@ void EnterGameLoop(void) {
     //Clear removeList
     removeList.clear();
 
-    for (uint i = 0; i < 100; i++) {
-      map[i].Draw();
-    }
-
-    //DrawPlayer();
+    //Draw All entities
     for (it = entities.begin(); it != entities.end(); ++it)
     {
       (*it)->Draw();
@@ -107,12 +106,12 @@ void EnterGameLoop(void) {
     //Draw Hud
     DrawHud();
 
-    glfwPollEvents();
-    glfwSwapBuffers(GetWindow());
     if (GetPlayer()->GetHealth() <= 0) {
       LeaveGameLoop(map);
       break;
     }
+    glfwPollEvents();
+    glfwSwapBuffers(GetWindow());
   }
 }
 
