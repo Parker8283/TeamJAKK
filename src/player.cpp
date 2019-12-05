@@ -12,14 +12,9 @@ Player::Player() : Entity(glm::vec2(0, 0), "../../common/sprites/GungeonRipoffBa
 	maxHealth = 10;
 	curHealth = maxHealth;
 	speed = 5.0f;
-<<<<<<< HEAD
-
 	Position = glm::vec2(5, 7);
-=======
 	score = 0;
 	
-	Position = glm::vec2(0, 0);
->>>>>>> 9b3f409dd95546a332a04d29bc218ee9f5c99182
 	SetPlayer(this);
 
 	heldSword = new Sword("../../common/sprites/Sword1.png");
