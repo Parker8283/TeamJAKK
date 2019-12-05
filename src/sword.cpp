@@ -58,6 +58,7 @@ bool Sword::Update(void)
 	case Sword::State::Ground:
 		if (checkCollision(this->GetHitBox(), GetPlayer()->GetHitBox())) {
 			UpdateState(State::Held);
+			GetPlayer()->hasSword = true;
 		}
 		break;
 	case Sword::State::Held:

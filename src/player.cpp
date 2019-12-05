@@ -18,6 +18,7 @@ Player::Player() : Entity(glm::vec2(0, 0), "../../common/sprites/GungeonRipoffBa
 	SetPlayer(this);
 
 	heldSword = new Sword("../../common/sprites/Sword1.png");
+	hasSword = true;
 }
 
 
@@ -111,19 +112,22 @@ float Player::GetPlayerWalkSpeed(void)
 
 void Player::Attack(void* null)
 {
-	double xpos, ypos;
-	glfwGetCursorPos(GetWindow(), &xpos, &ypos);
-	double ndcX = (xpos - (1920 / 2)) / (1920 / 2);
-	double ndcY = (ypos - (1080 / 2)) / (1080 / 2);
-	vec2 ndc = normalizeDir(vec2(ndcX, -ndcY));
+	if (hasSword) {
+		double xpos, ypos;
+		glfwGetCursorPos(GetWindow(), &xpos, &ypos);
+		double ndcX = (xpos - (1920 / 2)) / (1920 / 2);
+		double ndcY = (ypos - (1080 / 2)) / (1080 / 2);
+		vec2 ndc = normalizeDir(vec2(ndcX, -ndcY));
 
-	float angle = atan2(ndc.y, ndc.x);
-	angle = (angle >= 0 ? angle : (2.0f * 3.14159265f + angle));
-	angle = (angle * 180) / 3.14159265f;
+		float angle = atan2(ndc.y, ndc.x);
+		angle = (angle >= 0 ? angle : (2.0f * 3.14159265f + angle));
+		angle = (angle * 180) / 3.14159265f;
 
-	heldSword->direction = ndc;
-	heldSword->rotation = angle;
-	heldSword->UpdateState(Sword::State::Fly);
+		heldSword->direction = ndc;
+		heldSword->rotation = angle;
+		heldSword->UpdateState(Sword::State::Fly);
+		hasSword = false;
+	}
 }
 
 Sword* Player::GetSword()
