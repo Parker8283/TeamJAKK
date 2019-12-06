@@ -8,6 +8,7 @@
 #include <sword.h>
 #include <player.h>
 #include <list>
+#include <irrklang/IrrKlang.h>
 
 void EnterGameLoop(void);
 void LeaveGameLoop(DungeonTile*);
@@ -18,6 +19,7 @@ void SetPlayer(Player*);
 int GetEnemiesKilled();
 void IncrementEnemiesKilled();
 std::vector<DungeonTile> GetCurrentRoomWalls();
+irrklang::ISoundEngine* GetSoundEngine();
 
 std::list<Entity*> * GetEntityList(void);
 #endif

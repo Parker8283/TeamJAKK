@@ -10,13 +10,13 @@
 #include <enemy_manager.h>
 #include <vector>
 
-
 static int cursor = 0;
 static int enemiesKilled = 0;
 
 static std::list< Entity* > entities;
 static std::vector<Entity*> removeList;
 static DungeonMap masterMap;
+irrklang::ISoundEngine* SoundEngine = irrklang::createIrrKlangDevice();
 
 static Player* player;
 
@@ -31,6 +31,10 @@ void AddEntity(Entity* e)
 
 std::list<Entity*> * GetEntityList(void) {
   return &entities;
+}
+
+irrklang::ISoundEngine* GetSoundEngine() {
+	return SoundEngine;
 }
 
 void RemoveEntity(Entity* e)
@@ -71,6 +75,7 @@ void EnterGameLoop(void) {
 
   glClearColor(0, 0, 0, 1);
   RefreshSystemTimer();
+  SoundEngine->play2D("../../audio/song.wav", GL_TRUE);
   while (GetGameState() == GameState::RUN_GAME) {
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
@@ -113,6 +118,7 @@ void EnterGameLoop(void) {
     glfwPollEvents();
     glfwSwapBuffers(GetWindow());
     if (GetPlayer()->GetHealth() <= 0) {
+	  GetSoundEngine()->play2D("../../audio/death.wav", GL_FALSE);
       LeaveGameLoop(map);
       break;
     }

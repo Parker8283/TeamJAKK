@@ -53,8 +53,11 @@ add_library (GLAD "thirdparty/glad.c")
 
 set (FREETYPE "${PROJECT_SOURCE_DIR}/opengllib/Lib/freetype.lib")
 
+#set (IIRKLANG_LIBRARY "${PROJECT_SOURCE_DIR}/opengllib/Include/irrklang")
+set (IRRKLANG_LIB "${PROJECT_SOURCE_DIR}/opengllib/Lib/irrKlang.lib")
+
 # Put all libraries into a variable
-set (LIBS glfw3 opengl32 STB_IMAGE GLAD ${GLEW_LIBRARY} ${FREETYPE})
+set (LIBS glfw3 opengl32 STB_IMAGE GLAD ${GLEW_LIBRARY} ${FREETYPE} ${IRRKLANG_LIB})
 
 # Define the Include DIRs
 include_directories( 
