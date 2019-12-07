@@ -10,12 +10,14 @@
 #include <enemy_manager.h>
 #include <vector>
 
-
 static int cursor = 0;
 static int enemiesKilled = 0;
 
 static std::list< Entity* > entities;
+static std::list<Entity*> enemies;
 static std::vector<Entity*> removeList;
+static DungeonMap masterMap;
+irrklang::ISoundEngine* SoundEngine = irrklang::createIrrKlangDevice();
 
 static Player* player;
 
@@ -23,14 +25,29 @@ using namespace glm;
 
 void AddEntity(Entity* e)
 {
-  //printf("Adding entity\n");
   entities.push_back(e);
   e->SetUID(cursor);
   cursor++;
 }
 
+void AddEnemy(Entity* e) {
+	enemies.push_back(e);
+}
+
+void RemoveEnemy(Entity* e) {
+	enemies.remove(e);
+}
+
+std::list<Entity*>* GetEnemyList(void) {
+	return &enemies;
+}
+
 std::list<Entity*> * GetEntityList(void) {
   return &entities;
+}
+
+irrklang::ISoundEngine* GetSoundEngine() {
+	return SoundEngine;
 }
 
 void RemoveEntity(Entity* e)
@@ -59,15 +76,19 @@ void EnterGameLoop(void) {
   SetControlContext(GameState::RUN_GAME);
   enemiesKilled = 0;
 
-  DungeonTile* map = GenerateTestRoom(10, 10);
-  int numTiles = 10 * 10;
+  int testX = 10;
+  int testY = 10;
+  DungeonTile* map = GenerateTestRoom(testX, testY);
+  int numTiles = testX * testY;
+  masterMap = DungeonMap(&map, testX, testY);
 
   SetPlayer(new Player);
 
-  GenerateEnemyRoom(map, numTiles);
+  GenerateEnemyRoom(masterMap.getPassableList());
 
   glClearColor(0, 0, 0, 1);
   RefreshSystemTimer();
+  SoundEngine->play2D("../../audio/song.wav", GL_TRUE);
   while (GetGameState() == GameState::RUN_GAME) {
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
     UpdateSystemTimer();
@@ -107,6 +128,8 @@ void EnterGameLoop(void) {
     DrawHud();
 
     if (GetPlayer()->GetHealth() <= 0) {
+		SoundEngine->stopAllSounds();
+	  GetSoundEngine()->play2D("../../audio/death.wav", GL_FALSE);
       LeaveGameLoop(map);
       break;
     }
@@ -142,4 +165,8 @@ void IncrementEnemiesKilled() {
 
 int GetEnemiesKilled() {
   return enemiesKilled;
+}
+
+std::vector<DungeonTile> GetCurrentRoomWalls() {
+	return masterMap.getImpassableList();
 }

@@ -14,6 +14,7 @@ public:
 	bool hasSword;
 	int curHealth;
 	int maxHealth;
+	float invincTimer;
 	
 	uint score;
 	

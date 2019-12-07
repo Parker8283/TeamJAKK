@@ -12,24 +12,30 @@ Player::Player() : Entity(glm::vec2(0, 0), "../../common/sprites/GungeonRipoffBa
 	maxHealth = 10;
 	curHealth = maxHealth;
 	speed = 5.0f;
+	Position = glm::vec2(5, 7);
 	score = 0;
 	
-	Position = glm::vec2(0, 0);
 	SetPlayer(this);
 
 	heldSword = new Sword("../../common/sprites/Sword1.png");
+	hasSword = true;
+	invincTimer = 0;
 }
 
 
 bool Player::Update()
 {
+	Entity::Update();
 	float frameDelta = GetFrameDeltaTime();
+	invincTimer += frameDelta;
 	
 	std::list<Entity*>* entities = GetEntityList();
 
 	glm::vec2 dir = normalizeDir(GetPlayerMoveDir());
 
-	vec2 nextPos = Position + dir * frameDelta * speed;
+	float frameSpeed = speed;
+	if (!hasSword) frameSpeed = frameSpeed + 2;
+	vec2 nextPos = Position + dir * frameDelta * frameSpeed;
 
 	CollisionBox hitBox = CollisionBox(1, 1, &nextPos);
 
@@ -61,7 +67,10 @@ void Player::AddScore(uint s) {
 }
 
 void Player::DamagePlayer(int damage) {
-	curHealth -= damage;
+	if (invincTimer > .75f) {
+		curHealth -= damage;
+		invincTimer = 0;
+	}
 }
 
 void Player::Draw()
@@ -101,19 +110,23 @@ float Player::GetPlayerWalkSpeed(void)
 
 void Player::Attack(void* null)
 {
-	double xpos, ypos;
-	glfwGetCursorPos(GetWindow(), &xpos, &ypos);
-	double ndcX = (xpos - (1920 / 2)) / (1920 / 2);
-	double ndcY = (ypos - (1080 / 2)) / (1080 / 2);
-	vec2 ndc = normalizeDir(vec2(ndcX, -ndcY));
+	if (hasSword) {
+		double xpos, ypos;
+		glfwGetCursorPos(GetWindow(), &xpos, &ypos);
+		double ndcX = (xpos - (1920 / 2)) / (1920 / 2);
+		double ndcY = (ypos - (1080 / 2)) / (1080 / 2);
+		vec2 ndc = normalizeDir(vec2(ndcX, -ndcY));
 
-	float angle = atan2(ndc.y, ndc.x);
-	angle = (angle >= 0 ? angle : (2.0f * 3.14159265f + angle));
-	angle = (angle * 180) / 3.14159265f;
+		float angle = atan2(ndc.y, ndc.x);
+		angle = (angle >= 0 ? angle : (2.0f * 3.14159265f + angle));
+		angle = (angle * 180) / 3.14159265f;
 
-	heldSword->direction = ndc;
-	heldSword->rotation = angle;
-	heldSword->UpdateState(Sword::State::Fly);
+		heldSword->direction = ndc;
+		heldSword->rotation = angle;
+		heldSword->UpdateState(Sword::State::Fly);
+		hasSword = false;
+		GetSoundEngine()->play2D("../../audio/woosh.wav", GL_FALSE);
+	}
 }
 
 Sword* Player::GetSword()

@@ -9,17 +9,22 @@
 #include "DungeonTile.h"
 #include <vector>
 #include <glm/glm.hpp>
+#include <list>
 
 class DungeonMap{
 private:
-  DungeonTile** tiles;     //core structure of the map, MxN sizes independently variable
+       //core structure of the map, MxN sizes independently variable
   std::string textureType; //string points to the folder in which the textures for the individual tiles are stored
   
   int xSize;               //number of internal rows
   int ySize;               //number of internal columns
   glm::vec2 tileDim;
 
+  std::vector<DungeonTile> impassableList;
+  std::vector<DungeonTile> passableList;
+
 public:
+	DungeonTile** tiles;
   DungeonMap();
   DungeonMap(DungeonTile** map, int x, int y);   //construct using existing matrix, x&y size set automatically
   ~DungeonMap();
@@ -40,6 +45,8 @@ public:
   void setCols(int cols);
 
   std::vector<DungeonTile> getImpassableList();
+  std::vector<DungeonTile> getPassableList();
+  std::vector<DungeonTile> getRoomFloor();
 
   glm::vec2 getTileDim(void);
 };

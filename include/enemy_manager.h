@@ -30,12 +30,15 @@ public:
 	glm::vec2 size;
 	glm::vec2 shotSize;
 
-	Archetype(const char*, const char*, bool, float, float, float, int, float, int, Behavior::AIType, glm::vec2, glm::vec2);
+	int score;
+
+	Archetype(const char*, const char*, bool, float, float, float, int, float, int, Behavior::AIType, glm::vec2, glm::vec2, int score);
 };
 
+void GenerateEnemyRoom(std::vector<DungeonTile>);
 void GenerateEnemyRoom(DungeonTile*, int);
 // args		enemy texture, shot texture, doesShoot, moveSpeed, shotFrequency, AIType, 
-void GenerateEnemy(glm::vec2, char*, char*, bool, float, float, float, int, float, int, Behavior::AIType, glm::vec2, glm::vec2);
+void GenerateEnemy(glm::vec2, char*, char*, bool, float, float, float, int, float, int, Behavior::AIType, glm::vec2, glm::vec2, int score);
 void GenerateEnemy(glm::vec2, Archetype);
 
 glm::vec2 GetRandomPos(glm::vec2, glm::vec2);

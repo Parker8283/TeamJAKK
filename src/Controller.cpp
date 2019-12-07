@@ -160,9 +160,9 @@ void UpdatePlayer(void) {
   
   vec2 nextPos = playerPos + moveDir * frameDelta * playerWalkSpeed;
   
-  CollisionBox hitBox = CollisionBox(1,1, &nextPos);
+  //CollisionBox hitBox = CollisionBox(1,1, &nextPos);
 
-  bool collided = false;
+  /**bool collided = false;
   std::list<Entity*>::iterator it;
   for (it = entities->begin(); it != entities->end(); ++it)
   {
@@ -170,7 +170,7 @@ void UpdatePlayer(void) {
       collided = true;
       break;
     }
-  }
+  }*/
 
   //Collision disabled for now
   //if(!collided)

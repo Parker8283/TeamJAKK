@@ -33,14 +33,25 @@ Projectile::~Projectile(void) {
 
 bool Projectile::Update()
 {
-	bool del = false;;
+	Entity::Update();
+	bool del = false;
 	float frameDelta = GetFrameDeltaTime();
 	Position += direction * frameDelta * speed;
+
+	if (checkCollision(this->GetHitBox(), GetPlayer()->GetSword()->GetHitBox()) && 
+		(GetPlayer()->GetSword()->GetState() == Sword::State::Held || GetPlayer()->GetSword()->GetState() == Sword::State::Fly) ) {
+		del = true;
+	}
 
 	if (checkCollision(this->GetHitBox(), GetPlayer()->GetHitBox())) {
 		del = true;
 		GetPlayer()->DamagePlayer(damage);
 	}
+
+	if (!del && CheckWalls(Position)) {
+		del = true;
+	}
+	
 
 	if (abs(Position.x) > 50 || abs(Position.y) > 50)
 		del = true;

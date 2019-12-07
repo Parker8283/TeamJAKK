@@ -12,7 +12,7 @@ Sword::Sword(const char* file) : Projectile(file, GetPlayerPos(), vec2(0), 1, si
 	Height   = .8f;
 	size     = glm::vec2(Width, Height);
 
-	speed    = 3;
+	speed    = 5;
 
 	damage   = 1;
 	currentState = State::Held;
@@ -25,6 +25,7 @@ void Sword::Init()
 
 bool Sword::Update(void)
 {
+	Entity::Update();
 	float frameDelta = GetFrameDeltaTime();
 
 	switch (GetState())
@@ -44,12 +45,20 @@ bool Sword::Update(void)
 			}
 		}*/
 
+		if (CheckWalls(Position)) {
+			UpdateState(State::Ground);
+		}
+
 		if (abs(Position.x) > 50 || abs(Position.y) > 50)
 		{
 			UpdateState(State::Held);
 		}
 		break;
 	case Sword::State::Ground:
+		if (checkCollision(this->GetHitBox(), GetPlayer()->GetHitBox())) {
+			UpdateState(State::Held);
+			GetPlayer()->hasSword = true;
+		}
 		break;
 	case Sword::State::Held:
 		glm::vec3 temp = swordMath();

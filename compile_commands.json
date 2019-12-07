@@ -201,6 +201,11 @@
 },
 {
   "directory": "/home/mark/Documents/Mark/MTU School/CS3141/TeamJAKK",
+  "command": "/usr/bin/c++   -I\"/home/mark/Documents/Mark/MTU School/CS3141/TeamJAKK/src\" -I\"/home/mark/Documents/Mark/MTU School/CS3141/TeamJAKK/include\" -I\"/home/mark/Documents/Mark/MTU School/CS3141/TeamJAKK/opengllib/Include\" -I\"/home/mark/Documents/Mark/MTU School/CS3141/TeamJAKK/opengllib/Lib\"    -o CMakeFiles/sword_test.dir/src/Hud.cpp.o -c \"/home/mark/Documents/Mark/MTU School/CS3141/TeamJAKK/src/Hud.cpp\"",
+  "file": "/home/mark/Documents/Mark/MTU School/CS3141/TeamJAKK/src/Hud.cpp"
+},
+{
+  "directory": "/home/mark/Documents/Mark/MTU School/CS3141/TeamJAKK",
   "command": "/usr/bin/c++   -I\"/home/mark/Documents/Mark/MTU School/CS3141/TeamJAKK/src\" -I\"/home/mark/Documents/Mark/MTU School/CS3141/TeamJAKK/include\" -I\"/home/mark/Documents/Mark/MTU School/CS3141/TeamJAKK/opengllib/Include\" -I\"/home/mark/Documents/Mark/MTU School/CS3141/TeamJAKK/opengllib/Lib\"    -o CMakeFiles/sword_test.dir/src/MainMenu.cpp.o -c \"/home/mark/Documents/Mark/MTU School/CS3141/TeamJAKK/src/MainMenu.cpp\"",
   "file": "/home/mark/Documents/Mark/MTU School/CS3141/TeamJAKK/src/MainMenu.cpp"
 },

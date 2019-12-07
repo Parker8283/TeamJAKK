@@ -19,9 +19,17 @@ DungeonMap::DungeonMap() {
 DungeonMap::DungeonMap(DungeonTile** map, int x, int y) {
   tiles = map;
   textureType = DEFAULTTEXTURE;
-
   xSize = x;
   ySize = y;
+
+  for (int i = 0; i < xSize * ySize; i++) {
+		if (!tiles[0][i].isPassable()) {
+			impassableList.push_back(tiles[0][i]);
+		} else {
+			passableList.push_back(tiles[0][i]);
+		}
+  }
+
 }
 
 DungeonMap::~DungeonMap() {
@@ -71,34 +79,34 @@ void DungeonMap::setCols(int cols) {
 }
 
 std::vector<DungeonTile> DungeonMap::getImpassableList() {
+	return impassableList;
+}
 
-  std::vector<DungeonTile> ret;
+std::vector<DungeonTile> DungeonMap::getRoomFloor() {
+	return getPassableList();
+}
 
-  for (int i = 0; i < xSize ; i++) {
-    for (int j = 0; j < ySize ; j++) {
-      if (!tiles[i][j].isPassable()) {
-        ret.insert(ret.end(), tiles[i][j]);
-      }
-    }
-  }
-
-  return ret;
+std::vector<DungeonTile> DungeonMap::getPassableList() {
+	return passableList;
 }
 
 DungeonTile* GenerateTestRoom(int width, int height) {
   DungeonTile* testRoom = new DungeonTile[width * height];
+  float lastx;
+  float lasty;
 
   for (int j = 0; j < height; j++) {
     for (int i = 0; i < width; i++) {
       int index = i + j * width;
       if (i == 0 || j == 0 || i == (width - 1) || j == (height - 1)) {
-        testRoom[index] = DungeonTile(false, j*2 + 0.5f, 10 - i*2 + 0.5f);
+        testRoom[index] = DungeonTile(false, j*2 + 1.0f, (height - i*2) + 1.0f);
       } else {
-        testRoom[index] = DungeonTile(true , j*2 + 0.5f, 10 - i*2 + 0.5f);
+        testRoom[index] = DungeonTile(true , j*2 + 1.0f, (height - i*2) + 1.0f);
       }
+	  lastx = j * 2 + 1.0f;
+	  lasty = height - i * 2 + 1.0f;
     }
   }
-
   return testRoom;
 }
 

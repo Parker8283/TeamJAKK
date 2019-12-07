@@ -45,7 +45,7 @@ Entity::Entity(vec2 pos, const char* filepath)
   Position.x = pos.x;
   Position.y = pos.y;
 
-  hitBox = CollisionBox(1, 1, &Position);
+  hitBox = CollisionBox(1, 1, Position);
 
   texture = LoadTexture(filepath);
   glGenVertexArrays(1, &VAO);
@@ -92,6 +92,63 @@ void Entity::Draw(void)
   glUniformMatrix4fv(glGetUniformLocation(GetShader(), "MVP"), 1, GL_FALSE, &MVP[0][0]);
 
   glDrawArrays(GL_TRIANGLES, 0, 6);
+}
+
+bool Entity::Update() {
+	hitBox.SetPos(Position);
+	return false;
+}
+
+bool Entity::CheckWalls(glm::vec2 pos) {
+	CollisionBox hit = CollisionBox(Width, Height, pos + glm::vec2(.2, .2));
+	int num = 0;
+	std::vector<DungeonTile> walls = GetCurrentRoomWalls();
+	std::vector<DungeonTile>::iterator it;
+
+	for (it = walls.begin(); it != walls.end(); ++it) {
+		if (checkCollision(it->GetHitBox(), hit)) {
+			return true;
+		}
+	}
+
+	return false;
+}
+
+glm::vec2 Entity::CheckEntities(glm::vec2 pos, std::list<Entity*>* e) {
+	CollisionBox hit = CollisionBox(Width, Height, pos);
+	
+	std::list<Entity*>::iterator it;
+
+	for (it = e->begin(); it != e->end(); ++it) {
+		if ((*it) != this) {
+			glm::vec2 res = CheckEntity(pos, (*it));
+			if (res != pos) {
+				return res;
+			}
+		}
+	}
+
+	return pos;
+}
+
+glm::vec2 Entity::CheckEntity(glm::vec2 pos, Entity* e) {
+	CollisionBox hit = CollisionBox(Width, Height, pos);
+
+	if (checkCollision(hit, e->GetHitBox())) {
+		glm::vec2 nextX = glm::vec2(pos.x, Position.y);
+		glm::vec2 nextY = glm::vec2(Position.x, pos.y);
+		if (CheckWalls(nextX) /**&& !CheckWalls(nextY)*/) {
+			return nextY;
+		}
+		else if (CheckWalls(nextY) /**&& !CheckWalls(nextX)*/) {
+			return nextX;
+		}
+		else {
+			return Position;
+		}
+	}
+
+	return pos;
 }
 
 CollisionBox Entity::GetHitBox(void) {
