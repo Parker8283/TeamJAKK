@@ -31,6 +31,8 @@ Enemy::Enemy(glm::vec2 pos, Archetype arch) : Entity(pos, arch.enemyTexture)
 	shotSize = arch.shotSize;
 
 	SetState(BehaviorState::Seek);
+
+	AddEnemy(this);
 }
 
 bool Enemy::Update(void)
@@ -75,6 +77,12 @@ bool Enemy::Update(void)
 			}
 		}
 		else {
+			glm::vec2 oldPos = nextPos;
+			nextPos = CheckEntity(nextPos, GetPlayer());
+			if (oldPos != nextPos) {
+				GetPlayer()->DamagePlayer(damage);
+			}
+			nextPos = CheckEntities(nextPos, GetEnemyList());
 			Position = nextPos;
 		}
 
@@ -122,7 +130,28 @@ bool Enemy::Update(void)
 
 		moveDir = moveTarget - Position;
 		moveDir = normalizeDir(moveDir);
-		Position += moveDir * GetFrameDeltaTime() * speed;
+		glm::vec2 nextPoss = Position + (moveDir * GetFrameDeltaTime() * speed);
+		if (CheckWalls(nextPoss)) {
+			glm::vec2 nextX = glm::vec2(nextPoss.x, Position.y);
+			glm::vec2 nextY = glm::vec2(Position.x, nextPoss.y);
+			if (CheckWalls(nextX) && !CheckWalls(nextY)) {
+				Position = nextY;
+			}
+			else if (CheckWalls(nextY) && !CheckWalls(nextX)) {
+				Position = nextX;
+			}
+			else {
+
+			}
+		}
+		else {
+			glm::vec2 oldPos = nextPoss;
+			nextPoss = CheckEntity(nextPoss, GetPlayer());
+			if (oldPos != nextPoss) {
+				GetPlayer()->DamagePlayer(damage);
+			}
+			Position = nextPoss;
+		}
 		if (moveDir.x < 0 && !flipped) {
 			size.x = size.x * -1;
 			flipped = true;
@@ -164,6 +193,7 @@ void Enemy::SetState(Enemy::BehaviorState s)
 
 void Enemy::Die()
 {
+	RemoveEnemy(this);
 	IncrementEnemiesKilled();
 	delete shot;
 	RemoveEntity(this);

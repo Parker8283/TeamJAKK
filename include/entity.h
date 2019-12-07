@@ -41,6 +41,8 @@ public:
 
 	CollisionBox GetHitBox(void);
 	bool CheckWalls(glm::vec2);
+	glm::vec2 CheckEntities(glm::vec2, std::list<Entity*>*);
+	glm::vec2 CheckEntity(glm::vec2, Entity*);
 	
 	GLuint GetVBO(void);
 	

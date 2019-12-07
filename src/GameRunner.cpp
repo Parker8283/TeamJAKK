@@ -14,6 +14,7 @@ static int cursor = 0;
 static int enemiesKilled = 0;
 
 static std::list< Entity* > entities;
+static std::list<Entity*> enemies;
 static std::vector<Entity*> removeList;
 static DungeonMap masterMap;
 irrklang::ISoundEngine* SoundEngine = irrklang::createIrrKlangDevice();
@@ -27,6 +28,18 @@ void AddEntity(Entity* e)
   entities.push_back(e);
   e->SetUID(cursor);
   cursor++;
+}
+
+void AddEnemy(Entity* e) {
+	enemies.push_back(e);
+}
+
+void RemoveEnemy(Entity* e) {
+	enemies.remove(e);
+}
+
+std::list<Entity*>* GetEnemyList(void) {
+	return &enemies;
 }
 
 std::list<Entity*> * GetEntityList(void) {

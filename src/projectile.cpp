@@ -38,6 +38,11 @@ bool Projectile::Update()
 	float frameDelta = GetFrameDeltaTime();
 	Position += direction * frameDelta * speed;
 
+	if (checkCollision(this->GetHitBox(), GetPlayer()->GetSword()->GetHitBox()) && 
+		(GetPlayer()->GetSword()->GetState() == Sword::State::Held || GetPlayer()->GetSword()->GetState() == Sword::State::Fly) ) {
+		del = true;
+	}
+
 	if (checkCollision(this->GetHitBox(), GetPlayer()->GetHitBox())) {
 		del = true;
 		GetPlayer()->DamagePlayer(damage);

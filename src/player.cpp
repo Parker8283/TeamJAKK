@@ -19,6 +19,7 @@ Player::Player() : Entity(glm::vec2(0, 0), "../../common/sprites/GungeonRipoffBa
 
 	heldSword = new Sword("../../common/sprites/Sword1.png");
 	hasSword = true;
+	invincTimer = 0;
 }
 
 
@@ -26,12 +27,15 @@ bool Player::Update()
 {
 	Entity::Update();
 	float frameDelta = GetFrameDeltaTime();
+	invincTimer += frameDelta;
 	
 	std::list<Entity*>* entities = GetEntityList();
 
 	glm::vec2 dir = normalizeDir(GetPlayerMoveDir());
 
-	vec2 nextPos = Position + dir * frameDelta * speed;
+	float frameSpeed = speed;
+	if (!hasSword) frameSpeed = frameSpeed + 2;
+	vec2 nextPos = Position + dir * frameDelta * frameSpeed;
 
 	CollisionBox hitBox = CollisionBox(1, 1, nextPos);
 
@@ -49,18 +53,18 @@ bool Player::Update()
 		glm::vec2 nextX = glm::vec2(nextPos.x, Position.y);
 		glm::vec2 nextY = glm::vec2(Position.x, nextPos.y);
 		if (CheckWalls(nextX) && !CheckWalls(nextY)) {
-			Position = nextY;
+			nextPos = nextY;
 		}
 		else if (CheckWalls(nextY) && !CheckWalls(nextX)) {
-			Position = nextX;
+			nextPos = nextX;
 		}
 		else {
-
+			nextPos = Position;
 		}
 	}
-	else {
-		Position = nextPos;
-	}
+	
+	Position = CheckEntities(nextPos, GetEnemyList());
+	
 
 	//Collision disabled for now
 	//if(!collided)
@@ -72,7 +76,10 @@ bool Player::Update()
 }
 
 void Player::DamagePlayer(int damage) {
-	curHealth -= damage;
+	if (invincTimer > 1) {
+		curHealth -= damage;
+		invincTimer = 0;
+	}
 }
 
 void Player::Draw()

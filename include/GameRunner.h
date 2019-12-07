@@ -14,6 +14,8 @@ void EnterGameLoop(void);
 void LeaveGameLoop(DungeonTile*);
 void AddEntity(Entity* e);
 void RemoveEntity(Entity* e);
+void AddEnemy(Entity*);
+void RemoveEnemy(Entity*);
 Player* GetPlayer();
 void SetPlayer(Player*);
 int GetEnemiesKilled();
@@ -22,4 +24,5 @@ std::vector<DungeonTile> GetCurrentRoomWalls();
 irrklang::ISoundEngine* GetSoundEngine();
 
 std::list<Entity*> * GetEntityList(void);
+std::list<Entity*> * GetEnemyList(void);
 #endif
