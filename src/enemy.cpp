@@ -29,6 +29,7 @@ Enemy::Enemy(glm::vec2 pos, Archetype arch) : Entity(pos, arch.enemyTexture)
 	damage = arch.damage;
 	size = arch.size;
 	shotSize = arch.shotSize;
+	score = arch.score;
 
 	SetState(BehaviorState::Seek);
 
