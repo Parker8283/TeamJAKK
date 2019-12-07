@@ -131,6 +131,7 @@ void EnterGameLoop(void) {
     glfwPollEvents();
     glfwSwapBuffers(GetWindow());
     if (GetPlayer()->GetHealth() <= 0) {
+		SoundEngine->stopAllSounds();
 	  GetSoundEngine()->play2D("../../audio/death.wav", GL_FALSE);
       LeaveGameLoop(map);
       break;

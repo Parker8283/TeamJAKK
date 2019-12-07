@@ -76,7 +76,7 @@ bool Player::Update()
 }
 
 void Player::DamagePlayer(int damage) {
-	if (invincTimer > 1) {
+	if (invincTimer > .75f) {
 		curHealth -= damage;
 		invincTimer = 0;
 	}
