@@ -4,6 +4,7 @@
 #include <GameRunner.h>
 #include <glm/glm.hpp>
 #include <Graphics.h>
+#include <MainMenu.h>
 #include <stdio.h>
 #include <System.h>
 #include <WindowManager.h>
@@ -89,8 +90,13 @@ void EnterGameLoop(void) {
   glClearColor(0, 0, 0, 1);
   RefreshSystemTimer();
   SoundEngine->play2D("../../audio/song.wav", GL_TRUE);
-  while (GetGameState() == GameState::RUN_GAME) {
+  while (GetGameState() == GameState::RUN_GAME || GetGameState() == GameState::PAUSE_GAME) {
+    if (GetGameState() == GameState::PAUSE_GAME) {
+      PauseGame();
+      RefreshSystemTimer();
+    }
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+
     UpdateSystemTimer();
     UpdateKeys();
 

@@ -69,26 +69,17 @@ bool Enemy::Update(void)
 
 		moveDir = moveTarget - Position;
 		moveDir = normalizeDir(moveDir);
-<<<<<<< HEAD
 
 		nextPos = Position + moveDir * GetFrameDeltaTime() * speed;
-=======
-		
-		glm::vec2 nextPos =Position +  (moveDir * GetFrameDeltaTime() * speed);
 		if (CheckWalls(nextPos)) {
 			glm::vec2 nextX = glm::vec2(nextPos.x, Position.y);
 			glm::vec2 nextY = glm::vec2(Position.x, nextPos.y);
 			if (CheckWalls(nextX) && !CheckWalls(nextY)) {
 				Position = nextY;
-			}
-			else if (CheckWalls(nextY) && !CheckWalls(nextX)) {
+			} else if (CheckWalls(nextY) && !CheckWalls(nextX)) {
 				Position = nextX;
 			}
-			else {
-
-			}
-		}
-		else {
+		} else {
 			glm::vec2 oldPos = nextPos;
 			nextPos = CheckEntity(nextPos, GetPlayer());
 			if (oldPos != nextPos) {
@@ -98,114 +89,107 @@ bool Enemy::Update(void)
 			Position = nextPos;
 		}
 
->>>>>>> 29f4712506c1b2d9856d778ac4e529e443c0b619
-		if (moveDir.x < 0 && !flipped) {
-			size.x = size.x * -1;
-			flipped = true;
-		} else if (moveDir.x < 0) {
-
-		} else {
-			size.x = abs(size.x);
-			flipped = false;
-		}
-
-		break;
-	case BehaviorState::Fire:
-		//printf("Shoot her!\n");
-		target = behavior->GetFireTarget();
-
-		shot = new Projectile(weaponFile, Position + glm::vec2((size.x * 0.5), 0), target, damage, shotSize);
-
-		//shot->Init(Position + glm::vec2((size.x * 0.5), 0), target);
-
-		this->SetState(BehaviorState::Seek);
-		break;
-	case BehaviorState::Flee:
-		randX = (rand() % 12) - 6;
-		randY = (rand() % 12) - 6;
-		if (quadrant(vec2(randX, randY)) == quadrant(GetPlayerPos())) {
-			randX = -randX;
-		}
-		moveTarget = vec2(GetPlayerPos()) + vec2(randX, randY);
-		SetState(BehaviorState::Fleeing);
-		break;
-	case BehaviorState::Fleeing:
-		timer += GetFrameDeltaTime();
-		if (timer > 4)
-		{
-			timer = 0;
-			SetState(BehaviorState::Seek);
-		}
-		if (abs(Position.x - moveTarget.x) < .1 && abs(Position.y - moveTarget.y) < .1) {
-			timer = 0;
-			SetState(BehaviorState::Seek);
-		}
-
-		moveDir = moveTarget - Position;
-		moveDir = normalizeDir(moveDir);
-<<<<<<< HEAD
-		nextPos = Position + moveDir * GetFrameDeltaTime() * speed;
-
-=======
-		glm::vec2 nextPoss = Position + (moveDir * GetFrameDeltaTime() * speed);
-		if (CheckWalls(nextPoss)) {
-			glm::vec2 nextX = glm::vec2(nextPoss.x, Position.y);
-			glm::vec2 nextY = glm::vec2(Position.x, nextPoss.y);
-			if (CheckWalls(nextX) && !CheckWalls(nextY)) {
-				Position = nextY;
-			}
-			else if (CheckWalls(nextY) && !CheckWalls(nextX)) {
-				Position = nextX;
-			}
-			else {
-
-			}
-		}
-		else {
-			glm::vec2 oldPos = nextPoss;
-			nextPoss = CheckEntity(nextPoss, GetPlayer());
-			if (oldPos != nextPoss) {
-				GetPlayer()->DamagePlayer(damage);
-			}
-			Position = nextPoss;
-		}
->>>>>>> 29f4712506c1b2d9856d778ac4e529e443c0b619
-		if (moveDir.x < 0 && !flipped) {
-			size.x = size.x * -1;
-			flipped = true;
-		}
-		else if (moveDir.x < 0) {
-
-		}
-		else {
-			size.x = abs(size.x);
-			flipped = false;
-		}
-		break;
-	default:
-		SetState(BehaviorState::Seek);
-		break;
+	if (moveDir.x < 0 && !flipped) {
+		size.x = size.x * -1;
+		flipped = true;
+	} else {
+		size.x = abs(size.x);
+		flipped = false;
 	}
+	break;
+case BehaviorState::Fire:
+	//printf("Shoot her!\n");
+	target = behavior->GetFireTarget();
 
-	if (checkCollision(hitBox, GetPlayer()->GetSword()->GetHitBox()) && GetPlayer()->GetSword()->GetState() == Sword::State::Fly) {
-		GetPlayer()->GetSword()->UpdateState(Sword::State::Ground);
-		return this->TakeDamage(GetPlayer()->GetSword()->damage);
+	shot = new Projectile(weaponFile, Position + glm::vec2((size.x * 0.5), 0), target, damage, shotSize);
+
+	//shot->Init(Position + glm::vec2((size.x * 0.5), 0), target);
+
+	this->SetState(BehaviorState::Seek);
+	break;
+case BehaviorState::Flee:
+	randX = (rand() % 12) - 6;
+	randY = (rand() % 12) - 6;
+	if (quadrant(vec2(randX, randY)) == quadrant(GetPlayerPos())) {
+		randX = -randX;
 	}
-
-	std::list<Entity*>::iterator it;
-	for (it = entities->begin(); it != entities->end(); ++it)
+	moveTarget = vec2(GetPlayerPos()) + vec2(randX, randY);
+	SetState(BehaviorState::Fleeing);
+	break;
+case BehaviorState::Fleeing:
+	timer += GetFrameDeltaTime();
+	if (timer > 4)
 	{
-		if (checkCollision(hitBox, (*it)->GetHitBox()) && this != *it) {
-			collided = true;
-			break;
-		}
+		timer = 0;
+		SetState(BehaviorState::Seek);
+	}
+	if (abs(Position.x - moveTarget.x) < .1 && abs(Position.y - moveTarget.y) < .1) {
+		timer = 0;
+		SetState(BehaviorState::Seek);
 	}
 
-	if(!collided)
-		Position = nextPos;
+	moveDir = moveTarget - Position;
+	moveDir = normalizeDir(moveDir);
+	nextPos = Position + moveDir * GetFrameDeltaTime() * speed;
 
-	hitBox.Draw();
-	return false;
+	if (CheckWalls(nextPos)) {
+		glm::vec2 nextX = glm::vec2(nextPos.x, Position.y);
+		glm::vec2 nextY = glm::vec2(Position.x, nextPos.y);
+		if (CheckWalls(nextX) && !CheckWalls(nextY)) {
+			Position = nextY;
+		}
+		else if (CheckWalls(nextY) && !CheckWalls(nextX)) {
+			Position = nextX;
+		}
+		else {
+
+		}
+	}
+	else {
+		glm::vec2 oldPos = nextPos;
+		nextPos = CheckEntity(nextPos, GetPlayer());
+		if (oldPos != nextPos) {
+			GetPlayer()->DamagePlayer(damage);
+		}
+		Position = nextPos;
+	}
+	
+	if (moveDir.x < 0 && !flipped) {
+		size.x = size.x * -1;
+		flipped = true;
+	}
+	else if (moveDir.x < 0) {
+
+	}
+	else {
+		size.x = abs(size.x);
+		flipped = false;
+	}
+	break;
+default:
+	SetState(BehaviorState::Seek);
+	break;
+}
+
+if (checkCollision(hitBox, GetPlayer()->GetSword()->GetHitBox()) && GetPlayer()->GetSword()->GetState() == Sword::State::Fly) {
+	GetPlayer()->GetSword()->UpdateState(Sword::State::Ground);
+	return this->TakeDamage(GetPlayer()->GetSword()->damage);
+}
+
+std::list<Entity*>::iterator it;
+for (it = entities->begin(); it != entities->end(); ++it)
+{
+	if (checkCollision(hitBox, (*it)->GetHitBox()) && this != *it) {
+		collided = true;
+		break;
+	}
+}
+
+if (!collided)
+	Position = nextPos;
+
+hitBox.Draw();
+return false;
 }
 
 void Enemy::Draw(void)

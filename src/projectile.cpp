@@ -33,7 +33,6 @@ Projectile::~Projectile(void) {
 
 bool Projectile::Update()
 {
-	Entity::Update();
 	bool del = false;
 	float frameDelta = GetFrameDeltaTime();
 	Position += direction * frameDelta * speed;

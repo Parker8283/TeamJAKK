@@ -45,6 +45,9 @@ void CollisionBox::Draw(void) {
 
   glDrawArrays(GL_LINES, 0, 8);
 }
+ void CollisionBox::SetPos(glm::vec2* p) {
+	 this->pos = p;
+ }
 
 bool checkCollision(CollisionBox box1, CollisionBox box2) {
 	//printf("%f %f\n", box1.GetPos().x, box1.GetPos().y);

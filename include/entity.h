@@ -16,8 +16,8 @@ class Entity
 public:
 	CollisionBox hitBox;
 
-	GLuint VBO[2];
 	GLuint VAO;
+	GLuint VBO[2];
 	// variables used in Drawing the entity
 	GLuint texture;
 	glm::vec2 Position;
@@ -31,13 +31,14 @@ public:
 	int uID;
 
 	Entity(glm::vec2 pos, const char* filepath);
+	virtual ~Entity() {};
 
 	void Draw(void);
 	void SetUID(int);
 
 	bool operator==(const Entity&);
 	
-	virtual bool Update(void);
+	virtual bool Update(void) { return false; } ;
 
 	CollisionBox GetHitBox(void);
 	bool CheckWalls(glm::vec2);

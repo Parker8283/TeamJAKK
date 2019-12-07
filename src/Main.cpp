@@ -21,19 +21,21 @@ int main(void) {
   SetupText();            //Setup text rendering programs
   SetGameState(GameState::MAIN_MENU); //Set the game into a run game state for demoing right now
 
-  while(GetGameState() != GameState::EXIT_GAME) {
-    switch(GetGameState()) {
-	case GameState::MAIN_MENU:
-        MainMenu();
-        break;
-	case GameState::RUN_GAME:
-        EnterGameLoop();  // Enter game loop
-        break;
-	case GameState::EXIT_GAME:
-        break;
-	case GameState::GAME_OVER:
-		GameOver();
-		break;
+  while (GetGameState() != GameState::EXIT_GAME) {
+    switch (GetGameState()) {
+    case GameState::MAIN_MENU:
+      MainMenu();
+      break;
+    case GameState::RUN_GAME:
+      EnterGameLoop();  // Enter game loop
+      break;
+    case GameState::EXIT_GAME:
+      break;
+    case GameState::PAUSE_GAME:
+      break;
+    case GameState::GAME_OVER:
+      GameOver();
+      break;
     }
   }
 

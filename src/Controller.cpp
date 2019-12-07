@@ -90,8 +90,9 @@ void rightWalkCycle(void) {
   }
 } */
 
-static void exitGame(void* null) {
-  SetGameState(GameState::EXIT_GAME);
+static void pauseGame(void* null) {
+  SetGameState(GameState::PAUSE_GAME);
+  pressedMap[GLFW_KEY_ESCAPE] = false;
 }
 
 void LoadPlayerControls(void) {
@@ -99,7 +100,7 @@ void LoadPlayerControls(void) {
   BindKey(GLFW_KEY_A,      moveLeft,  NULL, NULL);
   BindKey(GLFW_KEY_S,      moveDown,  NULL, NULL);
   BindKey(GLFW_KEY_D,      moveRight, NULL, NULL);
-  BindKey(GLFW_KEY_ESCAPE, exitGame,  NULL, NULL);
+  BindKey(GLFW_KEY_ESCAPE, pauseGame,  NULL, NULL);
   BindMouse(GLFW_MOUSE_BUTTON_1, Throw, NULL, NULL);
 
   playerPos = vec2(7, 4);
@@ -139,45 +140,6 @@ void UnpressKeys(void) {
 		DeActivateKey(it->first);
 		pressedMap.erase(it->first);
 	}
-}
-
-void UpdatePlayer(void) {
-  float frameDelta = GetFrameDeltaTime();
-  //Reset move direction
-  moveDir = vec2(0);
-  /* Check all keyboard keys */
-  for (std::map<int, bool>::iterator it = pressedMap.begin(); it != pressedMap.end(); it++) {
-    if (it->second) {
-      ActivateKey(it->first);
-    } else {
-      DeActivateKey(it->first);
-      pressedMap.erase(it->first);
-    }
-  }
-  std::list<Entity *> * entities = GetEntityList();
-
-  moveDir    = normalizeDir(moveDir);
-  
-  vec2 nextPos = playerPos + moveDir * frameDelta * playerWalkSpeed;
-  
-  //CollisionBox hitBox = CollisionBox(1,1, &nextPos);
-
-  /**bool collided = false;
-  std::list<Entity*>::iterator it;
-  for (it = entities->begin(); it != entities->end(); ++it)
-  {
-    if(checkCollision(hitBox, (*it)->GetHitBox())) {
-      collided = true;
-      break;
-    }
-  }*/
-
-  //Collision disabled for now
-  //if(!collided)
-  playerPos = nextPos;
-  
-  //SetView(lookAt(vec3(0, 0, 10), vec3(0, 0, 0), UP));
-  SetView(lookAt(vec3(playerPos.x, playerPos.y, 10), vec3(playerPos.x, playerPos.y, 0), UP));
 }
 
 GLuint GetPlayerSpriteID(void) {

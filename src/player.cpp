@@ -37,8 +37,6 @@ bool Player::Update()
 	if (!hasSword) frameSpeed = frameSpeed + 2;
 	vec2 nextPos = Position + dir * frameDelta * frameSpeed;
 
-	CollisionBox hitBox = CollisionBox(1, 1, &nextPos);
-
 	bool collided = false;
 	std::list<Entity*>::iterator it;
 	for (it = entities->begin(); it != entities->end(); ++it)
@@ -50,6 +48,23 @@ bool Player::Update()
 			collided = true;
 			break;
 		}
+	}
+
+	if (CheckWalls(nextPos)) {
+		glm::vec2 nextX = glm::vec2(nextPos.x, Position.y);
+		glm::vec2 nextY = glm::vec2(Position.x, nextPos.y);
+		if (CheckWalls(nextX) && !CheckWalls(nextY)) {
+			Position = nextY;
+		}
+		else if (CheckWalls(nextY) && !CheckWalls(nextX)) {
+			Position = nextX;
+		}
+		else {
+
+		}
+	}
+	else {
+		Position = nextPos;
 	}
 
 	//Collision for player

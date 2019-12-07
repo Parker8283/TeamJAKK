@@ -8,6 +8,7 @@ typedef enum class GameState {
   MAIN_MENU = 0,
   RUN_GAME,
   EXIT_GAME,
+  PAUSE_GAME,
   GAME_OVER
 } GameState;
 

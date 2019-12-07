@@ -14,7 +14,6 @@ class DungeonTile {
     float worldX;
     float worldY;
 
-	CollisionBox box;
 	glm::vec2 position;
 
     public:
@@ -33,7 +32,5 @@ class DungeonTile {
     float getWorldX();
     float getWorldY();
 	CollisionBox GetHitBox(void);
-
-
 };
 #endif

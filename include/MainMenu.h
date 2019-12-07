@@ -3,5 +3,6 @@
 
 void MainMenu(void);
 void GameOver(void);
+void PauseGame(void);
 
 #endif

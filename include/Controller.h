@@ -9,7 +9,6 @@
 
 void LoadPlayerControls(void);
 void SetControlContext(GameState state);
-void UpdatePlayer(void);
 void UpdateKeys(void);
 void UnpressKeys(void);
 

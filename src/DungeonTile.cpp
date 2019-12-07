@@ -18,7 +18,6 @@ DungeonTile::DungeonTile(bool p, float x, float y) {
     worldX = x;
     worldY = y;
 	position = glm::vec2(x, y);
-	box = CollisionBox(2.0f, 2.0f, position);
 }
 
 void DungeonTile::Draw(void) {
@@ -72,5 +71,5 @@ bool DungeonTile::moveOnEvent() {
 }
 
  CollisionBox DungeonTile::GetHitBox() {
-	 return box;
+	 return CollisionBox(2.0f, 2.0f, &position);
  }
