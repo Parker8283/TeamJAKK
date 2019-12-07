@@ -134,7 +134,7 @@ void Player::Attack(void* null)
 		heldSword->rotation = angle;
 		heldSword->UpdateState(Sword::State::Fly);
 		hasSword = false;
-		GetSoundEngine()->play2D("../../audio/woosh.wav", GL_FALSE);
+		GetSoundEngine()->play2D("../../common/sounds/woosh.wav", GL_FALSE);
 	}
 }
 
