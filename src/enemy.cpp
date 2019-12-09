@@ -22,7 +22,6 @@ Enemy::Enemy(glm::vec2 pos, const char* c, Behavior::AIType mood) : Entity(pos, 
 Enemy::Enemy(glm::vec2 pos, Archetype arch) : Entity(pos, arch.enemyTexture)
 {
 	health = arch.health;
-	score = 100; //Remove Later
 	timer =  (static_cast <float>(rand()) / static_cast <float> (RAND_MAX)) * arch.shotFrequency;
 	this->speed = arch.moveSpeed;
 	behavior = new Behavior(arch.behavior, (float)arch.radius);

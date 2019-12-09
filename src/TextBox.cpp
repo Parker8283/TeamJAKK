@@ -46,7 +46,7 @@ void SetupText(void) {
   glEnableVertexAttribArray(0);
   glVertexAttribPointer(0, 4, GL_FLOAT, GL_FALSE, 0, (void*)0);
 
-  textProgram  = LoadShader("../../shaders/TextShader.vert", "../../shaders/TextShader.frag");
+  textProgram  = LoadShader("shaders/TextShader.vert", "shaders/TextShader.frag");
   brightnessID = glGetUniformLocation(textProgram, "textBrightness");
   colorID      = glGetUniformLocation(textProgram, "textColor");
   textureID    = glGetUniformLocation(textProgram, "tex");
@@ -56,7 +56,7 @@ void SetupText(void) {
     printf("Failed to initialize Text Texture\n");
   }
 
-  if (FT_New_Face( library, "../../common/fonts/Raleway-Black.ttf", 0, &face) != FT_Err_Ok) {
+  if (FT_New_Face( library, "common/fonts/Raleway-Black.ttf", 0, &face) != FT_Err_Ok) {
     printf("Failed to create font face for Text Rendering\n");
   }
 
@@ -95,7 +95,7 @@ void SetupText(void) {
   FT_Done_FreeType(library);
 
   //Setup Filled Box Graphics
-  filledProgram      = LoadShader("../../shaders/FillShader.vert", "../../shaders/FillShader.frag");
+  filledProgram      = LoadShader("shaders/FillShader.vert", "shaders/FillShader.frag");
   filledBrightnessID = glGetUniformLocation(filledProgram, "brightness");
   filledColorID      = glGetUniformLocation(filledProgram, "color");
 

@@ -4,10 +4,10 @@
 
 static const vec3 UP = vec3(0, 1, 0);
 
-Player::Player() : Entity(glm::vec2(0, 0), "../../common/sprites/GungeonRipoffBase.png")
+Player::Player() : Entity(glm::vec2(0, 0), "common/sprites/GungeonRipoffBase.png")
 {
-	front = LoadTexture("../../common/sprites/GungeonRipoffBase.png");
-	back = LoadTexture("../../common/sprites/GungeonRipoffBaseBack.png");
+	front = LoadTexture("common/sprites/GungeonRipoffBase.png");
+	back = LoadTexture("common/sprites/GungeonRipoffBaseBack.png");
 	hasSword  = true;
 	maxHealth = 10;
 	curHealth = maxHealth;
@@ -17,7 +17,7 @@ Player::Player() : Entity(glm::vec2(0, 0), "../../common/sprites/GungeonRipoffBa
 	
 	SetPlayer(this);
 
-	heldSword = new Sword("../../common/sprites/Sword1.png");
+	heldSword = new Sword("common/sprites/Sword1.png");
 	hasSword = true;
 	invincTimer = 0;
 }
@@ -80,6 +80,10 @@ void Player::AddScore(uint s) {
 	score += s;
 }
 
+uint Player::GetScore() {
+	return score;
+}
+
 void Player::DamagePlayer(int damage) {
 	if (invincTimer > .75f) {
 		curHealth -= damage;
@@ -139,7 +143,7 @@ void Player::Attack(void* null)
 		heldSword->rotation = angle;
 		heldSword->UpdateState(Sword::State::Fly);
 		hasSword = false;
-		GetSoundEngine()->play2D("../../common/sounds/woosh.wav", GL_FALSE);
+		GetSoundEngine()->play2D("common/sounds/woosh.wav", GL_FALSE);
 	}
 }
 

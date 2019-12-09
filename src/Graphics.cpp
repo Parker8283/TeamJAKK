@@ -67,7 +67,7 @@ static float tileVerts[18] {
 
 static void loadCursor() {
   int width, height, n;
-  unsigned char* pixels = stbi_load("../../common/sprites/Cursor32.png", &width, &height, &n, 4);
+  unsigned char* pixels = stbi_load("common/sprites/Cursor32.png", &width, &height, &n, 4);
 
 
   GLFWimage image;
@@ -92,14 +92,14 @@ void SetupGraphics(void) {
   P = perspective(radians(60.0f), (float) xRes / (float) yRes, .1f, 100.0f);
 
   //Setup box shader program and player texture
-  boxProgramID = LoadShader("../../shaders/BoxShader.vert", "../../shaders/BoxShader.frag");
+  boxProgramID = LoadShader("shaders/BoxShader.vert", "shaders/BoxShader.frag");
 
-  playerTexture     = LoadTexture("../../common/sprites/GungeonRipoffBase.png");
-  playerTextureBack = LoadTexture("../../common/sprites/GungeonRipoffBaseBack.png");
+  playerTexture     = LoadTexture("common/sprites/GungeonRipoffBase.png");
+  playerTextureBack = LoadTexture("common/sprites/GungeonRipoffBaseBack.png");
 
-  wallTexture       = LoadTexture("../../common/sprites/WallBottom2.png");
-  floorTexture      = LoadTexture("../../common/sprites/ground.png");
-  hitBoxProgramID   = LoadShader("../../shaders/HitBoxShader.vert", "../../shaders/HitBoxShader.frag");
+  wallTexture       = LoadTexture("common/sprites/WallBottom2.png");
+  floorTexture      = LoadTexture("common/sprites/ground.png");
+  hitBoxProgramID   = LoadShader("shaders/HitBoxShader.vert", "../../shaders/HitBoxShader.frag");
 
   loadCursor();
 

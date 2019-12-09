@@ -90,7 +90,7 @@ void EnterGameLoop(void) {
 
   glClearColor(0, 0, 0, 1);
   RefreshSystemTimer();
-  SoundEngine->play2D("../../common/sounds/song.wav", GL_TRUE);
+  SoundEngine->play2D("common/sounds/song.wav", GL_TRUE);
   while (GetGameState() == GameState::RUN_GAME || GetGameState() == GameState::PAUSE_GAME) {
     if (GetGameState() == GameState::PAUSE_GAME) {
       PauseGame();
@@ -149,7 +149,7 @@ void EnterGameLoop(void) {
 
     if (GetPlayer()->GetHealth() <= 0) {
 		SoundEngine->stopAllSounds();
-	  GetSoundEngine()->play2D("../../common/sounds/death.wav", GL_FALSE);
+	  GetSoundEngine()->play2D("common/sounds/death.wav", GL_FALSE);
       LeaveGameLoop(map);
       break;
     }

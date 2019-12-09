@@ -23,6 +23,7 @@ public:
 	bool Update();
 
 	void AddScore(uint s);
+	uint GetScore();
 	void Attack(void*);
 	void DamagePlayer(int damage);
 	void Draw();

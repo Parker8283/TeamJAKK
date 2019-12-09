@@ -8,6 +8,7 @@
 #include <TextBox.h>
 #include <WindowManager.h>
 #include <GameRunner.h>
+#include <sstream>
 
 using namespace glm;
 
@@ -125,10 +126,15 @@ void MainMenu(void) {
 }
 
 void GameOver(void) {
+	std::ostringstream os;
+	os << "Congrats your score is: " << GetPlayer()->GetScore() << " points";
+	int n = os.str().size();
+	char* charar;
+	std::strcpy(charar, os.str().c_str());
 
   loop = 1;
   TextBox box0  = TextBox("GAME OVER", vec4(-.8f, .75f, .8f, .25f));
-  TextBox box05 = TextBox("Congrats you killed x enemies", vec4(-.8f, .35f, .8f, -.05f));
+  TextBox box05 = TextBox(os.str().c_str(), vec4(-.8f, .35f, .8f, -.05f));
   TextBox box1  = TextBox("Restart Game", vec4(-.1f, -.05f, .1f, -.15f));
   TextBox box2  = TextBox("Exit", vec4(-.1f, -.25f, .1f, -.35f));
 
