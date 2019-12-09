@@ -4,9 +4,9 @@
 #include <string.h>
 
 Archetype GHOST("../../common/sprites/GhostEnemySingle.png", "../../common/sprites/FireballNoOutline.png",		true,     1, 6,    1, 1, 3, 4, Behavior::AIType::Simple,   glm::vec2(1.0f, 1.0f),     glm::vec2(0.4f),  10);
-Archetype REDGHOST("../../common/sprites/RedGhost.png", "../../common/sprites/RedFireball.png",					true,  1.2f, 6, 1.5f, 1, 4, 4, Behavior::AIType::Lead,     glm::vec2(1.0f, 1.0f),     glm::vec2(0.4f),  20);
-Archetype CRYINGGHOST("../../common/sprites/CryingGhost.png", "../../common/sprites/FireballNoOutline.png",		true,   .8f, 8,  .5f, 1, 1, 6, Behavior::AIType::Circle,   glm::vec2(1.0f, 1.0f),     glm::vec2(0.4f),  30);
-Archetype ABNORMALGHOST("../../common/sprites/AbnormalGhost.png", "../../common/sprites/AbnormalFireball.png",  true,   .5f, 5,    3, 1, 6, 2, Behavior::AIType::Circle,   glm::vec2(1.0f, 1.0f),     glm::vec2(1.4f),  30);
+Archetype REDGHOST("../../common/sprites/RedGhost.png", "../../common/sprites/RedFireball.png",					true,  1.2f, 6, 1.5f, 2, 4, 4, Behavior::AIType::Lead,     glm::vec2(1.0f, 1.0f),     glm::vec2(0.4f),  20);
+Archetype CRYINGGHOST("../../common/sprites/CryingGhost.png", "../../common/sprites/FireballNoOutline.png",		true,   .8f, 8,  .5f, 3, 1, 6, Behavior::AIType::Circle,   glm::vec2(1.0f, 1.0f),     glm::vec2(0.4f),  30);
+Archetype ABNORMALGHOST("../../common/sprites/AbnormalGhost.png", "../../common/sprites/AbnormalFireball.png",  true,   .5f, 5,    3, 2, 6, 2, Behavior::AIType::Circle,   glm::vec2(1.0f, 1.0f),     glm::vec2(1.4f),  30);
 Archetype SLIME("../../common/sprites/Slime.png", "../../common/sprites/FireballNoOutline.png",					false, 2.5f, 6,    1, 1, 3, 4, Behavior::AIType::Simple,   glm::vec2(0.4f, 0.4f),     glm::vec2(0.4f),   5);
 Archetype BIGSLIME("../../common/sprites/BigSlime.png", "../../common/sprites/FireballNoOutline.png",			false, 1.2f, 6,    2, 2, 3, 4, Behavior::AIType::Simple,   glm::vec2(1.2f, 1.2f),	  glm::vec2(0.4f),  20);
 Archetype SPIDER("../../common/sprites/RedSpider.png", "../../common/sprites/WebShot.png",						true,     1, 7,    1, 1, 3, 5, Behavior::AIType::Cardinal, glm::vec2(0.5f, 0.5f),	  glm::vec2(0.3f),  15);
@@ -70,7 +70,6 @@ void GenerateEnemyRoom(DungeonTile* tiles, int numTiles)
 			i++;
 		}
 	}
-
 
 	int scenario = 0;
 	switch (numEnemies)

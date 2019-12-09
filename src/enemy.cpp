@@ -21,7 +21,7 @@ Enemy::Enemy(glm::vec2 pos, const char* c, Behavior::AIType mood) : Entity(pos, 
 
 Enemy::Enemy(glm::vec2 pos, Archetype arch) : Entity(pos, arch.enemyTexture)
 {
-	health = 2;
+	health = arch.health;
 	score = 100; //Remove Later
 	timer =  (static_cast <float>(rand()) / static_cast <float> (RAND_MAX)) * arch.shotFrequency;
 	this->speed = arch.moveSpeed;
@@ -35,6 +35,8 @@ Enemy::Enemy(glm::vec2 pos, Archetype arch) : Entity(pos, arch.enemyTexture)
 	shotSize = arch.shotSize;
 	score = arch.score;
 
+	hitBox = CollisionBox(size.x + .4, size.y + .4, &Position);
+
 	SetState(BehaviorState::Seek);
 
 	AddEnemy(this);
@@ -46,6 +48,7 @@ bool Enemy::Update(void)
 	int randX = 0, randY = 0;
 
 	glm::vec2 nextPos;
+	glm::vec2 fleeTar;
 
 	std::list<Entity*>* entities = GetEntityList();
 
@@ -53,10 +56,8 @@ bool Enemy::Update(void)
 	{
 	case BehaviorState::Seek:
 		timer += GetFrameDeltaTime();
-		//printf("%f \n", GetFrameDeltaTime());
 		if (doesShoot && timer > shotFrequency)
 		{
-			//printf("in if\n");
 			timer = 0;
 			SetState(BehaviorState::Fire);
 		}
@@ -70,67 +71,64 @@ bool Enemy::Update(void)
 		moveDir = moveTarget - Position;
 		moveDir = normalizeDir(moveDir);
 
-		nextPos = Position + moveDir * GetFrameDeltaTime() * speed;
-		if (CheckWalls(nextPos)) {
-			glm::vec2 nextX = glm::vec2(nextPos.x, Position.y);
-			glm::vec2 nextY = glm::vec2(Position.x, nextPos.y);
-			if (CheckWalls(nextX) && !CheckWalls(nextY)) {
-				Position = nextY;
-			} else if (CheckWalls(nextY) && !CheckWalls(nextX)) {
-				Position = nextX;
-			}
-		} else {
-			glm::vec2 oldPos = nextPos;
-			nextPos = CheckEntity(nextPos, GetPlayer());
-			if (oldPos != nextPos) {
-				GetPlayer()->DamagePlayer(damage);
-			}
-			nextPos = CheckEntities(nextPos, GetEnemyList());
-			Position = nextPos;
+		nextPos = Position + (moveDir * GetFrameDeltaTime() * speed);
+		
+		break;
+	case BehaviorState::Fire:
+		target = behavior->GetFireTarget();
+
+		shot = new Projectile(weaponFile, Position + glm::vec2((size.x * 0.5), 0), target, damage, shotSize);
+
+		this->SetState(BehaviorState::Seek);
+		break;
+	case BehaviorState::Flee:
+		randX = (rand() % 8) - 4;
+		randY = (rand() % 8) - 4;
+		
+		if (randX < 0) randX -= 3;
+		else randX += 3;
+		if (randY < 0) randY -= 3;
+		else randY += 3;
+
+		if (quadrant(vec2(randX, randY)) == quadrant(vec2( GetPlayer()->GetPosition().x - randX, GetPlayer()->GetPosition().y - randY) )) {
+			randX = randX * -1;
 		}
 
-	if (moveDir.x < 0 && !flipped) {
-		size.x = size.x * -1;
-		flipped = true;
-	} else {
-		size.x = abs(size.x);
-		flipped = false;
-	}
-	break;
-case BehaviorState::Fire:
-	//printf("Shoot her!\n");
-	target = behavior->GetFireTarget();
-
-	shot = new Projectile(weaponFile, Position + glm::vec2((size.x * 0.5), 0), target, damage, shotSize);
-
-	//shot->Init(Position + glm::vec2((size.x * 0.5), 0), target);
-
-	this->SetState(BehaviorState::Seek);
-	break;
-case BehaviorState::Flee:
-	randX = (rand() % 12) - 6;
-	randY = (rand() % 12) - 6;
-	if (quadrant(vec2(randX, randY)) == quadrant(GetPlayerPos())) {
-		randX = -randX;
-	}
-	moveTarget = vec2(GetPlayerPos()) + vec2(randX, randY);
-	SetState(BehaviorState::Fleeing);
-	break;
-case BehaviorState::Fleeing:
-	timer += GetFrameDeltaTime();
-	if (timer > 4)
-	{
+		moveTarget = vec2( Position.x + randX, Position.y + randY );
+		nextPos = Position;
 		timer = 0;
+		SetState(BehaviorState::Fleeing);
+		break;
+	case BehaviorState::Fleeing:
+		timer += GetFrameDeltaTime();
+		if (timer > 4)
+		{
+			timer = 0;
+			SetState(BehaviorState::Seek);
+		}
+		if (abs(Position.x - moveTarget.x) < .1 && abs(Position.y - moveTarget.y) < .1) {
+			timer = 0;
+			SetState(BehaviorState::Seek);
+		}
+
+		moveDir = moveTarget - Position;
+		moveDir = normalizeDir(moveDir);
+		nextPos = Position + (moveDir * GetFrameDeltaTime() * speed);
+
+		break;
+	default:
 		SetState(BehaviorState::Seek);
-	}
-	if (abs(Position.x - moveTarget.x) < .1 && abs(Position.y - moveTarget.y) < .1) {
-		timer = 0;
-		SetState(BehaviorState::Seek);
+		break;
 	}
 
-	moveDir = moveTarget - Position;
-	moveDir = normalizeDir(moveDir);
-	nextPos = Position + moveDir * GetFrameDeltaTime() * speed;
+	if (checkCollision(hitBox, GetPlayer()->GetSword()->GetHitBox()) && GetPlayer()->GetSword()->GetState() == Sword::State::Fly) {
+		GetPlayer()->GetSword()->UpdateState(Sword::State::Ground);
+		SetState(Enemy::BehaviorState::Flee);
+		return this->TakeDamage(GetPlayer()->GetSword()->damage);
+	}
+	else if (GetPlayer()->GetSword()->GetState() == Sword::State::Ground) {
+		nextPos = CheckEntity(nextPos, GetPlayer()->GetSword());
+	}
 
 	if (CheckWalls(nextPos)) {
 		glm::vec2 nextX = glm::vec2(nextPos.x, Position.y);
@@ -141,9 +139,6 @@ case BehaviorState::Fleeing:
 		else if (CheckWalls(nextY) && !CheckWalls(nextX)) {
 			Position = nextX;
 		}
-		else {
-
-		}
 	}
 	else {
 		glm::vec2 oldPos = nextPos;
@@ -151,9 +146,9 @@ case BehaviorState::Fleeing:
 		if (oldPos != nextPos) {
 			GetPlayer()->DamagePlayer(damage);
 		}
+		nextPos = CheckEntities(nextPos, GetEnemyList());
 		Position = nextPos;
 	}
-	
 	if (moveDir.x < 0 && !flipped) {
 		size.x = size.x * -1;
 		flipped = true;
@@ -165,31 +160,21 @@ case BehaviorState::Fleeing:
 		size.x = abs(size.x);
 		flipped = false;
 	}
-	break;
-default:
-	SetState(BehaviorState::Seek);
-	break;
-}
 
-if (checkCollision(hitBox, GetPlayer()->GetSword()->GetHitBox()) && GetPlayer()->GetSword()->GetState() == Sword::State::Fly) {
-	GetPlayer()->GetSword()->UpdateState(Sword::State::Ground);
-	return this->TakeDamage(GetPlayer()->GetSword()->damage);
-}
-
-std::list<Entity*>::iterator it;
-for (it = entities->begin(); it != entities->end(); ++it)
-{
-	if (checkCollision(hitBox, (*it)->GetHitBox()) && this != *it) {
-		collided = true;
-		break;
+	/**std::list<Entity*>::iterator it;
+	for (it = entities->begin(); it != entities->end(); ++it)
+	{
+		if (checkCollision(hitBox, (*it)->GetHitBox()) && this != *it) {
+			collided = true;
+			break;
+		}
 	}
-}
 
-if (!collided)
-	Position = nextPos;
+	if (!collided)
+		Position = nextPos;*/
 
-hitBox.Draw();
-return false;
+	//hitBox.Draw();
+	return false;
 }
 
 void Enemy::Draw(void)

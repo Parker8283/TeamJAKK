@@ -52,9 +52,9 @@ bool Projectile::Update()
 	}
 	
 
-	if (abs(Position.x) > 50 || abs(Position.y) > 50)
-		del = true;
+	//if (abs(Position.x) > 50 || abs(Position.y) > 50)
+		//del = true;
 
-	hitBox.Draw();
+	//hitBox.Draw();
 	return del;
 }

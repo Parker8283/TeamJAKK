@@ -26,6 +26,9 @@ public:
 	glm::vec2 size;
 	GLfloat rotation;
 	float speed;
+
+	bool rotateAroundCenter = true;
+	glm::vec2 rotationPoint;
 	
 
 	int uID;

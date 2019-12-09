@@ -1,6 +1,7 @@
 #include "entity.h"
 #include <Graphics.h>
 #include <GameRunner.h>
+#include <GameMath.h>
 
 using namespace glm;
 
@@ -75,10 +76,17 @@ void Entity::Draw(void)
   //printf("%f, %f\n", GetPos().x, GetPos().y);
   
   mat4 MVP = GetProjection() * GetView() * M;
-
-  MVP = glm::translate(MVP, glm::vec3(0.5f * size.x, 0.5f * size.y, 0.0f)); //Move origin to center to rotate
-  MVP = glm::rotate(MVP, rotation, glm::vec3(0.0f, 0.0f, 1.0f)); //Then rotate
-  MVP = glm::translate(MVP, glm::vec3(-0.5f * size.x, -0.5f * size.y, 0.0f)); // Move the origin back
+  
+  if (rotateAroundCenter) {
+	  MVP = glm::translate(MVP, glm::vec3(0.5f * size.x, 0.5f * size.y, 0.0f)); //Move origin to center to rotate
+	  MVP = glm::rotate(MVP, rotation, glm::vec3(0.0f, 0.0f, 1.0f)); //Then rotate
+	  MVP = glm::translate(MVP, glm::vec3(-0.5f * size.x, -0.5f * size.y, 0.0f)); // Move the origin back
+  }
+  else {
+	  MVP = glm::translate(MVP, glm::vec3(0.5f * size.x, 0.5f * size.y, 0.0f)); //Move origin to center to rotate
+	  MVP = glm::rotate(MVP, rotation, glm::vec3(rotationPoint.x, rotationPoint.y, 1.0f)); //Then rotate
+	  MVP = glm::translate(MVP, glm::vec3(-0.5f * size.x, -0.5f * size.y, 0.0f)); // Move the origin back
+  }
 
   MVP = glm::scale(MVP, glm::vec3(size, 1.0f)); // Last scale
 
@@ -131,18 +139,34 @@ glm::vec2 Entity::CheckEntities(glm::vec2 pos, std::list<Entity*>* e) {
 glm::vec2 Entity::CheckEntity(glm::vec2 pos, Entity* e) {
 	glm::vec2 p = pos;
   CollisionBox hit = CollisionBox(Width, Height, &p);
-
+  float dist = distance(pos, e->GetHitBox().GetPos());
 	if (checkCollision(hit, e->GetHitBox())) {
-		glm::vec2 nextX = glm::vec2(pos.x, Position.y);
-		glm::vec2 nextY = glm::vec2(Position.x, pos.y);
-		if (CheckWalls(nextX) /**&& !CheckWalls(nextY)*/) {
+		glm::vec2 nextX = glm::vec2(pos.x, Position.y );
+		glm::vec2 nextY = glm::vec2(Position.x , pos.y);
+		CollisionBox hitX = CollisionBox(Width, Height, &nextX);
+		CollisionBox hitY = CollisionBox(Width, Height, &nextY);
+		if (checkCollision(hitX, e->GetHitBox())) {
 			return nextY;
 		}
-		else if (CheckWalls(nextY) /**&& !CheckWalls(nextX)*/) {
+		else if (checkCollision(hitY, e->GetHitBox())) {
 			return nextX;
 		}
 		else {
-			return Position;
+			float distX = distance(Position.x, pos.x) /2;
+			float distY = distance(Position.y, pos.y) /2;
+			glm::vec2 minX = glm::vec2(pos.x, Position.y + dist);
+			glm::vec2 minY = glm::vec2(Position.x + dist, pos.y);
+			CollisionBox hit2X = CollisionBox(Width, Height, &minX);
+			CollisionBox hit2Y = CollisionBox(Width, Height, &minY);
+			if (checkCollision(hit2X, e->GetHitBox())) {
+				return minY;
+			}
+			else if (checkCollision(hit2Y, e->GetHitBox())) {
+				return minX;
+			}
+			else {
+				return Position;
+			}
 		}
 	}
 

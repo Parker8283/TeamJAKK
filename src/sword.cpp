@@ -12,7 +12,7 @@ Sword::Sword(const char* file) : Projectile(file, GetPlayerPos(), vec2(0), 1, si
 	Height   = .8f;
 	size     = glm::vec2(Width, Height);
 
-	speed    = 5;
+	speed    = 9;
 
 	damage   = 1;
 	currentState = State::Held;
@@ -34,7 +34,6 @@ bool Sword::Update(void)
 		Position += direction * frameDelta * speed;
 		rotation += (0.5f * 180.0f / 3.14159265f) * frameDelta;
 
-		
 		/**for (it = entities->begin(); it != entities->end(); ++it)
 		{
 			if (dynamic_cast<Enemy*>(*it) &&  checkCollision(hitBox, (*it)->GetHitBox())) {
@@ -72,7 +71,7 @@ bool Sword::Update(void)
 		break;
 	}
 
-	hitBox.Draw();
+	//hitBox.Draw();
 	return false;
 }
 

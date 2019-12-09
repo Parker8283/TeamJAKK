@@ -19,6 +19,7 @@ static std::list<Entity*> enemies;
 static std::vector<Entity*> removeList;
 static DungeonMap masterMap;
 irrklang::ISoundEngine* SoundEngine = irrklang::createIrrKlangDevice();
+float tim = 0;
 
 static Player* player;
 
@@ -132,6 +133,19 @@ void EnterGameLoop(void) {
 
     //Draw Hud
     DrawHud();
+
+	/**if (GetEnemyList()->size() == 0) {
+		tim += GetFrameDeltaTime();
+		if (tim > 4) {
+			GenerateEnemyRoom(masterMap.getPassableList());
+			GetPlayer()->curHealth += 3;
+			if (GetPlayer()->GetHealth() > GetPlayer()->maxHealth) {
+				GetPlayer()->curHealth = GetPlayer()->maxHealth;
+			}
+			tim = 0;
+		}
+
+	}*/
 
     if (GetPlayer()->GetHealth() <= 0) {
 		SoundEngine->stopAllSounds();
