@@ -1,7 +1,5 @@
-
 #include <catch.hpp>
 #include <GameMath.h>
-
 
 TEST_CASE("Test Normalize dir", "[classic]")
 {

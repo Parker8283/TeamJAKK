@@ -5,7 +5,6 @@ LIBS=-lGL -lGLEW -lm -lglfw -lfreetype -lIrrKlang -I/$(INC_DIR)/freetype -I$(INC
 
 swordthrower: src/Main.cpp
 	$(CC) $(CFLAGS) src/*.cpp $(LIBS) -o swordthrower
-	mv swordthrower build/release/
 
 install:
 	cp ./dlls/libIrrKlang.so /usr/lib/
