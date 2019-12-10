@@ -52,4 +52,5 @@ public:
 };
 
 DungeonTile* GenerateTestRoom(int, int); //set map to predefined 10x10 room
+DungeonTile* Doomsday();
 #endif

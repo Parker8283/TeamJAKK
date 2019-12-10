@@ -81,6 +81,7 @@ void EnterGameLoop(void) {
   int testX = 10;
   int testY = 10;
   DungeonTile* map = GenerateTestRoom(testX, testY);
+  //DungeonTile* map = Doomsday();
   int numTiles = testX * testY;
   masterMap = DungeonMap(&map, testX, testY);
 
@@ -102,7 +103,7 @@ void EnterGameLoop(void) {
     UpdateKeys();
 
     //Draw Map
-    for (uint i = 0; i < 100; i++) {
+    for (uint i = 0; i < numTiles; i++) {
       map[i].Draw();
     }
 

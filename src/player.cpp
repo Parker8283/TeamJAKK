@@ -8,6 +8,7 @@ Player::Player() : Entity(glm::vec2(0, 0), "common/sprites/GungeonRipoffBase.png
 {
 	front = LoadTexture("common/sprites/GungeonRipoffBase.png");
 	back = LoadTexture("common/sprites/GungeonRipoffBaseBack.png");
+	invinc = LoadTexture("common/sprites/PlayerIn.png");
 	hasSword  = true;
 	maxHealth = 10;
 	curHealth = maxHealth;
@@ -49,6 +50,13 @@ bool Player::Update()
 			break;
 		}
 	}*/
+
+	if (invincTimer <= .75) {
+		texture = invinc;
+	}
+	else {
+		texture = front;
+	}
 
 	if (CheckWalls(nextPos)) {
 		glm::vec2 nextX = glm::vec2(nextPos.x, Position.y);

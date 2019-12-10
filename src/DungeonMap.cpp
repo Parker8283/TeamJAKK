@@ -7,6 +7,7 @@
 
 #define DEFAULTTEXTURE "default"
 
+
 DungeonMap::DungeonMap() {
   tiles = NULL;
   textureType = "";
@@ -108,6 +109,35 @@ DungeonTile* GenerateTestRoom(int width, int height) {
     }
   }
   return testRoom;
+}
+
+DungeonTile* Doomsday() {
+	int width = 20;
+	int height = 20;
+	DungeonTile* testRoom = new DungeonTile[width * height];
+	float lastx;
+	float lasty;
+
+	for (int j = 0; j < height; j++) {
+		for (int i = 0; i < width; i++) {
+			int index = i + j * width;
+			if (i == 0 || j == 0 || i == (width - 1) || j == (height - 1)) {
+				testRoom[index] = DungeonTile(false, j * 2 + 1.0f, (height - i * 2) + 1.0f);
+			}
+			else if ( (i == 6 && j ==6) || (i == 6 && j == 5) || (i == 5 && j == 6) || (i == 5 && j == 5) ||
+				(i == 6 && j == 14) || (i == 6 && j == 13) || (i == 5 && j == 14) || (i == 5 && j == 13) || 
+				(i == 14 && j == 6) || (i == 14 && j == 5) || (i == 13 && j == 6) || (i == 13 && j == 5) || 
+				(i == 14 && j == 14) || (i == 14 && j == 13) || (i == 13 && j == 14) || (i == 13 && j == 13) ) {
+				testRoom[index] = DungeonTile(false, j * 2 + 1.0f, (height - i * 2) + 1.0f);
+			}
+			else {
+				testRoom[index] = DungeonTile(true, j * 2 + 1.0f, (height - i * 2) + 1.0f);
+			}
+			lastx = j * 2 + 1.0f;
+			lasty = height - i * 2 + 1.0f;
+		}
+	}
+	return testRoom;
 }
 
 glm::vec2 DungeonMap::getTileDim()

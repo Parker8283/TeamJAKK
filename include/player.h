@@ -10,7 +10,7 @@ class Player : public Entity {
 	Sword* heldSword;
 
 public:
-	GLuint front, back;
+	GLuint front, back, invinc;
 	bool hasSword;
 	int curHealth;
 	int maxHealth;

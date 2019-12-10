@@ -97,9 +97,9 @@ void SetupGraphics(void) {
   playerTexture     = LoadTexture("common/sprites/GungeonRipoffBase.png");
   playerTextureBack = LoadTexture("common/sprites/GungeonRipoffBaseBack.png");
 
-  wallTexture       = LoadTexture("common/sprites/WallBottom2.png");
+  wallTexture       = LoadTexture("common/sprites/SingleWall.png");
   floorTexture      = LoadTexture("common/sprites/ground.png");
-  hitBoxProgramID   = LoadShader("shaders/HitBoxShader.vert", "../../shaders/HitBoxShader.frag");
+  hitBoxProgramID   = LoadShader("shaders/HitBoxShader.vert", "shaders/HitBoxShader.frag");
 
   loadCursor();
 
