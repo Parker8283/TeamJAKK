@@ -17,6 +17,8 @@ Projectile::Projectile(const char* file, glm::vec2 iPos, glm::vec2 target, float
 
 	this->size = size;
 
+	hitBox = CollisionBox(size.x, size.y, &Position);
+
 	speed = 7;
 
 	direction = normalizeDir(direction);

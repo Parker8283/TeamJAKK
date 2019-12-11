@@ -16,6 +16,8 @@ Sword::Sword(const char* file) : Projectile(file, GetPlayerPos(), vec2(0), 1, si
 
 	damage   = 1;
 	currentState = State::Held;
+
+	hitBox = CollisionBox(Width, Height, &Position);
 }
 
 void Sword::Init()

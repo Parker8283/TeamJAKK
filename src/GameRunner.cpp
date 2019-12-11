@@ -78,10 +78,10 @@ void EnterGameLoop(void) {
   SetControlContext(GameState::RUN_GAME);
   enemiesKilled = 0;
 
-  int testX = 10;
-  int testY = 10;
-  DungeonTile* map = GenerateTestRoom(testX, testY);
-  //DungeonTile* map = Doomsday();
+  int testX = 20;
+  int testY = 20;
+  //DungeonTile* map = GenerateTestRoom(testX, testY);
+  DungeonTile* map = Doomsday();
   int numTiles = testX * testY;
   masterMap = DungeonMap(&map, testX, testY);
 
@@ -135,7 +135,7 @@ void EnterGameLoop(void) {
     //Draw Hud
     DrawHud();
 
-	/**if (GetEnemyList()->size() == 0) {
+	if (GetEnemyList()->size() == 0) {
 		tim += GetFrameDeltaTime();
 		if (tim > 4) {
 			GenerateEnemyRoom(masterMap.getPassableList());
@@ -146,7 +146,7 @@ void EnterGameLoop(void) {
 			tim = 0;
 		}
 
-	}*/
+	}
 
     if (GetPlayer()->GetHealth() <= 0) {
 		SoundEngine->stopAllSounds();
